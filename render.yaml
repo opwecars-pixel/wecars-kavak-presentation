@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: wecars-kavak-presentation
+    runtime: static
+    buildCommand: echo "static site"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
