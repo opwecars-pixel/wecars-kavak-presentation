@@ -8,83 +8,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --kblack:#000;--kwhite:#fff;
   --knavy:#0F1933;--knavy2:#152045;
   --kblue:#1D4ED8;--kblue2:#2563EB;--kblue3:#3B82F6;
   --kred:#FF433E;--kred2:#FF6B66;
   --kred-dim:rgba(255,67,62,.1);--kred-border:rgba(255,67,62,.25);
-  --kgray:#F7F8FA;--kgray2:#EEF0F4;--kgray3:#E2E6EE;
+  --kgray:#F7F8FA;--kgray3:#E2E6EE;
   --tmid:#4B5563;--tlight:#9CA3AF;
-  --bd-dark:rgba(255,255,255,.07);--bd-light:rgba(15,25,51,.08);
   --green:#10B981;--amber:#F59E0B;
   --font:'Inter',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth;}
-body{font-family:var(--font);background:var(--kwhite);color:var(--knavy);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font);background:#fff;color:var(--knavy);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* SCROLL PROGRESS */
 #spb{position:fixed;top:0;left:0;height:3px;background:var(--kred);z-index:9999;width:0;transition:width .1s linear;}
 
 /* NAV */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
-  display:flex;align-items:center;justify-content:space-between;padding:0 52px;
-  background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--bd-light);transition:box-shadow .3s;
-}
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(15,25,51,.07);transition:box-shadow .3s;}
 #nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.07);}
-.nav-logo{font-size:20px;font-weight:900;letter-spacing:-.04em;color:var(--kblack);display:flex;align-items:center;gap:10px;}
+.nav-logo{font-size:19px;font-weight:900;letter-spacing:-.04em;color:#000;display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .nav-logo .wc{color:var(--kred);}
 .nav-logo .x{color:var(--tlight);font-weight:300;}
 .nav-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);background:var(--kred-dim);border:1px solid var(--kred-border);padding:3px 9px;border-radius:20px;}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:13px;font-weight:500;color:var(--knavy);text-decoration:none;transition:color .2s;border-bottom:2px solid transparent;padding:3px 0;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:12px;font-weight:500;color:var(--knavy);text-decoration:none;transition:color .2s;border-bottom:2px solid transparent;padding:3px 0;white-space:nowrap;}
 .nav-links a:hover,.nav-links a.on{color:var(--kred);border-bottom-color:var(--kred);}
-.nav-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#fff;background:var(--kred);padding:10px 22px;border-radius:100px;text-decoration:none;transition:all .2s;}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#fff;background:var(--kred);padding:10px 22px;border-radius:100px;text-decoration:none;transition:all .2s;white-space:nowrap;}
 .nav-cta:hover{background:var(--kred2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,67,62,.35);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:var(--knavy);border-radius:2px;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:22px;font-weight:800;color:var(--knavy);text-decoration:none;letter-spacing:-.02em;}
+.mobile-menu a:hover{color:var(--kred);}
+.mobile-menu .nav-cta{font-size:16px;margin-top:8px;}
 
 /* HERO */
-#hero{height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--knavy);}
+#hero{height:100vh;min-height:580px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--knavy);}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(29,78,216,.22) 0%,transparent 50%),linear-gradient(160deg,#0F1933 0%,#152045 50%,#0a1628 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:72px 72px;}
-.hero-lights{position:absolute;inset:0;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);background-size:64px 64px;}
 .hl{position:absolute;border-radius:50%;filter:blur(60px);animation:fl 8s ease-in-out infinite;}
 .hl1{width:360px;height:360px;background:rgba(29,78,216,.11);top:-80px;right:8%;animation-delay:0s;}
 .hl2{width:280px;height:280px;background:rgba(255,67,62,.06);bottom:12%;left:4%;animation-delay:-3s;}
 @keyframes fl{0%,100%{transform:translate(0,0);}50%{transform:translate(16px,-16px);}}
-.hero-con{position:relative;z-index:2;text-align:center;padding:0 32px;max-width:860px;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--kred);background:rgba(255,67,62,.1);border:1px solid rgba(255,67,62,.18);padding:5px 13px;border-radius:100px;margin-bottom:26px;}
+.hero-con{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:860px;width:100%;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--kred);background:rgba(255,67,62,.1);border:1px solid rgba(255,67,62,.18);padding:5px 13px;border-radius:100px;margin-bottom:24px;}
 .hero-dot{width:5px;height:5px;border-radius:50%;background:var(--kred);animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-h1.ht{font-size:clamp(44px,6.5vw,86px);font-weight:900;letter-spacing:-.055em;line-height:.93;color:#fff;margin-bottom:22px;}
+h1.ht{font-size:clamp(40px,8vw,88px);font-weight:900;letter-spacing:-.055em;line-height:.93;color:#fff;margin-bottom:20px;}
 h1.ht .red{background:linear-gradient(135deg,var(--kred),#FF8A87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 h1.ht .ghost{color:rgba(255,255,255,.18);font-weight:300;}
-.hero-sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.55);max-width:540px;margin:0 auto 36px;}
-.hero-pills{display:flex;gap:10px;justify-content:center;margin-bottom:36px;flex-wrap:wrap;}
-.pill{font-size:13px;font-weight:600;padding:12px 28px;border-radius:100px;text-decoration:none;transition:all .22s;display:inline-flex;align-items:center;gap:7px;}
+.hero-sub{font-size:clamp(14px,2vw,17px);line-height:1.65;color:rgba(255,255,255,.55);max-width:520px;margin:0 auto 32px;}
+.hero-pills{display:flex;gap:10px;justify-content:center;margin-bottom:32px;flex-wrap:wrap;}
+.pill{font-size:13px;font-weight:600;padding:12px 24px;border-radius:100px;text-decoration:none;transition:all .22s;display:inline-flex;align-items:center;gap:7px;}
 .pill.pri{background:var(--kred);color:#fff;box-shadow:0 4px 18px rgba(255,67,62,.38);}
-.pill.pri:hover{background:var(--kred2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,67,62,.48);}
-.pill.out{background:rgba(255,255,255,.07);color:#fff;border:1.5px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);}
-.pill.out:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.32);}
-.hero-kpis{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;backdrop-filter:blur(10px);}
-.hk{flex:1;padding:16px 18px;text-align:center;border-right:1px solid rgba(255,255,255,.05);}
+.pill.pri:hover{background:var(--kred2);transform:translateY(-2px);}
+.pill.out{background:rgba(255,255,255,.07);color:#fff;border:1.5px solid rgba(255,255,255,.18);}
+.pill.out:hover{background:rgba(255,255,255,.12);}
+.hero-kpis{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;}
+.hk{flex:1;padding:14px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.05);}
 .hk:last-child{border-right:none;}
-.hk-v{font-size:24px;font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:3px;}
+.hk-v{font-size:clamp(18px,3vw,26px);font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:3px;}
 .hk-v.red{color:var(--kred);}
 .hk-v.gr{color:#34D399;}
 .hk-v.bl{color:#60A5FA;}
-.hk-l{font-size:9px;color:rgba(255,255,255,.35);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
-.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(255,255,255,.25);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;animation:bd 2s ease-in-out infinite;}
+.hk-l{font-size:9px;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(255,255,255,.22);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;animation:bd 2s ease-in-out infinite;}
 @keyframes bd{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
 
 /* SHARED */
-.con{width:100%;max-width:1160px;margin:0 auto;padding:0 52px;}
-.sec-pad{padding:88px 0;}
-.sec-gray{background:var(--kgray);}
-.sec-navy{background:var(--knavy);}
+.con{width:100%;max-width:1120px;margin:0 auto;padding:0 48px;}
+.sec-pad{padding:80px 0;}
 .s-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--kred);margin-bottom:12px;display:flex;align-items:center;gap:7px;}
-.s-tag::before{content:'';width:18px;height:2px;background:var(--kred);border-radius:1px;}
-.s-h{font-size:clamp(28px,3.5vw,46px);font-weight:900;letter-spacing:-.04em;line-height:1.06;color:var(--knavy);margin-bottom:12px;}
+.s-tag::before{content:'';width:16px;height:2px;background:var(--kred);border-radius:1px;}
+.s-h{font-size:clamp(26px,4vw,46px);font-weight:900;letter-spacing:-.04em;line-height:1.06;color:var(--knavy);margin-bottom:12px;}
 .s-h.light{color:#fff;}
 .s-h .red{color:var(--kred);}
 .s-h .bl{color:var(--kblue);}
@@ -92,885 +92,1052 @@ h1.ht .ghost{color:rgba(255,255,255,.18);font-weight:300;}
 .s-p.light{color:rgba(255,255,255,.5);}
 .div{height:1px;background:var(--kgray3);}
 .div-dark{height:1px;background:rgba(255,255,255,.05);}
-.rv{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
 .rv.up{transform:translateY(0);opacity:1;}
 .d1{transition-delay:.07s;}.d2{transition-delay:.14s;}.d3{transition-delay:.21s;}.d4{transition-delay:.28s;}
 
+/* COUNTER animation */
+.counter{display:inline-block;}
+
 /* PROBLEMA */
-#problema{background:var(--kgray);padding:88px 0;}
-.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px;}
-.pc{background:#fff;border:1px solid var(--kgray3);border-radius:18px;padding:28px;transition:all .28s;position:relative;overflow:hidden;}
+#problema{background:var(--kgray);padding:80px 0;}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px;}
+.pc{background:#fff;border:1px solid var(--kgray3);border-radius:16px;padding:24px;transition:all .28s;position:relative;overflow:hidden;}
 .pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--kred),transparent);opacity:0;transition:opacity .3s;}
 .pc:hover::after{opacity:1;}
-.pc:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(15,25,51,.09);border-color:transparent;}
+.pc:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(15,25,51,.09);border-color:transparent;}
 .pc.dark{background:var(--knavy);border-color:transparent;}
 .pc.dark .pc-h{color:#fff;}
-.pc.dark .pc-b{color:rgba(255,255,255,.45);}
-.pc-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);background:var(--kred-dim);border:1px solid var(--kred-border);padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:16px;}
-.pc-ico{font-size:28px;margin-bottom:12px;display:block;}
-.pc-h{font-size:16px;font-weight:800;color:var(--knavy);margin-bottom:8px;letter-spacing:-.015em;}
+.pc.dark .pc-b{color:rgba(255,255,255,.4);}
+.pc-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);background:var(--kred-dim);border:1px solid var(--kred-border);padding:3px 8px;border-radius:5px;display:inline-block;margin-bottom:14px;}
+.pc-ico{font-size:26px;margin-bottom:10px;display:block;}
+.pc-h{font-size:15px;font-weight:800;color:var(--knavy);margin-bottom:7px;letter-spacing:-.015em;}
 .pc-b{font-size:13px;color:var(--tmid);line-height:1.65;}
-.fv{margin-top:16px;}
+.fv{margin-top:14px;}
 .fv-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;}
-.fv-bar{height:7px;background:var(--kgray3);border-radius:4px;overflow:hidden;}
+.fv-bar{height:6px;background:var(--kgray3);border-radius:4px;overflow:hidden;}
 .fv-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--kred),#FF8A87);width:0;transition:width 1.4s ease;}
 .fv-fill.go{width:76%;}
 
 /* PROPUESTA */
-#propuesta{background:#fff;padding:88px 0;}
-.opp-lay{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
-.opp-card{background:var(--knavy);border-radius:22px;padding:36px;position:relative;overflow:hidden;}
-.opp-card::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.18),transparent 70%);}
-.oe{display:flex;align-items:center;gap:12px;padding:15px 17px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:8px;transition:all .2s;}
-.oe:hover{background:rgba(255,255,255,.08);}
-.oe-ico{font-size:24px;}
-.oe-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;}
-.oe-sub{font-size:10px;color:rgba(255,255,255,.38);}
+#propuesta{background:#fff;padding:80px 0;}
+.opp-lay{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.opp-card{background:var(--knavy);border-radius:20px;padding:32px;position:relative;overflow:hidden;}
+.opp-card::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.18),transparent 70%);}
+.oe{display:flex;align-items:center;gap:12px;padding:13px 15px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:7px;}
+.oe-ico{font-size:22px;}
+.oe-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;}
+.oe-sub{font-size:10px;color:rgba(255,255,255,.35);}
 .oe-tags{margin-left:auto;display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
 .oe-t{font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;}
 .oe-t.b{background:rgba(59,130,246,.14);color:#60A5FA;}
 .oe-t.r{background:rgba(255,67,62,.12);color:var(--kred);}
 .oe-t.g{background:rgba(16,185,129,.12);color:#34D399;}
-.bridge{display:flex;align-items:center;justify-content:center;padding:10px;position:relative;}
+.bridge{display:flex;align-items:center;justify-content:center;padding:8px;position:relative;}
 .bridge::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,var(--kred),transparent);}
-.bridge-btn{width:38px;height:38px;border-radius:50%;background:var(--kred);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;box-shadow:0 0 20px rgba(255,67,62,.38);position:relative;z-index:1;}
-.opp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;}
-.ostat{background:var(--kgray);border-radius:12px;padding:18px;text-align:center;}
-.ostat-v{font-size:28px;font-weight:900;letter-spacing:-.04em;color:var(--knavy);margin-bottom:3px;}
+.bridge-btn{width:34px;height:34px;border-radius:50%;background:var(--kred);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;box-shadow:0 0 18px rgba(255,67,62,.35);position:relative;z-index:1;}
+.opp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:22px;}
+.ostat{background:var(--kgray);border-radius:11px;padding:16px;text-align:center;}
+.ostat-v{font-size:26px;font-weight:900;letter-spacing:-.04em;color:var(--knavy);margin-bottom:3px;}
 .ostat-v.red{color:var(--kred);}
-.ostat-l{font-size:9px;color:var(--tlight);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.ostat-l{font-size:9px;color:var(--tlight);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
 
 /* COMO */
-#como{background:var(--knavy);padding:88px 0;}
-.steps-wrap{display:grid;grid-template-columns:260px 1fr;gap:72px;margin-top:56px;}
-.steps-side{position:sticky;top:84px;align-self:start;}
-.sn{display:flex;align-items:flex-start;gap:12px;padding:10px 0;cursor:pointer;position:relative;}
-.sn:not(:last-child)::after{content:'';position:absolute;left:13px;top:32px;bottom:-10px;width:1px;background:rgba(255,255,255,.05);}
-.sn.on:not(:last-child)::after{background:rgba(255,67,62,.25);}
-.sn-n{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.25);flex-shrink:0;transition:all .3s;}
-.sn.on .sn-n{background:var(--kred);border-color:var(--kred);color:#fff;box-shadow:0 0 18px rgba(255,67,62,.45);}
-.sn-title{font-size:12px;font-weight:600;color:rgba(255,255,255,.28);transition:color .2s;line-height:1.3;padding-top:4px;}
-.sn-sub{font-size:9px;color:rgba(255,255,255,.14);margin-top:2px;}
+#como{background:var(--knavy);padding:80px 0;}
+.steps-wrap{display:grid;grid-template-columns:240px 1fr;gap:64px;margin-top:48px;}
+.steps-side{position:sticky;top:80px;align-self:start;}
+.sn{display:flex;align-items:flex-start;gap:11px;padding:9px 0;cursor:pointer;position:relative;}
+.sn:not(:last-child)::after{content:'';position:absolute;left:12px;top:30px;bottom:-9px;width:1px;background:rgba(255,255,255,.05);}
+.sn.on:not(:last-child)::after{background:rgba(255,67,62,.22);}
+.sn-n{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.25);flex-shrink:0;transition:all .3s;}
+.sn.on .sn-n{background:var(--kred);border-color:var(--kred);color:#fff;box-shadow:0 0 16px rgba(255,67,62,.42);}
+.sn-title{font-size:12px;font-weight:600;color:rgba(255,255,255,.28);transition:color .2s;line-height:1.3;padding-top:3px;}
+.sn-sub{font-size:9px;color:rgba(255,255,255,.13);margin-top:1px;}
 .sn.on .sn-title{color:#fff;}
-.sn.on .sn-sub{color:rgba(255,255,255,.38);}
+.sn.on .sn-sub{color:rgba(255,255,255,.35);}
+
+/* Mobile steps tabs */
+.steps-tabs{display:none;overflow-x:auto;gap:8px;margin-bottom:28px;padding-bottom:4px;scrollbar-width:none;}
+.steps-tabs::-webkit-scrollbar{display:none;}
+.step-tab{flex-shrink:0;font-size:11px;font-weight:600;padding:8px 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;white-space:nowrap;background:none;}
+.step-tab.on{background:var(--kred);border-color:var(--kred);color:#fff;}
+
 .step-panels{display:flex;flex-direction:column;}
-.sp{padding:52px 0;border-bottom:1px solid rgba(255,255,255,.04);opacity:.18;transition:opacity .55s;}
+.sp{padding:48px 0;border-bottom:1px solid rgba(255,255,255,.04);opacity:.18;transition:opacity .5s;}
 .sp:last-child{border-bottom:none;}
 .sp.on{opacity:1;}
-.sp-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
-.sp-num{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--kred);background:rgba(255,67,62,.1);border:1px solid rgba(255,67,62,.2);padding:4px 12px;border-radius:100px;}
-.sp-title{font-size:clamp(22px,2.6vw,32px);font-weight:900;color:#fff;letter-spacing:-.03em;}
-.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
-.sp-hl{font-size:17px;font-weight:700;color:#fff;line-height:1.4;padding:18px 20px;margin-bottom:16px;background:rgba(255,255,255,.04);border-left:3px solid var(--kred);border-radius:0 12px 12px 0;}
-.sp-desc{font-size:13px;line-height:1.85;color:rgba(255,255,255,.42);margin-bottom:16px;}
-.sp-why{background:rgba(29,78,216,.09);border:1px solid rgba(29,78,216,.18);border-radius:12px;padding:14px 16px;}
+.sp-head{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sp-num{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--kred);background:rgba(255,67,62,.1);border:1px solid rgba(255,67,62,.2);padding:4px 11px;border-radius:100px;}
+.sp-title{font-size:clamp(20px,2.5vw,30px);font-weight:900;color:#fff;letter-spacing:-.03em;}
+.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+.sp-hl{font-size:16px;font-weight:700;color:#fff;line-height:1.4;padding:16px 18px;margin-bottom:14px;background:rgba(255,255,255,.04);border-left:3px solid var(--kred);border-radius:0 11px 11px 0;}
+.sp-desc{font-size:13px;line-height:1.85;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.sp-why{background:rgba(29,78,216,.09);border:1px solid rgba(29,78,216,.17);border-radius:11px;padding:13px 15px;}
 .sp-why-tag{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#60A5FA;margin-bottom:5px;}
-.sp-why-t{font-size:12px;color:rgba(255,255,255,.42);line-height:1.65;}
-.vis{background:var(--knavy2);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:20px;position:relative;overflow:hidden;}
+.sp-why-t{font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;}
+.vis{background:var(--knavy2);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px;position:relative;overflow:hidden;}
 .vis::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--kred),var(--kblue),transparent);}
-.vis-lbl{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:14px;}
-.fn{display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:10px;margin-bottom:6px;}
-.fn-i{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.vis-lbl{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:12px;}
+.fn{display:flex;align-items:center;gap:9px;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:9px;margin-bottom:5px;}
+.fn-i{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
 .fi-r{background:rgba(255,67,62,.12);}
 .fi-b{background:rgba(29,78,216,.14);}
 .fi-g{background:rgba(16,185,129,.12);}
 .fi-a{background:rgba(245,158,11,.1);}
-.fn-info{flex:1;}
 .fn-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.8);}
-.fn-sub{font-size:9px;color:rgba(255,255,255,.28);}
-.fn-ok{color:#34D399;font-size:12px;}
-.fa{display:flex;justify-content:center;color:rgba(255,255,255,.13);font-size:10px;padding:2px 0;}
-.sc-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-.sc-em{font-size:16px;}
-.sc-name{font-size:12px;color:rgba(255,255,255,.55);flex:1;}
-.sc-bar{flex:1;max-width:72px;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
+.fn-sub{font-size:9px;color:rgba(255,255,255,.26);}
+.fn-ok{color:#34D399;font-size:12px;margin-left:auto;}
+.fa{display:flex;justify-content:center;color:rgba(255,255,255,.12);font-size:10px;padding:2px 0;}
+.sc-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.sc-em{font-size:15px;}
+.sc-name{font-size:11px;color:rgba(255,255,255,.52);flex:1;}
+.sc-bar{flex:1;max-width:68px;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
 .sc-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--kred),#FF8A87);width:0;transition:width 1.1s ease .2s;}
 .sc-fill.go{width:var(--w);}
-.sc-val{font-size:10px;font-weight:700;}
-.arow{display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:10px;margin-bottom:6px;}
+.sc-val{font-size:10px;font-weight:700;min-width:20px;}
+.arow{display:flex;align-items:center;gap:8px;padding:9px 11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:9px;margin-bottom:5px;}
 .ad{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.al{flex:1;font-size:11px;color:rgba(255,255,255,.5);}
+.al{flex:1;font-size:11px;color:rgba(255,255,255,.48);}
 .ab{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
 .ab-g{background:rgba(16,185,129,.12);color:#34D399;}
 .ab-a{background:rgba(245,158,11,.1);color:#FCD34D;}
 .ab-r{background:rgba(255,67,62,.1);color:var(--kred);}
 .au{font-size:9px;color:rgba(255,255,255,.2);}
-.kuna-hero{display:flex;align-items:center;gap:14px;padding:16px 18px;background:rgba(255,67,62,.06);border:1px solid rgba(255,67,62,.2);border-radius:12px;margin-bottom:12px;}
-.kuna-b{font-size:20px;font-weight:900;color:var(--kred);background:rgba(255,67,62,.1);border:1px solid rgba(255,67,62,.2);padding:8px 16px;border-radius:8px;}
-.kuna-tt{font-size:13px;font-weight:700;color:rgba(255,255,255,.8);}
-.kuna-ts{font-size:10px;color:rgba(255,255,255,.28);margin-top:1px;}
-.fr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:10px;margin-bottom:6px;}
-.fr-l{font-size:11px;color:rgba(255,255,255,.4);}
-.fr-s{font-size:9px;color:rgba(255,255,255,.2);}
-.fr-v{font-size:13px;font-weight:700;color:rgba(255,255,255,.85);}
-.fr-ok{font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:#34D399;}
-.kd-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px;}
-.kd{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:13px 14px;}
-.kd-l{font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:5px;}
-.kd-v{font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1;}
+.kuna-hero{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,67,62,.06);border:1px solid rgba(255,67,62,.18);border-radius:11px;margin-bottom:11px;}
+.kuna-b{font-size:18px;font-weight:900;color:var(--kred);background:rgba(255,67,62,.1);border:1px solid rgba(255,67,62,.2);padding:7px 14px;border-radius:7px;}
+.kuna-tt{font-size:12px;font-weight:700;color:rgba(255,255,255,.78);}
+.kuna-ts{font-size:9px;color:rgba(255,255,255,.26);margin-top:1px;}
+.fr{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:9px;margin-bottom:5px;}
+.fr-l{font-size:11px;color:rgba(255,255,255,.38);}
+.fr-s{font-size:9px;color:rgba(255,255,255,.18);}
+.fr-v{font-size:12px;font-weight:700;color:rgba(255,255,255,.82);}
+.fr-ok{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(16,185,129,.12);color:#34D399;}
+.kd-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px;}
+.kd{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:9px;padding:12px 13px;}
+.kd-l{font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:4px;}
+.kd-v{font-size:20px;font-weight:900;letter-spacing:-.03em;line-height:1;}
 .kd-v.r{color:var(--kred);}
 .kd-v.g{color:#34D399;}
 .kd-v.b{color:#60A5FA;}
 .kd-v.a{color:#FCD34D;}
-.kd-v.w{color:rgba(255,255,255,.75);}
-.kd-d{font-size:8px;color:rgba(255,255,255,.18);margin-top:2px;}
-.al-row{display:flex;align-items:center;gap:7px;padding:8px 11px;border-radius:9px;font-size:10px;border:1px solid;margin-bottom:5px;}
+.kd-v.w{color:rgba(255,255,255,.72);}
+.kd-d{font-size:8px;color:rgba(255,255,255,.17);margin-top:2px;}
+.al-row{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:8px;font-size:10px;border:1px solid;margin-bottom:5px;}
 .ar-r{background:rgba(255,67,62,.06);border-color:rgba(255,67,62,.14);color:var(--kred);}
 .ar-a{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.14);color:#FCD34D;}
 .ar-g{background:rgba(16,185,129,.06);border-color:rgba(16,185,129,.14);color:#34D399;}
 .ar-b{background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.14);color:#60A5FA;}
-.ss{display:flex;align-items:center;gap:10px;padding:10px 13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:10px;margin-bottom:4px;position:relative;overflow:hidden;transition:all .22s;}
-.ss::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--kred);opacity:0;transition:opacity .25s;}
+.ss{display:flex;align-items:center;gap:9px;padding:9px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.05);border-radius:9px;margin-bottom:4px;position:relative;overflow:hidden;transition:all .22s;}
+.ss::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--kred);opacity:0;transition:opacity .22s;}
 .ss:hover::before{opacity:1;}
-.ss:hover{border-color:rgba(255,67,62,.18);}
-.ss-i{font-size:14px;}
-.ss-t{flex:1;font-size:11px;color:rgba(255,255,255,.42);}
-.ss-v{font-size:12px;font-weight:800;color:rgba(255,255,255,.65);}
-.ss-arr{display:flex;justify-content:center;color:rgba(255,67,62,.4);font-size:12px;padding:2px 0;}
+.ss:hover{border-color:rgba(255,67,62,.16);}
+.ss-i{font-size:13px;}
+.ss-t{flex:1;font-size:11px;color:rgba(255,255,255,.4);}
+.ss-v{font-size:11px;font-weight:800;color:rgba(255,255,255,.62);}
+.ss-arr{display:flex;justify-content:center;color:rgba(255,67,62,.38);font-size:11px;padding:1px 0;}
 
-/* CERTIFICACIÓN */
-#cert{background:var(--kgray);padding:88px 0;}
-.cert-intro{text-align:center;max-width:640px;margin:0 auto 56px;}
+/* ═══ DASHBOARD ═══ */
+#dashboard{background:#fff;padding:80px 0;}
+.dash-intro{text-align:center;max-width:600px;margin:0 auto 52px;}
+.dash-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
+.dtab{font-size:13px;font-weight:600;padding:10px 22px;border-radius:100px;border:1.5px solid var(--kgray3);color:var(--tmid);cursor:pointer;transition:all .2s;background:none;}
+.dtab.on{background:var(--knavy);border-color:var(--knavy);color:#fff;}
+.dtab:hover:not(.on){border-color:var(--knavy);color:var(--knavy);}
+.dash-panel{display:none;}
+.dash-panel.on{display:block;}
 
-/* Roadmap timeline */
-.timeline{position:relative;margin-bottom:56px;}
+/* Panel 1: Certificación */
+.cert-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.cov{background:var(--kgray);border-radius:14px;padding:20px;text-align:center;}
+.cov-v{font-size:36px;font-weight:900;letter-spacing:-.05em;color:var(--knavy);margin-bottom:4px;}
+.cov-v.red{color:var(--kred);}
+.cov-v.green{color:var(--green);}
+.cov-v.amber{color:var(--amber);}
+.cov-l{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tlight);}
+.agency-list{display:flex;flex-direction:column;gap:10px;}
+.ag-card{background:#fff;border:1px solid var(--kgray3);border-radius:16px;padding:0;overflow:hidden;cursor:pointer;transition:all .25s;}
+.ag-card:hover{box-shadow:0 8px 32px rgba(15,25,51,.08);border-color:rgba(15,25,51,.15);}
+.ag-card.active{border-color:var(--kred);box-shadow:0 0 0 3px rgba(255,67,62,.08);}
+.ag-header{display:flex;align-items:center;gap:14px;padding:16px 20px;}
+.ag-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;}
+.ag-name{font-size:14px;font-weight:800;color:var(--knavy);margin-bottom:2px;}
+.ag-loc{font-size:11px;color:var(--tlight);}
+.ag-status{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.status-badge{font-size:9px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.05em;text-transform:uppercase;}
+.sb-cert{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.2);}
+.sb-prog{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2);}
+.sb-pend{background:rgba(155,166,186,.1);color:var(--tlight);border:1px solid rgba(155,166,186,.2);}
+.ag-phase{font-size:9px;color:var(--tlight);}
+.ag-progress{padding:0 20px 16px;}
+.ag-prog-bar{height:4px;background:var(--kgray3);border-radius:2px;overflow:hidden;margin-bottom:6px;}
+.ag-prog-fill{height:100%;border-radius:2px;transition:width 1s ease;}
+.ag-prog-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--tlight);}
+.ag-detail{display:none;padding:0 20px 16px;border-top:1px solid var(--kgray3);margin-top:0;}
+.ag-card.active .ag-detail{display:block;}
+.ag-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
+.akpi{background:var(--kgray);border-radius:10px;padding:12px;text-align:center;}
+.akpi-v{font-size:18px;font-weight:900;letter-spacing:-.03em;color:var(--knavy);margin-bottom:2px;}
+.akpi-l{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--tlight);}
+.cert-criteria{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px;}
+.cc{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:9px;font-size:11px;}
+.cc.ok{background:rgba(16,185,129,.07);color:var(--green);}
+.cc.warn{background:rgba(245,158,11,.07);color:var(--amber);}
+.cc.fail{background:rgba(255,67,62,.07);color:var(--kred);}
+
+/* Panel 2: Asignación de vehículos */
+.assign-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.assign-summary{background:var(--knavy);border-radius:18px;padding:28px;color:#fff;position:relative;overflow:hidden;}
+.assign-summary::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.2),transparent 70%);}
+.as-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.38);margin-bottom:20px;}
+.as-big{font-size:52px;font-weight:900;letter-spacing:-.06em;line-height:1;margin-bottom:4px;}
+.as-big.red{color:var(--kred);}
+.as-sub{font-size:12px;color:rgba(255,255,255,.4);}
+.as-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;}
+.as-pill{font-size:9px;font-weight:700;padding:4px 10px;border-radius:20px;}
+.asp-g{background:rgba(16,185,129,.12);color:#34D399;}
+.asp-b{background:rgba(59,130,246,.12);color:#60A5FA;}
+.asp-a{background:rgba(245,158,11,.1);color:#FCD34D;}
+.inv-slider-wrap{background:var(--kgray);border-radius:18px;padding:28px;}
+.inv-title{font-size:12px;font-weight:700;color:var(--knavy);margin-bottom:4px;}
+.inv-sub{font-size:11px;color:var(--tlight);margin-bottom:20px;}
+.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.sl-label{font-size:12px;font-weight:600;color:var(--knavy);width:80px;flex-shrink:0;}
+.sl-input{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--kgray3);outline:none;cursor:pointer;}
+.sl-input::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--kred);cursor:pointer;box-shadow:0 0 0 3px rgba(255,67,62,.15);}
+.sl-input::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--kred);cursor:pointer;border:none;}
+.sl-val{font-size:13px;font-weight:800;color:var(--knavy);min-width:32px;text-align:right;}
+.assign-board{background:var(--knavy);border-radius:18px;padding:24px;overflow:hidden;}
+.ab-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:16px;}
+.ab-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.ab-ag{font-size:12px;font-weight:600;color:rgba(255,255,255,.6);width:88px;flex-shrink:0;}
+.ab-seg{font-size:10px;color:rgba(255,255,255,.3);width:70px;flex-shrink:0;}
+.ab-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;}
+.ab-bar-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.16,1,.3,1);}
+.ab-units{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);min-width:28px;text-align:right;}
+.ab-days{font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;}
+.ab-days.fast{background:rgba(16,185,129,.12);color:#34D399;}
+.ab-days.med{background:rgba(245,158,11,.1);color:#FCD34D;}
+.ab-days.slow{background:rgba(255,67,62,.1);color:var(--kred);}
+.assign-total-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);}
+.atr-label{font-size:11px;color:rgba(255,255,255,.3);}
+.atr-val{font-size:22px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.atr-days{font-size:11px;font-weight:700;color:#34D399;background:rgba(16,185,129,.1);padding:3px 9px;border-radius:5px;}
+
+/* CERT SECTION */
+#cert{background:var(--kgray);padding:80px 0;}
+.timeline{position:relative;margin-bottom:48px;}
 .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--kred),var(--kblue),#34D399);transform:translateX(-50%);}
-.tl-item{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;margin-bottom:32px;align-items:center;}
-.tl-left{text-align:right;padding-right:32px;}
-.tl-right{text-align:left;padding-left:32px;}
-.tl-center{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;}
-.tl-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 0 4px var(--kgray);}
+.tl-item{display:grid;grid-template-columns:1fr 56px 1fr;gap:0;margin-bottom:28px;align-items:center;}
+.tl-left{text-align:right;padding-right:28px;}
+.tl-right{text-align:left;padding-left:28px;}
+.tl-center{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;}
+.tl-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 0 4px var(--kgray);}
 .tl-dot.red{background:var(--kred);}
 .tl-dot.blue{background:var(--kblue);}
-.tl-dot.green{background:#10B981;}
-.tl-period{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-top:3px;}
-.tl-card{background:#fff;border:1px solid var(--kgray3);border-radius:14px;padding:20px 22px;}
+.tl-dot.green{background:var(--green);}
+.tl-period{font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tlight);margin-top:2px;}
+.tl-card{background:#fff;border:1px solid var(--kgray3);border-radius:14px;padding:18px 20px;}
 .tl-card.navy{background:var(--knavy);border-color:transparent;}
-.tl-tag{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);margin-bottom:8px;}
-.tl-card.navy .tl-tag{color:rgba(255,67,62,.8);}
-.tl-h{font-size:15px;font-weight:800;color:var(--knavy);margin-bottom:6px;letter-spacing:-.01em;}
+.tl-tag{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);margin-bottom:7px;}
+.tl-card.navy .tl-tag{color:rgba(255,67,62,.7);}
+.tl-h{font-size:14px;font-weight:800;color:var(--knavy);margin-bottom:5px;letter-spacing:-.01em;}
 .tl-card.navy .tl-h{color:#fff;}
 .tl-b{font-size:12px;color:var(--tmid);line-height:1.6;}
-.tl-card.navy .tl-b{color:rgba(255,255,255,.42);}
-.tl-pills{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px;}
-.tl-pill{font-size:9px;font-weight:600;padding:3px 8px;border-radius:5px;}
+.tl-card.navy .tl-b{color:rgba(255,255,255,.38);}
+.tl-pills{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;}
+.tl-pill{font-size:8px;font-weight:600;padding:2px 7px;border-radius:4px;}
 .tl-pill.r{background:var(--kred-dim);color:var(--kred);border:1px solid var(--kred-border);}
 .tl-pill.b{background:rgba(59,130,246,.1);color:var(--kblue2);border:1px solid rgba(59,130,246,.2);}
-.tl-pill.g{background:rgba(16,185,129,.1);color:#10B981;border:1px solid rgba(16,185,129,.2);}
+.tl-pill.g{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.2);}
 .tl-pill.a{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2);}
-
-/* Certification criteria */
-.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.crit{background:#fff;border:1px solid var(--kgray3);border-radius:16px;padding:22px;text-align:center;transition:all .28s;}
-.crit:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(15,25,51,.08);border-color:transparent;}
-.crit-ico{font-size:26px;margin-bottom:10px;}
-.crit-h{font-size:13px;font-weight:800;color:var(--knavy);margin-bottom:6px;letter-spacing:-.01em;}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+.crit{background:#fff;border:1px solid var(--kgray3);border-radius:14px;padding:20px;text-align:center;transition:all .25s;}
+.crit:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(15,25,51,.07);border-color:transparent;}
+.crit-ico{font-size:24px;margin-bottom:9px;}
+.crit-h{font-size:13px;font-weight:800;color:var(--knavy);margin-bottom:5px;letter-spacing:-.01em;}
 .crit-b{font-size:11px;color:var(--tmid);line-height:1.6;}
-.crit-badge{display:inline-block;margin-top:10px;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:5px;}
+.crit-badge{display:inline-block;margin-top:9px;font-size:8px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
 .cb-r{background:var(--kred-dim);color:var(--kred);border:1px solid var(--kred-border);}
 .cb-b{background:rgba(59,130,246,.1);color:var(--kblue2);border:1px solid rgba(59,130,246,.2);}
-.cb-g{background:rgba(16,185,129,.1);color:#10B981;border:1px solid rgba(16,185,129,.2);}
+.cb-g{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.2);}
 .cb-a{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2);}
 
 /* BENEFICIOS */
-#beneficios{background:#fff;padding:88px 0;}
-.ben-top{background:var(--knavy);border-radius:22px;padding:52px;display:grid;grid-template-columns:1fr auto;gap:52px;align-items:center;margin-bottom:18px;position:relative;overflow:hidden;}
-.ben-top::before{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.18),transparent 70%);}
-.bt-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:10px;}
-.bt-title{font-size:clamp(20px,2.6vw,32px);font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:12px;line-height:1.15;position:relative;z-index:1;}
-.bt-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;max-width:480px;position:relative;z-index:1;}
-.bt-metrics{display:flex;gap:40px;position:relative;z-index:1;flex-wrap:wrap;}
+#beneficios{background:#fff;padding:80px 0;}
+.ben-top{background:var(--knavy);border-radius:20px;padding:48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;margin-bottom:16px;position:relative;overflow:hidden;}
+.ben-top::before{content:'';position:absolute;top:-70px;right:-70px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.18),transparent 70%);}
+.bt-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:9px;}
+.bt-title{font-size:clamp(18px,2.5vw,30px);font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:10px;line-height:1.15;position:relative;z-index:1;}
+.bt-sub{font-size:13px;color:rgba(255,255,255,.42);line-height:1.65;max-width:460px;position:relative;z-index:1;}
+.bt-metrics{display:flex;gap:36px;position:relative;z-index:1;flex-wrap:wrap;}
 .btm{text-align:center;}
-.btm-v{font-size:44px;font-weight:900;letter-spacing:-.06em;color:#fff;line-height:1;margin-bottom:4px;}
+.btm-v{font-size:40px;font-weight:900;letter-spacing:-.06em;color:#fff;line-height:1;margin-bottom:3px;}
 .btm-v.red{color:var(--kred);}
 .btm-v.green{color:#34D399;}
-.btm-l{font-size:9px;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
-.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.bc{background:#fff;border:1px solid var(--kgray3);border-radius:18px;padding:24px;transition:all .3s;position:relative;overflow:hidden;}
-.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background .28s;}
+.btm-l{font-size:8px;color:rgba(255,255,255,.28);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.bc{background:#fff;border:1px solid var(--kgray3);border-radius:16px;padding:22px;transition:all .28s;position:relative;overflow:hidden;}
+.bc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background .25s;}
 .bc:hover::before{background:linear-gradient(90deg,var(--kred),var(--kblue));}
-.bc:hover{transform:translateY(-5px);box-shadow:0 20px 56px rgba(15,25,51,.09);border-color:transparent;}
-.bc-num{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);background:var(--kred-dim);border:1px solid var(--kred-border);padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:14px;}
-.bc-ico{font-size:24px;margin-bottom:10px;display:block;}
-.bc-h{font-size:15px;font-weight:800;color:var(--knavy);margin-bottom:6px;letter-spacing:-.01em;}
+.bc:hover{transform:translateY(-4px);box-shadow:0 18px 48px rgba(15,25,51,.08);border-color:transparent;}
+.bc-num{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);background:var(--kred-dim);border:1px solid var(--kred-border);padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:12px;}
+.bc-ico{font-size:22px;margin-bottom:9px;display:block;}
+.bc-h{font-size:14px;font-weight:800;color:var(--knavy);margin-bottom:6px;letter-spacing:-.01em;}
 .bc-b{font-size:12px;color:var(--tmid);line-height:1.65;}
 
 /* CIERRE */
-#cierre{background:var(--knavy);padding:120px 0;text-align:center;position:relative;overflow:hidden;}
-.cierre-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:800px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(29,78,216,.1) 0%,transparent 65%);pointer-events:none;}
-.cierre-in{max-width:760px;margin:0 auto;position:relative;z-index:1;}
-.c-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:22px;}
-.c-title{font-size:clamp(36px,6.5vw,80px);font-weight:900;letter-spacing:-.06em;line-height:.93;color:#fff;margin-bottom:24px;}
+#cierre{background:var(--knavy);padding:110px 0;text-align:center;position:relative;overflow:hidden;}
+.cierre-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:450px;border-radius:50%;background:radial-gradient(ellipse,rgba(29,78,216,.1) 0%,transparent 65%);pointer-events:none;}
+.cierre-in{max-width:720px;margin:0 auto;position:relative;z-index:1;}
+.c-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px;}
+.c-title{font-size:clamp(32px,6vw,76px);font-weight:900;letter-spacing:-.06em;line-height:.93;color:#fff;margin-bottom:22px;}
 .c-title .red{background:linear-gradient(135deg,var(--kred),#FF8A87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.c-strip{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:18px;overflow:hidden;margin-bottom:36px;}
-.cs{flex:1;padding:24px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.04);}
+.c-strip{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;margin-bottom:32px;}
+.cs{flex:1;padding:20px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.04);}
 .cs:last-child{border-right:none;}
-.cs-v{font-size:34px;font-weight:900;letter-spacing:-.05em;color:#fff;line-height:1;margin-bottom:4px;}
+.cs-v{font-size:clamp(24px,4vw,34px);font-weight:900;letter-spacing:-.05em;color:#fff;line-height:1;margin-bottom:3px;}
 .cs-v.red{color:var(--kred);}
 .cs-v.green{color:#34D399;}
 .cs-v.blue{color:#60A5FA;}
-.cs-l{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.28);}
-.c-body{font-size:16px;line-height:1.72;color:rgba(255,255,255,.4);margin-bottom:44px;}
-.c-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.cta-main{display:inline-flex;align-items:center;gap:9px;background:var(--kred);color:#fff;font-size:14px;font-weight:700;padding:16px 32px;border-radius:100px;text-decoration:none;transition:all .22s;box-shadow:0 4px 20px rgba(255,67,62,.28);}
-.cta-main:hover{background:var(--kred2);transform:translateY(-2px);box-shadow:0 10px 36px rgba(255,67,62,.48);}
-.cta-ghost{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);font-size:14px;font-weight:600;padding:16px 26px;border-radius:100px;border:1.5px solid rgba(255,255,255,.11);text-decoration:none;transition:all .2s;}
-.cta-ghost:hover{color:#fff;border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.04);}
-
-/* FOOTER */
-footer{background:#000;padding:32px 52px;display:flex;align-items:center;justify-content:space-between;}
-.ft-logo{font-size:16px;font-weight:900;letter-spacing:-.03em;color:#fff;}
+.cs-l{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.25);}
+.c-body{font-size:15px;line-height:1.72;color:rgba(255,255,255,.38);margin-bottom:40px;}
+.c-actions{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;}
+.cta-main{display:inline-flex;align-items:center;gap:9px;background:var(--kred);color:#fff;font-size:14px;font-weight:700;padding:15px 30px;border-radius:100px;text-decoration:none;transition:all .22s;box-shadow:0 4px 20px rgba(255,67,62,.25);}
+.cta-main:hover{background:var(--kred2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,67,62,.45);}
+.cta-ghost{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.5);font-size:14px;font-weight:600;padding:15px 24px;border-radius:100px;border:1.5px solid rgba(255,255,255,.1);text-decoration:none;transition:all .2s;}
+.cta-ghost:hover{color:#fff;border-color:rgba(255,255,255,.22);}
+footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify-content:space-between;}
+.ft-logo{font-size:15px;font-weight:900;letter-spacing:-.03em;color:#fff;}
 .ft-logo span{color:var(--kred);}
-.ft-note{font-size:11px;color:rgba(255,255,255,.28);}
+.ft-note{font-size:11px;color:rgba(255,255,255,.25);}
 
-/* RESPONSIVE */
-@media(max-width:960px){
-  #nav{padding:0 20px;}
-  .nav-links{display:none;}
-  .con{padding:0 20px;}
-  .prob-grid,.ben-grid,.cert-grid{grid-template-columns:1fr;}
-  .opp-lay{grid-template-columns:1fr;}
-  .steps-wrap{grid-template-columns:1fr;}
-  .steps-side{display:none;}
-  .sp-grid{grid-template-columns:1fr;}
-  .ben-top{grid-template-columns:1fr;}
-  .bt-metrics{gap:20px;}
-  .c-strip{flex-wrap:wrap;}
-  .cs{border-right:none;border-bottom:1px solid rgba(255,255,255,.04);}
-  .c-actions{flex-direction:column;align-items:center;}
-  footer{flex-direction:column;gap:8px;text-align:center;padding:24px 20px;}
+/* ══ RESPONSIVE MOBILE ══ */
+@media(max-width:768px){
+  #nav{padding:0 16px;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .con{padding:0 18px;}
+  .sec-pad{padding:56px 0;}
+  h1.ht{font-size:clamp(36px,10vw,56px);}
   .hero-kpis{flex-wrap:wrap;}
-  .timeline::before{left:20px;}
-  .tl-item{grid-template-columns:20px 1fr;gap:0;}
+  .hk{min-width:calc(50% - 1px);border-right:1px solid rgba(255,255,255,.05) !important;}
+  .hk:nth-child(2n){border-right:none !important;}
+  .hero-pills{gap:8px;}
+  .pill{font-size:12px;padding:10px 18px;}
+  .prob-grid{grid-template-columns:1fr;}
+  .pc.wide{grid-column:span 1;}
+  .opp-lay{grid-template-columns:1fr;}
+  .steps-wrap{grid-template-columns:1fr;gap:0;}
+  .steps-side{display:none;}
+  .steps-tabs{display:flex;}
+  .sp{padding:28px 0;opacity:1;}
+  .sp:not(.on){display:none;}
+  .sp-grid{grid-template-columns:1fr;}
+  .ben-top{grid-template-columns:1fr;padding:28px;}
+  .bt-metrics{gap:16px;}
+  .ben-grid{grid-template-columns:1fr;}
+  .cert-grid{grid-template-columns:repeat(2,1fr);}
+  .timeline::before{left:16px;}
+  .tl-item{grid-template-columns:32px 1fr;gap:0;}
   .tl-left{display:none;}
-  .tl-center{align-items:flex-start;padding-left:0;margin-right:16px;}
-  .tl-right{padding-left:0;}
+  .tl-center{align-items:flex-start;margin-right:14px;}
   .tl-period{display:none;}
+  .tl-right{padding-left:0;}
+  .c-strip{flex-wrap:wrap;}
+  .cs{min-width:calc(50% - 1px);border-right:none !important;border-bottom:1px solid rgba(255,255,255,.04);}
+  .c-actions{flex-direction:column;align-items:center;}
+  footer{flex-direction:column;gap:8px;text-align:center;padding:20px 16px;}
+  .assign-top{grid-template-columns:1fr;}
+  .ag-kpis{grid-template-columns:repeat(2,1fr);}
+  .cert-overview{grid-template-columns:repeat(3,1fr);}
+  .dash-tabs{gap:6px;}
+  .dtab{font-size:12px;padding:8px 16px;}
+}
+@media(max-width:400px){
+  .cert-grid{grid-template-columns:1fr;}
+  .cert-overview{grid-template-columns:1fr;}
+  .cov{padding:14px;}
 }
 </style>
 </head>
 <body>
-
 <div id="spb"></div>
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo">
-    <span class="wc">We</span>Cars <span class="x">×</span> KAVAK
-    <span class="nav-badge">Chihuahua 2026</span>
-  </div>
+  <div class="nav-logo"><span class="wc">We</span>Cars <span class="x">×</span> KAVAK<span class="nav-badge">Chihuahua 2026</span></div>
   <ul class="nav-links">
     <li><a href="#problema">El problema</a></li>
     <li><a href="#propuesta">La propuesta</a></li>
-    <li><a href="#como">Cómo funciona</a></li>
-    <li><a href="#cert">Plan de certificación</a></li>
-    <li><a href="#beneficios">Beneficios KAVAK</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#cert">Certificación</a></li>
+    <li><a href="#beneficios">Para KAVAK</a></li>
   </ul>
   <a href="#cierre" class="nav-cta">Agendar reunión →</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#problema" class="mm-link">El problema</a>
+  <a href="#propuesta" class="mm-link">La propuesta</a>
+  <a href="#dashboard" class="mm-link">Dashboard</a>
+  <a href="#cert" class="mm-link">Certificación</a>
+  <a href="#beneficios" class="mm-link">Para KAVAK</a>
+  <a href="#cierre" class="nav-cta">Agendar reunión →</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-lights">
-    <div class="hl hl1"></div>
-    <div class="hl hl2"></div>
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <div class="hl hl1"></div><div class="hl hl2"></div>
   </div>
   <div class="hero-con">
     <div class="hero-eyebrow rv"><span class="hero-dot"></span>Propuesta estratégica · KAVAK · Chihuahua 2026</div>
-    <h1 class="ht rv d1">
-      Una red<br>
-      <span class="red">certificada</span><br>
-      <span class="ghost">para KAVAK</span>
-    </h1>
+    <h1 class="ht rv d1">Una red<br><span class="red">certificada</span><br><span class="ghost">para KAVAK</span></h1>
     <p class="hero-sub rv d2">WeCars propone construir y operar la red regional de agencias certificadas que acelera la rotación de inventario KAVAK — sin costo fijo de estructura.</p>
     <div class="hero-pills rv d3">
-      <a href="#como" class="pill pri">Ver el modelo →</a>
+      <a href="#dashboard" class="pill pri">Ver el dashboard →</a>
       <a href="#cert" class="pill out">Plan de certificación</a>
-      <a href="#beneficios" class="pill out">Beneficios para KAVAK</a>
     </div>
     <div class="hero-kpis rv d4">
-      <div class="hk"><div class="hk-v red">21d</div><div class="hk-l">Rotación objetivo</div></div>
-      <div class="hk"><div class="hk-v gr">+80%</div><div class="hk-l">Efectividad</div></div>
-      <div class="hk"><div class="hk-v">−53%</div><div class="hk-l">Tiempo de venta</div></div>
+      <div class="hk"><div class="hk-v red" data-target="21" data-suffix="d">21d</div><div class="hk-l">Rotación objetivo</div></div>
+      <div class="hk"><div class="hk-v gr" data-target="80" data-prefix="+" data-suffix="%">+80%</div><div class="hk-l">Efectividad</div></div>
+      <div class="hk"><div class="hk-v" data-target="53" data-prefix="−" data-suffix="%">−53%</div><div class="hk-l">Tiempo de venta</div></div>
       <div class="hk"><div class="hk-v bl">KUNA</div><div class="hk-l">Financiamiento</div></div>
-      <div class="hk"><div class="hk-v">5 Agencias</div><div class="hk-l">Piloto inicial</div></div>
+      <div class="hk"><div class="hk-v" data-target="5" data-suffix=" Ag.">5 Ag.</div><div class="hk-l">Piloto inicial</div></div>
     </div>
   </div>
-  <div class="scroll-hint">
-    <span>Explorar</span>
-    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-  </div>
+  <div class="scroll-hint"><span>Explorar</span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
 </section>
 
 <!-- PROBLEMA -->
-<section id="problema">
-  <div class="con sec-pad">
-    <div class="rv" style="max-width:600px;margin-bottom:0;">
-      <div class="s-tag">01 — El problema</div>
-      <h2 class="s-h">KAVAK necesita rotación regional<br><span class="red">sin costo fijo de expansión.</span></h2>
-      <p class="s-p">El inventario automotriz pierde valor cada día que permanece sin venderse. La solución no es abrir más lotes — es una red inteligente que lo distribuya mejor.</p>
+<section id="problema"><div class="con sec-pad">
+  <div class="rv" style="max-width:580px;">
+    <div class="s-tag">01 — El problema</div>
+    <h2 class="s-h">KAVAK necesita rotación regional<br><span class="red">sin costo fijo de expansión.</span></h2>
+    <p class="s-p">El inventario automotriz pierde valor cada día sin venderse. La solución no es abrir más lotes — es una red inteligente que lo distribuya mejor.</p>
+  </div>
+  <div class="prob-grid">
+    <div class="pc rv d1" style="grid-column:span 2;">
+      <div class="pc-tag">PROBLEMA CENTRAL</div>
+      <span class="pc-ico">❄️</span>
+      <div class="pc-h">Capital congelado en inventario</div>
+      <div class="pc-b">El sector promedia 45 días de inventario. Cada día adicional significa depreciación y capital inmovilizado que no genera rendimiento.</div>
+      <div class="fv" style="margin-top:14px;">
+        <div class="fv-row"><span style="font-size:11px;color:var(--tmid);">Capital inmovilizado en el sector</span><span style="font-size:11px;font-weight:700;color:var(--kred);">76%</span></div>
+        <div class="fv-bar"><div class="fv-fill" id="fbar"></div></div>
+      </div>
     </div>
-    <div class="prob-grid rv d1" style="margin-top:44px;">
-      <div class="pc" style="grid-column:span 2 / span 2;">
-        <div class="pc-tag">PROBLEMA CENTRAL</div>
-        <span class="pc-ico">❄️</span>
-        <div class="pc-h">Capital congelado en inventario</div>
-        <div class="pc-b">El sector promedia 45 días de inventario. Cada día adicional significa depreciación y capital inmovilizado que no genera rendimiento.</div>
-        <div class="fv" style="margin-top:14px;">
-          <div class="fv-row"><span style="font-size:11px;color:var(--tmid);">Capital inmovilizado vs. potencial de rotación</span><span style="font-size:11px;font-weight:700;color:var(--kred);">76%</span></div>
-          <div class="fv-bar"><div class="fv-fill" id="fbar"></div></div>
-        </div>
-      </div>
-      <div class="pc dark">
-        <div class="pc-tag">PROBLEMA 02</div>
-        <span class="pc-ico">🧩</span>
-        <div class="pc-h">Agencias sin red ni datos</div>
-        <div class="pc-b">Operan aisladas, sin benchmarks, sin inteligencia compartida. El vehículo correcto no está donde más rápido se vende.</div>
-      </div>
-      <div class="pc">
-        <div class="pc-tag">PROBLEMA 03</div>
-        <span class="pc-ico">📍</span>
-        <div class="pc-h">Sin presencia regional eficiente</div>
-        <div class="pc-b">Abrir lotes propios en cada ciudad implica estructura, nómina e inversión fija antes de ver retorno. Existe una alternativa mejor.</div>
-      </div>
+    <div class="pc dark rv d2">
+      <div class="pc-tag">PROBLEMA 02</div>
+      <span class="pc-ico">🧩</span>
+      <div class="pc-h">Agencias sin red ni datos</div>
+      <div class="pc-b">Operan aisladas, sin benchmarks, sin inteligencia compartida.</div>
+    </div>
+    <div class="pc rv d3">
+      <div class="pc-tag">PROBLEMA 03</div>
+      <span class="pc-ico">📍</span>
+      <div class="pc-h">Sin presencia regional eficiente</div>
+      <div class="pc-b">Abrir lotes propios implica estructura, nómina e inversión fija antes de ver retorno. Existe una alternativa mejor.</div>
     </div>
   </div>
-</section>
+</div></section>
 
 <div class="div"></div>
 
 <!-- PROPUESTA -->
-<section id="propuesta">
-  <div class="con sec-pad">
-    <div class="opp-lay">
-      <div class="rv">
-        <div class="s-tag">02 — La propuesta</div>
-        <h2 class="s-h">WeCars conecta a KAVAK<br>con el <span class="bl">mercado regional.</span></h2>
-        <p class="s-p" style="margin-bottom:24px;">WeCars opera como hub inteligente: certifica agencias, gestiona asignación con datos y activa financiamiento KUNA — todo bajo estándar KAVAK.</p>
-        <div style="padding:18px 20px;background:var(--kgray);border-radius:14px;border-left:3px solid var(--kred);margin-bottom:24px;">
-          <div style="font-size:11px;font-weight:700;color:var(--kred);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">El principio central</div>
-          <div style="font-size:17px;font-weight:800;color:var(--knavy);letter-spacing:-.02em;line-height:1.3;">"El vehículo correcto, en el punto correcto, con el comprador correcto."</div>
-        </div>
-        <div class="opp-stats">
-          <div class="ostat"><div class="ostat-v red">21d</div><div class="ostat-l">Rotación objetivo</div></div>
-          <div class="ostat"><div class="ostat-v">−53%</div><div class="ostat-l">Tiempo de venta</div></div>
-          <div class="ostat"><div class="ostat-v" style="color:var(--kblue2);">KUNA</div><div class="ostat-l">Financiamiento</div></div>
-        </div>
+<section id="propuesta"><div class="con sec-pad">
+  <div class="opp-lay">
+    <div class="rv">
+      <div class="s-tag">02 — La propuesta</div>
+      <h2 class="s-h">WeCars conecta a KAVAK<br>con el <span class="bl">mercado regional.</span></h2>
+      <p class="s-p" style="margin-bottom:22px;">WeCars opera como hub inteligente: certifica agencias, gestiona asignación con datos y activa financiamiento KUNA — todo bajo estándar KAVAK.</p>
+      <div style="padding:16px 18px;background:var(--kgray);border-radius:13px;border-left:3px solid var(--kred);margin-bottom:22px;">
+        <div style="font-size:10px;font-weight:700;color:var(--kred);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;">El principio central</div>
+        <div style="font-size:16px;font-weight:800;color:var(--knavy);letter-spacing:-.02em;line-height:1.3;">"El vehículo correcto, en el punto correcto, con el comprador correcto."</div>
       </div>
-      <div class="rv d2">
-        <div class="opp-card">
-          <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:18px;">Red de distribución inteligente</div>
-          <div class="oe" style="border-color:rgba(29,78,216,.2);background:rgba(29,78,216,.06);">
-            <span class="oe-ico">🚗</span>
-            <div><div class="oe-name">KAVAK</div><div class="oe-sub">Inventario · tecnología · financiamiento KUNA</div></div>
-            <div class="oe-tags"><span class="oe-t b">Volumen</span><span class="oe-t b">Plataforma</span></div>
-          </div>
-          <div class="bridge"><div class="bridge-btn">⚡</div></div>
-          <div class="oe" style="border-color:rgba(255,67,62,.2);background:rgba(255,67,62,.05);">
-            <span class="oe-ico">🔗</span>
-            <div><div class="oe-name" style="color:var(--kred);">WeCars</div><div class="oe-sub">Hub operativo · datos · certificación · KUNA</div></div>
-            <div class="oe-tags"><span class="oe-t r">Data-Driven</span><span class="oe-t r">Operador</span></div>
-          </div>
-          <div class="bridge"><div class="bridge-btn">⚡</div></div>
-          <div class="oe">
-            <span class="oe-ico">🏪</span>
-            <div><div class="oe-name">Agencias Certificadas</div><div class="oe-sub">Red regional · Chihuahua · mercado local</div></div>
-            <div class="oe-tags"><span class="oe-t g">Certificadas</span><span class="oe-t g">5 iniciales</span></div>
-          </div>
-          <div style="margin-top:16px;padding:12px 15px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.13);border-radius:10px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;">
-            ⚡ <strong style="color:rgba(255,255,255,.8);">KAVAK no gestiona las agencias.</strong> WeCars lo hace bajo los estándares KAVAK, entregando datos y rotación.
-          </div>
+      <div class="opp-stats">
+        <div class="ostat"><div class="ostat-v red">21d</div><div class="ostat-l">Rotación</div></div>
+        <div class="ostat"><div class="ostat-v">−53%</div><div class="ostat-l">Tiempo</div></div>
+        <div class="ostat"><div class="ostat-v" style="color:var(--kblue2);font-size:18px;">KUNA</div><div class="ostat-l">Financ.</div></div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="opp-card">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px;">Red de distribución inteligente</div>
+        <div class="oe" style="border-color:rgba(29,78,216,.2);background:rgba(29,78,216,.06);">
+          <span class="oe-ico">🚗</span>
+          <div><div class="oe-name">KAVAK</div><div class="oe-sub">Inventario · tecnología · KUNA</div></div>
+          <div class="oe-tags"><span class="oe-t b">Volumen</span></div>
         </div>
+        <div class="bridge"><div class="bridge-btn">⚡</div></div>
+        <div class="oe" style="border-color:rgba(255,67,62,.2);background:rgba(255,67,62,.05);">
+          <span class="oe-ico">🔗</span>
+          <div><div class="oe-name" style="color:var(--kred);">WeCars</div><div class="oe-sub">Hub operativo · datos · certificación</div></div>
+          <div class="oe-tags"><span class="oe-t r">Operador</span></div>
+        </div>
+        <div class="bridge"><div class="bridge-btn">⚡</div></div>
+        <div class="oe">
+          <span class="oe-ico">🏪</span>
+          <div><div class="oe-name">Agencias Certificadas</div><div class="oe-sub">Red regional · Chihuahua</div></div>
+          <div class="oe-tags"><span class="oe-t g">5 iniciales</span></div>
+        </div>
+        <div style="margin-top:14px;padding:11px 14px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12);border-radius:9px;font-size:11px;color:rgba(255,255,255,.45);line-height:1.5;">⚡ <strong style="color:rgba(255,255,255,.75);">KAVAK no gestiona las agencias.</strong> WeCars lo hace bajo estándares KAVAK.</div>
       </div>
     </div>
   </div>
-</section>
+</div></section>
 
 <div class="div"></div>
 
 <!-- COMO FUNCIONA -->
-<section id="como">
-  <div class="con sec-pad">
-    <div class="rv">
-      <div class="s-tag" style="color:rgba(255,67,62,.8);">03 — Cómo funciona</div>
-      <h2 class="s-h light">6 pasos. Un flujo <span class="red">sin fricciones.</span></h2>
-      <p class="s-p light">Desde que el vehículo entra en WeCars hasta la venta — cada etapa genera datos que mejoran el sistema continuamente.</p>
+<section id="como"><div class="con sec-pad">
+  <div class="rv">
+    <div class="s-tag" style="color:rgba(255,67,62,.75);">03 — Cómo funciona</div>
+    <h2 class="s-h light">6 pasos. Un flujo <span class="red">sin fricciones.</span></h2>
+    <p class="s-p light">Desde que el vehículo entra hasta la venta — cada etapa genera datos que mejoran el sistema continuamente.</p>
+  </div>
+  <!-- Mobile tabs -->
+  <div class="steps-tabs" id="stepTabs">
+    <button class="step-tab on" data-s="0">01 Captación</button>
+    <button class="step-tab" data-s="1">02 Validación</button>
+    <button class="step-tab" data-s="2">03 Asignación</button>
+    <button class="step-tab" data-s="3">04 KUNA</button>
+    <button class="step-tab" data-s="4">05 Reportes</button>
+    <button class="step-tab" data-s="5">06 Mejora</button>
+  </div>
+  <div class="steps-wrap">
+    <div class="steps-side">
+      <div class="sn on" data-s="0"><div class="sn-n">01</div><div><div class="sn-title">Captación</div><div class="sn-sub">Recepción y validación</div></div></div>
+      <div class="sn" data-s="1"><div class="sn-n">02</div><div><div class="sn-title">Validación 21d</div><div class="sn-sub">Scoring y demanda</div></div></div>
+      <div class="sn" data-s="2"><div class="sn-n">03</div><div><div class="sn-title">Asignación</div><div class="sn-sub">El dato decide</div></div></div>
+      <div class="sn" data-s="3"><div class="sn-n">04</div><div><div class="sn-title">Financiamiento KUNA</div><div class="sn-sub">Crédito integrado</div></div></div>
+      <div class="sn" data-s="4"><div class="sn-n">05</div><div><div class="sn-title">Reportes KPI</div><div class="sn-sub">Dashboard real</div></div></div>
+      <div class="sn" data-s="5"><div class="sn-n">06</div><div><div class="sn-title">Mejora Continua</div><div class="sn-sub">El sistema aprende</div></div></div>
     </div>
-
-    <div class="steps-wrap">
-      <div class="steps-side">
-        <div class="sn on" data-s="0"><div class="sn-n">01</div><div><div class="sn-title">Captación</div><div class="sn-sub">Recepción y validación</div></div></div>
-        <div class="sn" data-s="1"><div class="sn-n">02</div><div><div class="sn-title">Validación 21d</div><div class="sn-sub">Scoring y demanda</div></div></div>
-        <div class="sn" data-s="2"><div class="sn-n">03</div><div><div class="sn-title">Asignación Inteligente</div><div class="sn-sub">El dato decide</div></div></div>
-        <div class="sn" data-s="3"><div class="sn-n">04</div><div><div class="sn-title">Financiamiento KUNA</div><div class="sn-sub">Crédito integrado</div></div></div>
-        <div class="sn" data-s="4"><div class="sn-n">05</div><div><div class="sn-title">Reportes y KPIs</div><div class="sn-sub">Dashboard en tiempo real</div></div></div>
-        <div class="sn" data-s="5"><div class="sn-n">06</div><div><div class="sn-title">Mejora Continua</div><div class="sn-sub">El sistema aprende</div></div></div>
+    <div class="step-panels">
+      <div class="sp on" id="s0">
+        <div class="sp-head"><span class="sp-num">PASO 01</span><h3 class="sp-title">Captación Centralizada</h3></div>
+        <div class="sp-grid">
+          <div><div class="sp-hl">WeCars recibe y valida cada vehículo como punto central de control en Chihuahua.</div><p class="sp-desc">Validación documental, inspección física estandarizada y registro completo. El vehículo entra al ecosistema KAVAK pre-validado.</p><div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">Inventario pre-certificado sin que KAVAK gestione la recepción. Riesgo eliminado desde el origen.</div></div></div>
+          <div class="vis"><div class="vis-lbl">Flujo de recepción · WeCars Chihuahua</div>
+            <div class="fn"><div class="fn-i fi-r">🚗</div><div><div class="fn-name">Ingreso a WeCars</div><div class="fn-sub">VIN · marca · modelo · km</div></div><span class="fn-ok">✓</span></div><div class="fa">↓</div>
+            <div class="fn"><div class="fn-i fi-a">📋</div><div><div class="fn-name">Validación documental</div><div class="fn-sub">Factura · tenencia · no adeudo</div></div><span class="fn-ok">✓</span></div><div class="fa">↓</div>
+            <div class="fn"><div class="fn-i fi-b">🔍</div><div><div class="fn-name">Inspección física</div><div class="fn-sub">Mecánica · carrocería · electrónica</div></div><span class="fn-ok">✓</span></div><div class="fa">↓</div>
+            <div class="fn" style="border-color:rgba(16,185,129,.17);"><div class="fn-i fi-g">✅</div><div><div class="fn-name">Listo para asignación</div><div class="fn-sub">Expediente completo</div></div></div>
+          </div>
+        </div>
       </div>
-
-      <div class="step-panels">
-
-        <!-- 01 -->
-        <div class="sp on" id="s0">
-          <div class="sp-head"><span class="sp-num">PASO 01</span><h3 class="sp-title">Captación Centralizada</h3></div>
-          <div class="sp-grid">
-            <div>
-              <div class="sp-hl">WeCars recibe y valida cada vehículo como punto central de control en Chihuahua.</div>
-              <p class="sp-desc">Validación documental, inspección física estandarizada y registro completo. El vehículo entra al ecosistema KAVAK pre-validado, con trazabilidad total desde el primer contacto.</p>
-              <div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">Inventario pre-certificado sin que KAVAK gestione la recepción. Riesgo documental eliminado desde el origen.</div></div>
-            </div>
-            <div class="vis">
-              <div class="vis-lbl">Flujo de recepción · WeCars Chihuahua</div>
-              <div class="fn"><div class="fn-i fi-r">🚗</div><div class="fn-info"><div class="fn-name">Ingreso a WeCars</div><div class="fn-sub">VIN · marca · modelo · año · km</div></div><span class="fn-ok">✓</span></div>
-              <div class="fa">↓</div>
-              <div class="fn"><div class="fn-i fi-a">📋</div><div class="fn-info"><div class="fn-name">Validación documental</div><div class="fn-sub">Factura · tenencia · carta no adeudo</div></div><span class="fn-ok">✓</span></div>
-              <div class="fa">↓</div>
-              <div class="fn"><div class="fn-i fi-b">🔍</div><div class="fn-info"><div class="fn-name">Inspección física</div><div class="fn-sub">Mecánica · carrocería · electrónica</div></div><span class="fn-ok">✓</span></div>
-              <div class="fa">↓</div>
-              <div class="fn" style="border-color:rgba(16,185,129,.18);"><div class="fn-i fi-g">✅</div><div class="fn-info"><div class="fn-name">Listo para asignación inteligente</div><div class="fn-sub">Expediente completo · ingresa al sistema</div></div></div>
+      <div class="sp" id="s1">
+        <div class="sp-head"><span class="sp-num">PASO 02</span><h3 class="sp-title">Validación 21 Días</h3></div>
+        <div class="sp-grid">
+          <div><div class="sp-hl">Score que predice velocidad de rotación por zona antes de asignarse.</div><p class="sp-desc">Analiza condición, demanda regional e historial de modelos similares. Resultado: zona óptima y estimación de días de venta.</p><div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">Una asignación errónea cuesta 20–30 días extra de capital inmovilizado.</div></div></div>
+          <div class="vis"><div class="vis-lbl">Scoring por segmento · Chihuahua</div>
+            <div id="scrows">
+              <div class="sc-row"><span class="sc-em">🛻</span><span class="sc-name">Pick-up</span><div class="sc-bar"><div class="sc-fill" style="--w:93%"></div></div><span class="sc-val" style="color:#34D399;">93</span></div>
+              <div class="sc-row"><span class="sc-em">🚙</span><span class="sc-name">SUV</span><div class="sc-bar"><div class="sc-fill" style="--w:80%"></div></div><span class="sc-val" style="color:#60A5FA;">80</span></div>
+              <div class="sc-row"><span class="sc-em">🚗</span><span class="sc-name">Sedán</span><div class="sc-bar"><div class="sc-fill" style="--w:67%"></div></div><span class="sc-val" style="color:#FCD34D;">67</span></div>
+              <div class="sc-row"><span class="sc-em">💎</span><span class="sc-name">Premium</span><div class="sc-bar"><div class="sc-fill" style="--w:52%;background:rgba(255,255,255,.1)"></div></div><span class="sc-val" style="color:rgba(255,255,255,.25);">52</span></div>
             </div>
           </div>
         </div>
-
-        <!-- 02 -->
-        <div class="sp" id="s1">
-          <div class="sp-head"><span class="sp-num">PASO 02</span><h3 class="sp-title">Validación 21 Días</h3></div>
-          <div class="sp-grid">
-            <div>
-              <div class="sp-hl">Cada vehículo recibe un score que predice su velocidad de rotación por zona antes de asignarse.</div>
-              <p class="sp-desc">El sistema analiza condición, demanda regional, historial de modelos similares y precio competitivo. Resultado: estimación de días de venta y zona óptima de asignación.</p>
-              <div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">Una asignación errónea cuesta 20–30 días extra de capital inmovilizado. El scoring lo previene.</div></div>
-            </div>
-            <div class="vis">
-              <div class="vis-lbl">Scoring por segmento · Chihuahua</div>
-              <div id="scrows">
-                <div class="sc-row"><span class="sc-em">🛻</span><span class="sc-name">Pick-up / Camioneta</span><div class="sc-bar"><div class="sc-fill" style="--w:93%"></div></div><span class="sc-val" style="color:#34D399;">93</span></div>
-                <div class="sc-row"><span class="sc-em">🚙</span><span class="sc-name">SUV Familiar</span><div class="sc-bar"><div class="sc-fill" style="--w:80%"></div></div><span class="sc-val" style="color:#60A5FA;">80</span></div>
-                <div class="sc-row"><span class="sc-em">🚗</span><span class="sc-name">Sedán Compacto</span><div class="sc-bar"><div class="sc-fill" style="--w:67%"></div></div><span class="sc-val" style="color:#FCD34D;">67</span></div>
-                <div class="sc-row"><span class="sc-em">💎</span><span class="sc-name">Premium</span><div class="sc-bar"><div class="sc-fill" style="--w:52%;background:rgba(255,255,255,.1)"></div></div><span class="sc-val" style="color:rgba(255,255,255,.25);">52</span></div>
-              </div>
-              <div style="margin-top:12px;padding:10px 12px;background:rgba(255,67,62,.06);border:1px solid rgba(255,67,62,.14);border-radius:9px;">
-                <div style="font-size:8px;color:rgba(255,255,255,.22);margin-bottom:4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">Ejemplo · output del sistema</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.75);">F-150 → <span style="color:#34D399;font-weight:700;">Alta rotación</span> · Agencia Norte · 11–16 días</div>
-              </div>
-            </div>
+      </div>
+      <div class="sp" id="s2">
+        <div class="sp-head"><span class="sp-num">PASO 03</span><h3 class="sp-title">Asignación Inteligente</h3></div>
+        <div class="sp-grid">
+          <div><div class="sp-hl">"El vehículo correcto en el punto correcto." El dato decide.</div><p class="sp-desc">Cruzamos score del vehículo con historial de cada agencia, zona y perfil de comprador. Cada asignación maximiza probabilidad de cierre.</p><div class="sp-why"><div class="sp-why-tag">Impacto</div><div class="sp-why-t">De 45 días sector a 21 días objetivo. Capital liberado que antes se perdía en depreciación.</div></div></div>
+          <div class="vis"><div class="vis-lbl">Red de asignación · Chihuahua</div>
+            <div class="arow"><span class="ad" style="background:#34D399;"></span><span class="al">Ag. Norte · Pick-ups</span><span class="ab ab-g">93</span><span class="au">8 u.</span></div>
+            <div class="arow"><span class="ad" style="background:#34D399;"></span><span class="al">Ag. Sur · SUVs</span><span class="ab ab-g">80</span><span class="au">5 u.</span></div>
+            <div class="arow"><span class="ad" style="background:#FCD34D;"></span><span class="al">Ag. Centro · Sedanes</span><span class="ab ab-a">67</span><span class="au">6 u.</span></div>
+            <div class="arow"><span class="ad" style="background:var(--kred);"></span><span class="al">Ag. Premium</span><span class="ab ab-r">52</span><span class="au">2 u.</span></div>
+            <div class="al-row ar-b" style="margin-top:8px;"><span>📊</span><span>Asignación actualizada en tiempo real</span></div>
           </div>
         </div>
-
-        <!-- 03 -->
-        <div class="sp" id="s2">
-          <div class="sp-head"><span class="sp-num">PASO 03</span><h3 class="sp-title">Asignación Inteligente</h3></div>
-          <div class="sp-grid">
-            <div>
-              <div class="sp-hl">"El vehículo correcto en el punto correcto." El dato decide, no la intuición.</div>
-              <p class="sp-desc">Cruzamos score del vehículo con historial de rotación de cada agencia, zona geográfica y perfil de comprador. Cada asignación maximiza probabilidad de cierre en el menor tiempo.</p>
-              <div class="sp-why"><div class="sp-why-tag">Impacto directo</div><div class="sp-why-t">De 45 días promedio sector a 21 días objetivo. Capital liberado que antes se perdía en depreciación pasiva.</div></div>
-            </div>
-            <div class="vis">
-              <div class="vis-lbl">Red de asignación · Chihuahua</div>
-              <div class="arow"><span class="ad" style="background:#34D399;box-shadow:0 0 7px rgba(52,211,153,.4);"></span><span class="al">Agencia Norte · Pick-ups</span><span class="ab ab-g">Score 93</span><span class="au">8 unidades</span></div>
-              <div class="arow"><span class="ad" style="background:#34D399;"></span><span class="al">Agencia Sur · SUVs</span><span class="ab ab-g">Score 80</span><span class="au">5 unidades</span></div>
-              <div class="arow"><span class="ad" style="background:#FCD34D;"></span><span class="al">Agencia Centro · Sedanes</span><span class="ab ab-a">Score 67</span><span class="au">6 unidades</span></div>
-              <div class="arow"><span class="ad" style="background:var(--kred);"></span><span class="al">Agencia Premium</span><span class="ab ab-r">Score 52</span><span class="au">2 unidades</span></div>
-              <div class="al-row ar-b" style="margin-top:8px;"><span>📊</span><span>Asignación actualizada en tiempo real · cada ciclo aprende</span></div>
-            </div>
+      </div>
+      <div class="sp" id="s3">
+        <div class="sp-head"><span class="sp-num">PASO 04</span><h3 class="sp-title">Financiamiento KUNA</h3></div>
+        <div class="sp-grid">
+          <div><div class="sp-hl">KUNA integrado en cada punto de cierre. Aprobación ~15 min.</div><p class="sp-desc">Convierte 30–40% de prospectos que sin acceso inmediato abandonarían. Mayor rotación, mayor colocación financiera.</p><div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">KUNA activa demanda latente que el mercado actual pierde por fricciones de liquidez.</div></div></div>
+          <div class="vis"><div class="vis-lbl">Motor KUNA</div>
+            <div class="kuna-hero"><div class="kuna-b">KUNA</div><div><div class="kuna-tt">Financiamiento integrado WeCars × KAVAK</div><div class="kuna-ts">Aprobación ~15 min · tasas preferenciales</div></div></div>
+            <div class="fr"><span class="fr-l">Valor del vehículo</span><span class="fr-v">$280,000</span></div>
+            <div class="fr"><span class="fr-l">Enganche mínimo</span><span class="fr-v">$56,000</span></div>
+            <div class="fr"><div><span class="fr-l">Mensualidad</span><div class="fr-s">48 meses · tasa KUNA</div></div><span class="fr-v">$5,800/mes</span></div>
+            <div class="fr" style="border-color:rgba(16,185,129,.16);"><span class="fr-l">Estado</span><span class="fr-ok">✓ Pre-aprobado 15 min</span></div>
           </div>
         </div>
-
-        <!-- 04 -->
-        <div class="sp" id="s3">
-          <div class="sp-head"><span class="sp-num">PASO 04</span><h3 class="sp-title">Financiamiento KUNA</h3></div>
-          <div class="sp-grid">
-            <div>
-              <div class="sp-hl">KUNA integrado en cada punto de cierre de la red. Aprobación en ~15 minutos.</div>
-              <p class="sp-desc">El asesor tiene simulación de crédito KUNA en tiempo real desde el primer contacto. Convierte el 30–40% de prospectos que, sin acceso inmediato, abandonarían.</p>
-              <div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">KUNA activa demanda latente que el mercado actual pierde por fricciones de liquidez. Mayor colocación, mayor rotación.</div></div>
+      </div>
+      <div class="sp" id="s4">
+        <div class="sp-head"><span class="sp-num">PASO 05</span><h3 class="sp-title">Reportes y KPIs</h3></div>
+        <div class="sp-grid">
+          <div><div class="sp-hl">Dashboard en tiempo real: aging, rotación, alertas tempranas.</div><p class="sp-desc">Unidad supera 18 días → protocolo automático: redistribución, ajuste de precio o campaña KUNA.</p><div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">Visibilidad total de la red sin gestionar cada agencia. WeCars entrega los datos.</div></div></div>
+          <div class="vis"><div class="vis-lbl">Dashboard · tiempo real</div>
+            <div class="kd-grid">
+              <div class="kd"><div class="kd-l">Días prom.</div><div class="kd-v g">19.4d</div><div class="kd-d">↓ vs sector</div></div>
+              <div class="kd"><div class="kd-l">Rotación</div><div class="kd-v r">94%</div></div>
+              <div class="kd"><div class="kd-l">Top seg.</div><div class="kd-v w" style="font-size:13px;">Pick-ups</div></div>
+              <div class="kd"><div class="kd-l">Aging &gt;18d</div><div class="kd-v a">3</div></div>
             </div>
-            <div class="vis">
-              <div class="vis-lbl">Motor KUNA · flujo de crédito</div>
-              <div class="kuna-hero">
-                <div class="kuna-b">KUNA</div>
-                <div><div class="kuna-tt">Financiamiento integrado al flujo WeCars × KAVAK</div><div class="kuna-ts">Aprobación ~15 min · tasas preferenciales</div></div>
-              </div>
-              <div class="fr"><span class="fr-l">Valor del vehículo</span><span class="fr-v">$280,000</span></div>
-              <div class="fr"><span class="fr-l">Enganche mínimo</span><span class="fr-v">$56,000</span></div>
-              <div class="fr"><div><span class="fr-l">Mensualidad</span><div class="fr-s">48 meses · tasa KUNA preferencial</div></div><span class="fr-v">$5,800/mes</span></div>
-              <div class="fr" style="border-color:rgba(16,185,129,.17);"><span class="fr-l">Estado</span><span class="fr-ok">✓ Pre-aprobado en 15 min</span></div>
-            </div>
+            <div class="al-row ar-r"><span>⚡</span><span>Unidad ≥ 18 días → protocolo automático</span></div>
+            <div class="al-row ar-g"><span>✓</span><span>F-150 · Ag. Norte · vendida en 11 días</span></div>
           </div>
         </div>
-
-        <!-- 05 -->
-        <div class="sp" id="s4">
-          <div class="sp-head"><span class="sp-num">PASO 05</span><h3 class="sp-title">Reportes y KPIs</h3></div>
-          <div class="sp-grid">
-            <div>
-              <div class="sp-hl">Dashboard operativo en tiempo real: aging, rotación, alertas tempranas, rendimiento por agencia.</div>
-              <p class="sp-desc">Si una unidad supera 18 días, el sistema activa automáticamente protocolo de redistribución, ajuste de precio o campaña KUNA de conversión.</p>
-              <div class="sp-why"><div class="sp-why-tag">Valor para KAVAK</div><div class="sp-why-t">Visibilidad total de la red en Chihuahua sin gestionar cada agencia. WeCars entrega los datos; KAVAK toma decisiones estratégicas.</div></div>
-            </div>
-            <div class="vis">
-              <div class="vis-lbl">Dashboard · tiempo real</div>
-              <div class="kd-grid">
-                <div class="kd"><div class="kd-l">Días prom. venta</div><div class="kd-v g">19.4d</div><div class="kd-d">↓ 25.6d vs sector</div></div>
-                <div class="kd"><div class="kd-l">Rotación red</div><div class="kd-v r">94%</div><div class="kd-d">↑ vs objetivo</div></div>
-                <div class="kd"><div class="kd-l">Top segmento</div><div class="kd-v w" style="font-size:14px;">Pick-ups</div><div class="kd-d">mayor velocidad</div></div>
-                <div class="kd"><div class="kd-l">Aging crítico</div><div class="kd-v a">3</div><div class="kd-d">unidades &gt;18 días</div></div>
-              </div>
-              <div class="al-row ar-r"><span>⚡</span><span>Unidad ≥ 18 días → protocolo automático</span></div>
-              <div class="al-row ar-a"><span>⚠</span><span>Jetta · Ag. Centro · 20 días → precio −5%</span></div>
-              <div class="al-row ar-g"><span>✓</span><span>F-150 · Ag. Norte · vendida en 11 días</span></div>
-            </div>
+      </div>
+      <div class="sp" id="s5">
+        <div class="sp-head"><span class="sp-num">PASO 06</span><h3 class="sp-title">Mejora Continua</h3></div>
+        <div class="sp-grid">
+          <div><div class="sp-hl">Más agencias = más datos = mejor asignación = menos días de inventario.</div><p class="sp-desc">Cada ciclo genera datos. Los datos mejoran el scoring. El scoring mejora la asignación. El sistema se refuerza con cada expansión.</p><div class="sp-why"><div class="sp-why-tag">Ventaja compuesta</div><div class="sp-why-t">El ciclo es compuesto, no lineal. Cada mercado nuevo baja el costo de expansión y sube la inteligencia de toda la red.</div></div></div>
+          <div class="vis"><div class="vis-lbl">Ciclo de mejora</div>
+            <div class="ss"><span class="ss-i">📊</span><span class="ss-t">Datos de rotación por agencia</span><span class="ss-v" style="color:#60A5FA;">Input</span></div><div class="ss-arr">↓</div>
+            <div class="ss"><span class="ss-i">🧠</span><span class="ss-t">Scoring actualiza predicciones</span><span class="ss-v" style="color:rgba(255,255,255,.5);">Proceso</span></div><div class="ss-arr">↓</div>
+            <div class="ss"><span class="ss-i">🎯</span><span class="ss-t">Asignación más precisa</span><span class="ss-v" style="color:var(--kred);">Output</span></div><div class="ss-arr">↓</div>
+            <div class="ss" style="border-color:rgba(16,185,129,.2);"><span class="ss-i">📉</span><span class="ss-t">Días de inventario bajan ciclo a ciclo</span><span class="ss-v" style="color:#34D399;">Resultado</span></div>
           </div>
         </div>
-
-        <!-- 06 -->
-        <div class="sp" id="s5">
-          <div class="sp-head"><span class="sp-num">PASO 06</span><h3 class="sp-title">Mejora Continua</h3></div>
-          <div class="sp-grid">
-            <div>
-              <div class="sp-hl">El modelo no escala improvisando. Escala replicando un sistema probado — ciudad por ciudad.</div>
-              <p class="sp-desc">Cada ciclo genera datos. Los datos mejoran el scoring. El scoring mejora la asignación. La asignación reduce los días de inventario. El sistema se refuerza con cada expansión.</p>
-              <div class="sp-why"><div class="sp-why-tag">Ventaja compuesta</div><div class="sp-why-t">Más agencias = más datos = mejor asignación = menos días de inventario. El ciclo es compuesto, no lineal.</div></div>
-            </div>
-            <div class="vis">
-              <div class="vis-lbl">Ciclo de mejora continua</div>
-              <div class="ss"><span class="ss-i">📊</span><span class="ss-t">Datos de rotación por agencia y segmento</span><span class="ss-v" style="color:#60A5FA;">Input</span></div>
-              <div class="ss-arr">↓</div>
-              <div class="ss"><span class="ss-i">🧠</span><span class="ss-t">Motor de scoring actualiza predicciones</span><span class="ss-v" style="color:rgba(255,255,255,.5);">Proceso</span></div>
-              <div class="ss-arr">↓</div>
-              <div class="ss"><span class="ss-i">🎯</span><span class="ss-t">Asignación más precisa en siguiente ciclo</span><span class="ss-v" style="color:var(--kred);">Output</span></div>
-              <div class="ss-arr">↓</div>
-              <div class="ss" style="border-color:rgba(16,185,129,.22);background:rgba(16,185,129,.04);"><span class="ss-i">📉</span><span class="ss-t">Días de inventario disminuyen ciclo a ciclo</span><span class="ss-v" style="color:#34D399;">Resultado</span></div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
-</section>
+</div></section>
 
 <div class="div-dark"></div>
 
-<!-- PLAN DE CERTIFICACIÓN -->
-<section id="cert">
-  <div class="con sec-pad">
-    <div class="rv cert-intro">
-      <div class="s-tag" style="justify-content:center;">04 — Plan de certificación</div>
-      <h2 class="s-h" style="text-align:center;">Red certificada.<br><span class="red">Controlada. Medible.</span></h2>
-      <p class="s-p" style="text-align:center;max-width:520px;margin:0 auto;">El objetivo estratégico es construir una red comercial certificada bajo estándar KAVAK, comenzando en Chihuahua y escalando ciudad por ciudad.</p>
+<!-- ═══ DASHBOARD INTERACTIVO ═══ -->
+<section id="dashboard"><div class="con sec-pad">
+  <div class="rv dash-intro">
+    <div class="s-tag" style="justify-content:center;">04 — Dashboard operativo</div>
+    <h2 class="s-h" style="text-align:center;">Así se verá la red en <span class="red">tiempo real.</span></h2>
+    <p class="s-p" style="text-align:center;max-width:480px;margin:0 auto;">Dos vistas: el estado de certificación de cada agencia y la distribución inteligente del inventario.</p>
+  </div>
+
+  <div class="dash-tabs rv d1">
+    <button class="dtab on" data-panel="p-cert">🏪 Certificación de agencias</button>
+    <button class="dtab" data-panel="p-assign">🚗 Asignación de vehículos</button>
+  </div>
+
+  <!-- Panel Certificación -->
+  <div class="dash-panel on" id="p-cert">
+    <div class="cert-overview rv">
+      <div class="cov"><div class="cov-v green" data-target="2">2</div><div class="cov-l">Certificadas</div></div>
+      <div class="cov"><div class="cov-v amber" data-target="2">2</div><div class="cov-l">En proceso</div></div>
+      <div class="cov"><div class="cov-v" data-target="1">1</div><div class="cov-l">Pendiente</div></div>
     </div>
+    <div class="agency-list rv d1" style="margin-top:16px;">
 
-    <!-- TIMELINE -->
-    <div class="timeline rv">
-
-      <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-card">
-            <div class="tl-tag">Fase 1 · Meses 1–2</div>
-            <div class="tl-h">Selección y onboarding</div>
-            <div class="tl-b">Evaluación de agencias candidatas en Chihuahua. Firma de acuerdo de operación bajo estándar KAVAK.</div>
-            <div class="tl-pills">
-              <span class="tl-pill r">5 agencias</span>
-              <span class="tl-pill b">Due diligence</span>
-              <span class="tl-pill a">Contratos</span>
-            </div>
+      <div class="ag-card active" data-ag="0">
+        <div class="ag-header">
+          <div class="ag-num" style="background:#10B981;">A</div>
+          <div><div class="ag-name">Agencia Norte</div><div class="ag-loc">📍 Zona Norte · Chihuahua</div></div>
+          <div class="ag-status"><span class="status-badge sb-cert">✓ Certificada</span><span class="ag-phase">Fase 3 completa</span></div>
+        </div>
+        <div class="ag-progress">
+          <div class="ag-prog-bar"><div class="ag-prog-fill" style="width:100%;background:var(--green);"></div></div>
+          <div class="ag-prog-labels"><span>Onboarding</span><span>Capacitación</span><span>Piloto</span><span>✓ Cert.</span></div>
+        </div>
+        <div class="ag-detail">
+          <div class="ag-kpis">
+            <div class="akpi"><div class="akpi-v" style="color:var(--green);">14d</div><div class="akpi-l">Rot. prom.</div></div>
+            <div class="akpi"><div class="akpi-v">8</div><div class="akpi-l">Unidades</div></div>
+            <div class="akpi"><div class="akpi-v" style="color:var(--green);">96%</div><div class="akpi-l">Efectividad</div></div>
+            <div class="akpi"><div class="akpi-v">🛻</div><div class="akpi-l">Top: Pick-up</div></div>
           </div>
-        </div>
-        <div class="tl-center">
-          <div class="tl-dot red">1</div>
-          <div class="tl-period">Meses 1–2</div>
-        </div>
-        <div class="tl-right"></div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-left"></div>
-        <div class="tl-center">
-          <div class="tl-dot red">2</div>
-          <div class="tl-period">Meses 2–3</div>
-        </div>
-        <div class="tl-right">
-          <div class="tl-card">
-            <div class="tl-tag">Fase 2 · Meses 2–3</div>
-            <div class="tl-h">Capacitación y activación</div>
-            <div class="tl-b">Entrenamiento en proceso KAVAK, integración KUNA, activación del dashboard y primeras asignaciones de inventario.</div>
-            <div class="tl-pills">
-              <span class="tl-pill r">Proceso KAVAK</span>
-              <span class="tl-pill b">KUNA activo</span>
-              <span class="tl-pill g">Dashboard</span>
-            </div>
+          <div class="cert-criteria">
+            <div class="cc ok">✓ Documentación legal completa</div>
+            <div class="cc ok">✓ Capacidad operativa: 15 espacios</div>
+            <div class="cc ok">✓ Experiencia de compra: 4.8/5</div>
+            <div class="cc ok">✓ KPI rotación: 14d (objetivo 21d)</div>
           </div>
         </div>
       </div>
 
-      <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-card navy">
-            <div class="tl-tag">Fase 3 · Meses 3–6</div>
-            <div class="tl-h">Piloto operativo</div>
-            <div class="tl-b">Operación activa con inventario real. Meta: alcanzar 21 días de rotación promedio en al menos 3 de 5 agencias.</div>
-            <div class="tl-pills">
-              <span class="tl-pill r">50+ unidades</span>
-              <span class="tl-pill g">21d meta</span>
-              <span class="tl-pill b">Reportes semanales</span>
-            </div>
+      <div class="ag-card" data-ag="1">
+        <div class="ag-header">
+          <div class="ag-num" style="background:#10B981;">B</div>
+          <div><div class="ag-name">Agencia Sur</div><div class="ag-loc">📍 Zona Sur · Chihuahua</div></div>
+          <div class="ag-status"><span class="status-badge sb-cert">✓ Certificada</span><span class="ag-phase">Fase 3 completa</span></div>
+        </div>
+        <div class="ag-progress">
+          <div class="ag-prog-bar"><div class="ag-prog-fill" style="width:100%;background:var(--green);"></div></div>
+          <div class="ag-prog-labels"><span>Onboarding</span><span>Capacitación</span><span>Piloto</span><span>✓ Cert.</span></div>
+        </div>
+        <div class="ag-detail">
+          <div class="ag-kpis">
+            <div class="akpi"><div class="akpi-v" style="color:var(--green);">18d</div><div class="akpi-l">Rot. prom.</div></div>
+            <div class="akpi"><div class="akpi-v">5</div><div class="akpi-l">Unidades</div></div>
+            <div class="akpi"><div class="akpi-v" style="color:var(--green);">89%</div><div class="akpi-l">Efectividad</div></div>
+            <div class="akpi"><div class="akpi-v">🚙</div><div class="akpi-l">Top: SUV</div></div>
           </div>
-        </div>
-        <div class="tl-center">
-          <div class="tl-dot blue">3</div>
-          <div class="tl-period">Meses 3–6</div>
-        </div>
-        <div class="tl-right"></div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-left"></div>
-        <div class="tl-center">
-          <div class="tl-dot blue">4</div>
-          <div class="tl-period">Mes 6</div>
-        </div>
-        <div class="tl-right">
-          <div class="tl-card">
-            <div class="tl-tag">Fase 4 · Mes 6</div>
-            <div class="tl-h">Evaluación y re-certificación</div>
-            <div class="tl-b">Revisión de KPIs: rotación, experiencia de compra, cumplimiento documental. Las agencias que no cumplen son reemplazadas.</div>
-            <div class="tl-pills">
-              <span class="tl-pill r">KPI review</span>
-              <span class="tl-pill a">Ranking agencias</span>
-              <span class="tl-pill g">Re-cert</span>
-            </div>
+          <div class="cert-criteria">
+            <div class="cc ok">✓ Documentación legal completa</div>
+            <div class="cc ok">✓ Capacidad operativa: 12 espacios</div>
+            <div class="cc ok">✓ Experiencia de compra: 4.6/5</div>
+            <div class="cc ok">✓ KPI rotación: 18d (objetivo 21d)</div>
           </div>
         </div>
       </div>
 
-      <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-card" style="border-color:rgba(16,185,129,.3);">
-            <div class="tl-tag" style="color:#10B981;">Fase 5 · Mes 7+</div>
-            <div class="tl-h">Escala nacional</div>
-            <div class="tl-b">El playbook probado en Chihuahua se replica en otras ciudades. El dato de cada mercado mejora el scoring de toda la red.</div>
-            <div class="tl-pills">
-              <span class="tl-pill g">Ciudad a ciudad</span>
-              <span class="tl-pill b">Playbook replicable</span>
-            </div>
+      <div class="ag-card" data-ag="2">
+        <div class="ag-header">
+          <div class="ag-num" style="background:var(--amber);">C</div>
+          <div><div class="ag-name">Agencia Centro</div><div class="ag-loc">📍 Centro Histórico · Chihuahua</div></div>
+          <div class="ag-status"><span class="status-badge sb-prog">⏳ En proceso</span><span class="ag-phase">Fase 2 · Capacitación</span></div>
+        </div>
+        <div class="ag-progress">
+          <div class="ag-prog-bar"><div class="ag-prog-fill" style="width:55%;background:var(--amber);"></div></div>
+          <div class="ag-prog-labels"><span>Onboarding</span><span style="color:var(--amber);">► Capac.</span><span>Piloto</span><span>Cert.</span></div>
+        </div>
+        <div class="ag-detail">
+          <div class="ag-kpis">
+            <div class="akpi"><div class="akpi-v" style="color:var(--amber);">—</div><div class="akpi-l">Rot. prom.</div></div>
+            <div class="akpi"><div class="akpi-v">0</div><div class="akpi-l">Unidades</div></div>
+            <div class="akpi"><div class="akpi-v" style="color:var(--amber);">En cap.</div><div class="akpi-l">Estatus</div></div>
+            <div class="akpi"><div class="akpi-v">🚗</div><div class="akpi-l">Seg: Sedán</div></div>
+          </div>
+          <div class="cert-criteria">
+            <div class="cc ok">✓ Documentación legal completa</div>
+            <div class="cc ok">✓ Capacidad operativa: 10 espacios</div>
+            <div class="cc warn">⏳ Capacitación en progreso (70%)</div>
+            <div class="cc warn">⏳ KPI rotación: pendiente piloto</div>
           </div>
         </div>
-        <div class="tl-center">
-          <div class="tl-dot green">5</div>
-          <div class="tl-period">Mes 7+</div>
+      </div>
+
+      <div class="ag-card" data-ag="3">
+        <div class="ag-header">
+          <div class="ag-num" style="background:var(--amber);">D</div>
+          <div><div class="ag-name">Agencia Oriente</div><div class="ag-loc">📍 Zona Oriente · Chihuahua</div></div>
+          <div class="ag-status"><span class="status-badge sb-prog">⏳ En proceso</span><span class="ag-phase">Fase 1 · Onboarding</span></div>
         </div>
-        <div class="tl-right"></div>
+        <div class="ag-progress">
+          <div class="ag-prog-bar"><div class="ag-prog-fill" style="width:25%;background:var(--amber);"></div></div>
+          <div class="ag-prog-labels"><span style="color:var(--amber);">► Onboard.</span><span>Capac.</span><span>Piloto</span><span>Cert.</span></div>
+        </div>
+        <div class="ag-detail">
+          <div class="ag-kpis">
+            <div class="akpi"><div class="akpi-v" style="color:var(--amber);">—</div><div class="akpi-l">Rot. prom.</div></div>
+            <div class="akpi"><div class="akpi-v">0</div><div class="akpi-l">Unidades</div></div>
+            <div class="akpi"><div class="akpi-v" style="color:var(--amber);">Onboard.</div><div class="akpi-l">Estatus</div></div>
+            <div class="akpi"><div class="akpi-v">🚙</div><div class="akpi-l">Seg: SUV</div></div>
+          </div>
+          <div class="cert-criteria">
+            <div class="cc ok">✓ Documentación legal completa</div>
+            <div class="cc warn">⏳ Firma de contrato en revisión</div>
+            <div class="cc fail">✗ Capacitación: pendiente</div>
+            <div class="cc fail">✗ KPI rotación: pendiente</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ag-card" data-ag="4">
+        <div class="ag-header">
+          <div class="ag-num" style="background:var(--tlight);">E</div>
+          <div><div class="ag-name">Agencia Poniente</div><div class="ag-loc">📍 Zona Poniente · Chihuahua</div></div>
+          <div class="ag-status"><span class="status-badge sb-pend">○ Pendiente</span><span class="ag-phase">Evaluación inicial</span></div>
+        </div>
+        <div class="ag-progress">
+          <div class="ag-prog-bar"><div class="ag-prog-fill" style="width:5%;background:var(--tlight);"></div></div>
+          <div class="ag-prog-labels"><span>Onboard.</span><span>Capac.</span><span>Piloto</span><span>Cert.</span></div>
+        </div>
+        <div class="ag-detail">
+          <div class="ag-kpis">
+            <div class="akpi"><div class="akpi-v" style="color:var(--tlight);">—</div><div class="akpi-l">Rot. prom.</div></div>
+            <div class="akpi"><div class="akpi-v" style="color:var(--tlight);">—</div><div class="akpi-l">Unidades</div></div>
+            <div class="akpi"><div class="akpi-v" style="color:var(--tlight);">Eval.</div><div class="akpi-l">Estatus</div></div>
+            <div class="akpi"><div class="akpi-v">💎</div><div class="akpi-l">Seg: Premium</div></div>
+          </div>
+          <div class="cert-criteria">
+            <div class="cc warn">⏳ Documentación en revisión</div>
+            <div class="cc fail">✗ Contrato: pendiente</div>
+            <div class="cc fail">✗ Capacitación: pendiente</div>
+            <div class="cc fail">✗ KPI: pendiente</div>
+          </div>
+        </div>
       </div>
 
     </div>
+  </div>
 
-    <!-- CRITERIOS DE CERTIFICACIÓN -->
-    <div class="rv d2">
-      <div style="text-align:center;margin-bottom:28px;">
-        <div class="s-tag" style="justify-content:center;">Criterios de certificación de agencias</div>
-        <p class="s-p" style="font-size:13px;">Cada agencia debe cumplir 4 dimensiones para operar bajo estándar KAVAK.</p>
+  <!-- Panel Asignación -->
+  <div class="dash-panel" id="p-assign">
+    <div class="assign-top rv">
+      <div class="assign-summary">
+        <div class="as-title">Inventario total asignado</div>
+        <div class="as-big red" id="totalUnits">21</div>
+        <div class="as-sub">unidades en la red · Chihuahua</div>
+        <div class="as-pills">
+          <span class="as-pill asp-g" id="pill-dias">Prom: 16.2d</span>
+          <span class="as-pill asp-b" id="pill-kuna">KUNA: 40%</span>
+          <span class="as-pill asp-a" id="pill-efectividad">Efectividad: 83%</span>
+        </div>
       </div>
-      <div class="cert-grid">
-        <div class="crit">
-          <div class="crit-ico">📋</div>
-          <div class="crit-h">Documentación legal</div>
-          <div class="crit-b">Constitución legal vigente, RFC activo, licencias comerciales y comprobante de instalaciones físicas.</div>
-          <span class="crit-badge cb-r">Requisito duro</span>
+      <div class="inv-slider-wrap">
+        <div class="inv-title">Ajusta el inventario por segmento</div>
+        <div class="inv-sub">Mueve los sliders para simular la distribución</div>
+        <div class="slider-row">
+          <span class="sl-label">🛻 Pick-ups</span>
+          <input type="range" class="sl-input" id="sl0" min="0" max="20" value="8">
+          <span class="sl-val" id="sv0">8</span>
         </div>
-        <div class="crit">
-          <div class="crit-ico">🏪</div>
-          <div class="crit-h">Capacidad operativa</div>
-          <div class="crit-b">Mínimo 10 espacios de inventario, asesor certificado KAVAK, sistema de gestión de ventas activo.</div>
-          <span class="crit-badge cb-b">Operacional</span>
+        <div class="slider-row">
+          <span class="sl-label">🚙 SUVs</span>
+          <input type="range" class="sl-input" id="sl1" min="0" max="20" value="5">
+          <span class="sl-val" id="sv1">5</span>
         </div>
-        <div class="crit">
-          <div class="crit-ico">⭐</div>
-          <div class="crit-h">Experiencia de compra</div>
-          <div class="crit-b">Protocolo de atención KAVAK, proceso de cierre documentado, satisfacción mínima 4.5/5 en evaluaciones.</div>
-          <span class="crit-badge cb-a">Estándar marca</span>
+        <div class="slider-row">
+          <span class="sl-label">🚗 Sedanes</span>
+          <input type="range" class="sl-input" id="sl2" min="0" max="20" value="6">
+          <span class="sl-val" id="sv2">6</span>
         </div>
-        <div class="crit">
-          <div class="crit-ico">📊</div>
-          <div class="crit-h">KPI de rotación</div>
-          <div class="crit-b">Alcanzar ≤21 días promedio en 3° mes de operación. Efectividad ≥80%. Cumplimiento de reportes semanales.</div>
-          <span class="crit-badge cb-g">KPI obligatorio</span>
+        <div class="slider-row">
+          <span class="sl-label">💎 Premium</span>
+          <input type="range" class="sl-input" id="sl3" min="0" max="20" value="2">
+          <span class="sl-val" id="sv3">2</span>
         </div>
+      </div>
+    </div>
+    <div class="assign-board rv d2">
+      <div class="ab-title">Distribución por agencia · en tiempo real</div>
+      <div class="ab-row"><span class="ab-ag">Ag. Norte</span><span class="ab-seg">🛻 Pick-ups</span><div class="ab-bar-wrap"><div class="ab-bar-fill" id="bar0" style="background:#34D399;width:80%;"></div></div><span class="ab-units" id="au0">8</span><span class="ab-days fast" id="ad0">~14d</span></div>
+      <div class="ab-row"><span class="ab-ag">Ag. Sur</span><span class="ab-seg">🚙 SUVs</span><div class="ab-bar-wrap"><div class="ab-bar-fill" id="bar1" style="background:#60A5FA;width:50%;"></div></div><span class="ab-units" id="au1">5</span><span class="ab-days fast" id="ad1">~18d</span></div>
+      <div class="ab-row"><span class="ab-ag">Ag. Centro</span><span class="ab-seg">🚗 Sedanes</span><div class="ab-bar-wrap"><div class="ab-bar-fill" id="bar2" style="background:#FCD34D;width:60%;"></div></div><span class="ab-units" id="au2">6</span><span class="ab-days med" id="ad2">~22d</span></div>
+      <div class="ab-row"><span class="ab-ag">Ag. Premium</span><span class="ab-seg">💎 Premium</span><div class="ab-bar-wrap"><div class="ab-bar-fill" id="bar3" style="background:var(--kred);width:20%;"></div></div><span class="ab-units" id="au3">2</span><span class="ab-days slow" id="ad3">~30d</span></div>
+      <div class="assign-total-row">
+        <span class="atr-label">Total en red</span>
+        <span class="atr-val" id="totalDisplay">21 unidades</span>
+        <span class="atr-days" id="avgDays">Prom: 16.2d</span>
       </div>
     </div>
   </div>
-</section>
+</div></section>
 
 <div class="div"></div>
 
-<!-- BENEFICIOS KAVAK -->
-<section id="beneficios">
-  <div class="con sec-pad">
-    <div class="rv" style="margin-bottom:36px;">
-      <div class="s-tag">05 — Beneficios para KAVAK</div>
-      <h2 class="s-h">No un proveedor.<br><span class="red">Un socio operativo estratégico.</span></h2>
-      <p class="s-p">WeCars extiende la red KAVAK sin aumentar estructura propia. Más rotación, más cobertura regional, más datos, más colocación KUNA.</p>
+<!-- CERT -->
+<section id="cert"><div class="con sec-pad">
+  <div class="rv" style="text-align:center;max-width:580px;margin:0 auto 44px;">
+    <div class="s-tag" style="justify-content:center;">05 — Plan de certificación</div>
+    <h2 class="s-h" style="text-align:center;">Red controlada.<br><span class="red">Medible. Certificada.</span></h2>
+  </div>
+  <div class="timeline rv">
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-card"><div class="tl-tag">Fase 1 · Meses 1–2</div><div class="tl-h">Selección y onboarding</div><div class="tl-b">Evaluación de 5 agencias candidatas en Chihuahua. Firma bajo estándar KAVAK.</div><div class="tl-pills"><span class="tl-pill r">5 agencias</span><span class="tl-pill b">Due diligence</span><span class="tl-pill a">Contratos</span></div></div></div>
+      <div class="tl-center"><div class="tl-dot red">1</div><div class="tl-period">M 1–2</div></div>
+      <div class="tl-right"></div>
     </div>
-
-    <div class="ben-top rv d1">
-      <div>
-        <div class="bt-tag">Valor estratégico central</div>
-        <div class="bt-title">"Expansión regional eficiente<br>sin costo fijo de estructura."</div>
-        <div class="bt-sub">KAVAK accede al mercado Chihuahua y otros mercados regionales sin abrir lotes propios. WeCars absorbe el costo operativo mientras KAVAK recibe rotación, datos e inteligencia local.</div>
-      </div>
-      <div class="bt-metrics">
-        <div class="btm"><div class="btm-v red">21d</div><div class="btm-l">Rotación</div></div>
-        <div class="btm"><div class="btm-v green">+80%</div><div class="btm-l">Efectividad</div></div>
-        <div class="btm"><div class="btm-v">−53%</div><div class="btm-l">Tiempo</div></div>
-      </div>
+    <div class="tl-item">
+      <div class="tl-left"></div>
+      <div class="tl-center"><div class="tl-dot red">2</div><div class="tl-period">M 2–3</div></div>
+      <div class="tl-right"><div class="tl-card"><div class="tl-tag">Fase 2 · Meses 2–3</div><div class="tl-h">Capacitación y activación</div><div class="tl-b">Entrenamiento proceso KAVAK, integración KUNA, activación del dashboard.</div><div class="tl-pills"><span class="tl-pill r">Proceso KAVAK</span><span class="tl-pill b">KUNA activo</span><span class="tl-pill g">Dashboard</span></div></div></div>
     </div>
-
-    <div class="ben-grid">
-      <div class="bc rv d1">
-        <span class="bc-num">KAVAK 01</span>
-        <span class="bc-ico">💰</span>
-        <div class="bc-h">Expansión sin costo fijo</div>
-        <div class="bc-b">Sin lotes propios, sin nómina local. La red WeCars opera bajo estándar KAVAK y absorbe los costos de presencia regional.</div>
-      </div>
-      <div class="bc rv d2">
-        <span class="bc-num">KAVAK 02</span>
-        <span class="bc-ico">🤝</span>
-        <div class="bc-h">Red certificada alineada</div>
-        <div class="bc-b">Procesos, documentación y experiencia de compra consistentes en toda la red. La marca KAVAK protegida en cada punto.</div>
-      </div>
-      <div class="bc rv d3">
-        <span class="bc-num">KAVAK 03</span>
-        <span class="bc-ico">📊</span>
-        <div class="bc-h">Inteligencia de mercado local</div>
-        <div class="bc-b">Datos granulares de demanda regional: qué modelos rotan, en qué zonas, a qué precios. Insumo directo para decisiones de compra y pricing.</div>
-      </div>
-      <div class="bc rv d1">
-        <span class="bc-num">KAVAK 04</span>
-        <span class="bc-ico">🔄</span>
-        <div class="bc-h">Mayor velocidad de rotación</div>
-        <div class="bc-b">De 45 días sector a 21 días objetivo. Menos depreciación, más rotación de capital, mayor margen bruto por unidad.</div>
-      </div>
-      <div class="bc rv d2">
-        <span class="bc-num">KAVAK 05</span>
-        <span class="bc-ico">🏦</span>
-        <div class="bc-h">Más colocación financiera KUNA</div>
-        <div class="bc-b">KUNA integrado en cada agencia amplía el universo de compradores, eleva el ticket promedio y aumenta cierres mensuales.</div>
-      </div>
-      <div class="bc rv d3">
-        <span class="bc-num">KAVAK 06</span>
-        <span class="bc-ico">🛡️</span>
-        <div class="bc-h">Menor riesgo de inventario</div>
-        <div class="bc-b">Asignación inteligente evita concentración de unidades detenidas. Alertas tempranas activan protocolos antes de impactar el margen.</div>
-      </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-card navy"><div class="tl-tag">Fase 3 · Meses 3–6</div><div class="tl-h">Piloto operativo</div><div class="tl-b">Operación activa con inventario real. Meta: 21 días de rotación en ≥3 de 5 agencias.</div><div class="tl-pills"><span class="tl-pill r">50+ unidades</span><span class="tl-pill g">21d meta</span><span class="tl-pill b">Reportes semanales</span></div></div></div>
+      <div class="tl-center"><div class="tl-dot blue">3</div><div class="tl-period">M 3–6</div></div>
+      <div class="tl-right"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"></div>
+      <div class="tl-center"><div class="tl-dot blue">4</div><div class="tl-period">M 6</div></div>
+      <div class="tl-right"><div class="tl-card"><div class="tl-tag">Fase 4 · Mes 6</div><div class="tl-h">Evaluación y re-certificación</div><div class="tl-b">Revisión de KPIs: rotación, experiencia, documentación. Agencias que no cumplen son reemplazadas.</div><div class="tl-pills"><span class="tl-pill r">KPI review</span><span class="tl-pill a">Ranking</span><span class="tl-pill g">Re-cert</span></div></div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-card" style="border-color:rgba(16,185,129,.25);"><div class="tl-tag" style="color:var(--green);">Fase 5 · Mes 7+</div><div class="tl-h">Escala nacional</div><div class="tl-b">El playbook probado en Chihuahua se replica ciudad por ciudad.</div><div class="tl-pills"><span class="tl-pill g">Ciudad a ciudad</span><span class="tl-pill b">Playbook</span></div></div></div>
+      <div class="tl-center"><div class="tl-dot green">5</div><div class="tl-period">M 7+</div></div>
+      <div class="tl-right"></div>
     </div>
   </div>
-</section>
+  <div class="rv d2">
+    <div style="text-align:center;margin-bottom:22px;"><div class="s-tag" style="justify-content:center;">Criterios de certificación</div></div>
+    <div class="cert-grid">
+      <div class="crit"><div class="crit-ico">📋</div><div class="crit-h">Documentación legal</div><div class="crit-b">RFC activo, licencias comerciales, verificación de instalaciones físicas.</div><span class="crit-badge cb-r">Requisito duro</span></div>
+      <div class="crit"><div class="crit-ico">🏪</div><div class="crit-h">Capacidad operativa</div><div class="crit-b">Mínimo 10 espacios de inventario, asesor certificado KAVAK, sistema de ventas activo.</div><span class="crit-badge cb-b">Operacional</span></div>
+      <div class="crit"><div class="crit-ico">⭐</div><div class="crit-h">Experiencia de compra</div><div class="crit-b">Protocolo de atención KAVAK, satisfacción mínima 4.5/5 en evaluaciones.</div><span class="crit-badge cb-a">Estándar marca</span></div>
+      <div class="crit"><div class="crit-ico">📊</div><div class="crit-h">KPI de rotación</div><div class="crit-b">≤21 días promedio en 3° mes. Efectividad ≥80%. Reportes semanales.</div><span class="crit-badge cb-g">KPI obligatorio</span></div>
+    </div>
+  </div>
+</div></section>
+
+<div class="div"></div>
+
+<!-- BENEFICIOS -->
+<section id="beneficios"><div class="con sec-pad">
+  <div class="rv" style="margin-bottom:32px;">
+    <div class="s-tag">06 — Beneficios para KAVAK</div>
+    <h2 class="s-h">No un proveedor.<br><span class="red">Un socio operativo estratégico.</span></h2>
+    <p class="s-p">WeCars extiende la red KAVAK sin aumentar estructura propia.</p>
+  </div>
+  <div class="ben-top rv d1">
+    <div>
+      <div class="bt-tag">Valor estratégico central</div>
+      <div class="bt-title">"Expansión regional eficiente<br>sin costo fijo de estructura."</div>
+      <div class="bt-sub">KAVAK accede a Chihuahua y mercados regionales sin abrir lotes propios. WeCars absorbe el costo operativo.</div>
+    </div>
+    <div class="bt-metrics">
+      <div class="btm"><div class="btm-v red">21d</div><div class="btm-l">Rotación</div></div>
+      <div class="btm"><div class="btm-v green">+80%</div><div class="btm-l">Efectividad</div></div>
+      <div class="btm"><div class="btm-v">−53%</div><div class="btm-l">Tiempo</div></div>
+    </div>
+  </div>
+  <div class="ben-grid">
+    <div class="bc rv d1"><span class="bc-num">KAVAK 01</span><span class="bc-ico">💰</span><div class="bc-h">Expansión sin costo fijo</div><div class="bc-b">Sin lotes propios, sin nómina local. La red WeCars opera bajo estándar KAVAK y absorbe los costos de presencia regional.</div></div>
+    <div class="bc rv d2"><span class="bc-num">KAVAK 02</span><span class="bc-ico">🤝</span><div class="bc-h">Red certificada alineada</div><div class="bc-b">Procesos, documentación y experiencia de compra consistentes. La marca KAVAK protegida en cada punto.</div></div>
+    <div class="bc rv d3"><span class="bc-num">KAVAK 03</span><span class="bc-ico">📊</span><div class="bc-h">Inteligencia de mercado</div><div class="bc-b">Datos granulares de demanda regional: qué modelos rotan, en qué zonas, a qué precios. Insumo directo para decisiones KAVAK.</div></div>
+    <div class="bc rv d1"><span class="bc-num">KAVAK 04</span><span class="bc-ico">🔄</span><div class="bc-h">Mayor velocidad de rotación</div><div class="bc-b">De 45 días sector a 21 días objetivo. Menos depreciación, más rotación de capital, mayor margen bruto.</div></div>
+    <div class="bc rv d2"><span class="bc-num">KAVAK 05</span><span class="bc-ico">🏦</span><div class="bc-h">Más colocación KUNA</div><div class="bc-b">KUNA en cada agencia amplía el universo de compradores y eleva el ticket promedio de crédito colocado.</div></div>
+    <div class="bc rv d3"><span class="bc-num">KAVAK 06</span><span class="bc-ico">🛡️</span><div class="bc-h">Menor riesgo de inventario</div><div class="bc-b">Asignación inteligente y alertas tempranas activan protocolos antes de que el aging impacte el margen.</div></div>
+  </div>
+</div></section>
 
 <div class="div"></div>
 
 <!-- CIERRE -->
 <section id="cierre">
   <div class="cierre-glow"></div>
-  <div class="con" style="padding:120px 0;width:100%;">
-    <div class="cierre-in">
-      <div class="c-tag rv">WeCars × KAVAK · Propuesta estratégica · Chihuahua 2026</div>
-      <h2 class="c-title rv d1">
-        Red controlada.<br>
-        <span class="red">Medible.<br>Certificada.</span>
-      </h2>
-      <div class="c-strip rv d2">
-        <div class="cs"><div class="cs-v red">21d</div><div class="cs-l">Rotación objetivo</div></div>
-        <div class="cs"><div class="cs-v">5</div><div class="cs-l">Agencias piloto</div></div>
-        <div class="cs"><div class="cs-v green">+80%</div><div class="cs-l">Efectividad</div></div>
-        <div class="cs"><div class="cs-v blue">KUNA</div><div class="cs-l">Financiamiento</div></div>
-        <div class="cs"><div class="cs-v">6m</div><div class="cs-l">Al resultado</div></div>
-      </div>
-      <p class="c-body rv d3">Una red certificada que empieza en Chihuahua y escala a cada mercado donde KAVAK quiera crecer — sin aumentar estructura operativa propia.</p>
-      <div class="c-actions rv d4">
-        <a href="mailto:contacto@wecars.mx" class="cta-main">Agendar reunión con KAVAK →</a>
-        <a href="#hero" class="cta-ghost">↑ Ver desde el inicio</a>
-      </div>
+  <div class="con" style="padding:110px 0;width:100%;"><div class="cierre-in">
+    <div class="c-tag rv">WeCars × KAVAK · Propuesta estratégica · Chihuahua 2026</div>
+    <h2 class="c-title rv d1">Red controlada.<br><span class="red">Medible.<br>Certificada.</span></h2>
+    <div class="c-strip rv d2">
+      <div class="cs"><div class="cs-v red">21d</div><div class="cs-l">Rotación</div></div>
+      <div class="cs"><div class="cs-v">5</div><div class="cs-l">Agencias piloto</div></div>
+      <div class="cs"><div class="cs-v green">+80%</div><div class="cs-l">Efectividad</div></div>
+      <div class="cs"><div class="cs-v blue">KUNA</div><div class="cs-l">Financiamiento</div></div>
+      <div class="cs"><div class="cs-v">6m</div><div class="cs-l">Al resultado</div></div>
     </div>
-  </div>
+    <p class="c-body rv d3">Una red certificada que empieza en Chihuahua y escala a cada mercado donde KAVAK quiera crecer — sin aumentar estructura operativa propia.</p>
+    <div class="c-actions rv d4">
+      <a href="mailto:contacto@wecars.mx" class="cta-main">Agendar reunión con KAVAK →</a>
+      <a href="#hero" class="cta-ghost">↑ Ver desde el inicio</a>
+    </div>
+  </div></div>
 </section>
 
 <footer>
-  <div><div class="ft-logo">We<span>Cars</span> × KAVAK</div><div style="font-size:10px;color:rgba(255,255,255,.22);margin-top:3px;">Propuesta estratégica · Chihuahua 2026</div></div>
+  <div><div class="ft-logo">We<span>Cars</span> × KAVAK</div><div style="font-size:10px;color:rgba(255,255,255,.2);margin-top:2px;">Propuesta estratégica · Chihuahua 2026</div></div>
   <div class="ft-note">Sistema de Rotación Automotriz Certificado</div>
 </footer>
 
 <script>
-const spb=document.getElementById('spb');
-const nav=document.getElementById('nav');
-
+/* ── Scroll progress + nav ── */
+const spb=document.getElementById('spb'),nav=document.getElementById('nav');
 function onScroll(){
   const p=window.scrollY/(document.documentElement.scrollHeight-innerHeight);
   spb.style.width=(p*100)+'%';
   nav.classList.toggle('scrolled',window.scrollY>20);
-  ['problema','propuesta','como','cert','beneficios','cierre'].forEach(id=>{
-    const el=document.getElementById(id);
-    const a=document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(el&&a) a.classList.toggle('on',el.getBoundingClientRect().top<=80);
+  ['problema','propuesta','como','dashboard','cert','beneficios','cierre'].forEach(id=>{
+    const el=document.getElementById(id),a=document.querySelector(`.nav-links a[href="#${id}"]`);
+    if(el&&a)a.classList.toggle('on',el.getBoundingClientRect().top<=80);
   });
 }
 window.addEventListener('scroll',onScroll,{passive:true});
 
+/* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const id=a.getAttribute('href');
-    if(!id||id==='#')return;
-    if(a.href&&a.href.includes('mailto'))return;
+    if(!id||id==='#'||a.href.includes('mailto'))return;
     const t=document.querySelector(id);
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    if(t){e.preventDefault();closeMobileMenu();t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
 });
 
-const revObs=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up');});
-},{threshold:.08});
+/* ── Hamburger ── */
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
+function closeMobileMenu(){hamburger.classList.remove('open');mobileMenu.classList.remove('open');document.body.style.overflow='';}
+hamburger.addEventListener('click',()=>{
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
+});
+document.querySelectorAll('.mm-link').forEach(a=>a.addEventListener('click',closeMobileMenu));
+
+/* ── Reveal ── */
+const revObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up');});},{threshold:.07});
 document.querySelectorAll('.rv').forEach(el=>revObs.observe(el));
 
-const fbObs=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting){document.getElementById('fbar').classList.add('go');fbObs.disconnect();}});
-},{threshold:.4});
-const fb=document.getElementById('fbar');
-if(fb)fbObs.observe(fb);
+/* ── Frozen bar ── */
+const fbObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.getElementById('fbar').classList.add('go');fbObs.disconnect();}});},{threshold:.4});
+const fb=document.getElementById('fbar');if(fb)fbObs.observe(fb);
 
-const scObs=new IntersectionObserver(es=>{
-  es.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.sc-fill').forEach(f=>f.classList.add('go'));
-      scObs.disconnect();
-    }
-  });
-},{threshold:.35});
-const sc=document.getElementById('scrows');
-if(sc)scObs.observe(sc);
+/* ── Score fills ── */
+const scObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sc-fill').forEach(f=>f.classList.add('go'));scObs.disconnect();}});},{threshold:.3});
+const sc=document.getElementById('scrows');if(sc)scObs.observe(sc);
 
-const panels=document.querySelectorAll('.sp');
-const navItems=document.querySelectorAll('.sn');
+/* ── Step spy (desktop) ── */
+const panels=document.querySelectorAll('.sp'),navItems=document.querySelectorAll('.sn');
 const spyObs=new IntersectionObserver(es=>{
   es.forEach(e=>{
-    if(e.isIntersecting&&e.intersectionRatio>.28){
+    if(e.isIntersecting&&e.intersectionRatio>.25){
       const idx=parseInt(e.target.id.replace('s',''));
-      panels.forEach(p=>p.classList.remove('on'));
-      e.target.classList.add('on');
+      panels.forEach(p=>p.classList.remove('on'));e.target.classList.add('on');
       navItems.forEach(n=>n.classList.remove('on'));
-      const nv=document.querySelector(`[data-s="${idx}"]`);
-      if(nv)nv.classList.add('on');
+      const nv=document.querySelector(`[data-s="${idx}"]`);if(nv)nv.classList.add('on');
     }
   });
-},{threshold:.28});
+},{threshold:.25});
 panels.forEach(p=>spyObs.observe(p));
+navItems.forEach(item=>{item.addEventListener('click',()=>{const t=document.getElementById('s'+item.dataset.s);if(t)t.scrollIntoView({behavior:'smooth',block:'center'});});});
 
-navItems.forEach(item=>{
-  item.addEventListener('click',()=>{
-    const t=document.getElementById('s'+item.dataset.s);
-    if(t)t.scrollIntoView({behavior:'smooth',block:'center'});
+/* ── Mobile step tabs ── */
+document.querySelectorAll('.step-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.step-tab').forEach(t=>t.classList.remove('on'));
+    tab.classList.add('on');
+    const idx=tab.dataset.s;
+    panels.forEach(p=>p.classList.remove('on'));
+    const target=document.getElementById('s'+idx);if(target)target.classList.add('on');
   });
 });
+
+/* ── Dashboard tabs ── */
+document.querySelectorAll('.dtab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('on'));
+    document.querySelectorAll('.dash-panel').forEach(p=>p.classList.remove('on'));
+    tab.classList.add('on');
+    document.getElementById(tab.dataset.panel).classList.add('on');
+  });
+});
+
+/* ── Agency cards expand ── */
+document.querySelectorAll('.ag-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const wasActive=card.classList.contains('active');
+    document.querySelectorAll('.ag-card').forEach(c=>c.classList.remove('active'));
+    if(!wasActive)card.classList.add('active');
+  });
+});
+
+/* ── Slider assignment board ── */
+const segData=[
+  {color:'#34D399',baseDays:14,label:'fast'},
+  {color:'#60A5FA',baseDays:18,label:'fast'},
+  {color:'#FCD34D',baseDays:22,label:'med'},
+  {color:'var(--kred)',baseDays:30,label:'slow'},
+];
+const maxUnits=20;
+function updateAssign(){
+  let total=0,weightedDays=0;
+  [0,1,2,3].forEach(i=>{
+    const val=parseInt(document.getElementById('sl'+i).value);
+    document.getElementById('sv'+i).textContent=val;
+    document.getElementById('au'+i).textContent=val;
+    const pct=Math.min(100,(val/maxUnits)*100);
+    document.getElementById('bar'+i).style.width=pct+'%';
+    const days=segData[i].baseDays;
+    const dayEl=document.getElementById('ad'+i);
+    dayEl.textContent='~'+days+'d';
+    dayEl.className='ab-days '+segData[i].label;
+    total+=val;weightedDays+=val*days;
+  });
+  const avg=total>0?(weightedDays/total).toFixed(1):0;
+  document.getElementById('totalUnits').textContent=total;
+  document.getElementById('totalDisplay').textContent=total+' unidades';
+  document.getElementById('avgDays').textContent='Prom: '+avg+'d';
+  document.getElementById('pill-dias').textContent='Prom: '+avg+'d';
+  const efectividad=Math.max(60,Math.min(98,100-Math.max(0,avg-15)*2));
+  document.getElementById('pill-efectividad').textContent='Efectividad: '+Math.round(efectividad)+'%';
+}
+[0,1,2,3].forEach(i=>document.getElementById('sl'+i).addEventListener('input',updateAssign));
+updateAssign();
 </script>
 </body>
 </html>
