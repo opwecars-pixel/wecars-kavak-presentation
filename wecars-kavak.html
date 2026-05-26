@@ -98,6 +98,8 @@ h1.ht .ghost{color:rgba(255,255,255,.18);font-weight:300;}
 
 /* COUNTER animation */
 .counter{display:inline-block;}
+/* pc-wide as class (overrideable by media query) */
+.pc-wide{grid-column:span 2;}
 
 /* PROBLEMA */
 #problema{background:var(--kgray);padding:80px 0;}
@@ -388,7 +390,7 @@ h1.ht .ghost{color:rgba(255,255,255,.18);font-weight:300;}
 /* CIERRE */
 #cierre{background:var(--knavy);padding:110px 0;text-align:center;position:relative;overflow:hidden;}
 .cierre-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:450px;border-radius:50%;background:radial-gradient(ellipse,rgba(29,78,216,.1) 0%,transparent 65%);pointer-events:none;}
-.cierre-in{max-width:720px;margin:0 auto;position:relative;z-index:1;}
+.cierre-in{max-width:720px;margin:0 auto;position:relative;z-index:1;padding:0 8px;word-break:break-word;}
 .c-tag{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px;}
 .c-title{font-size:clamp(32px,6vw,76px);font-weight:900;letter-spacing:-.06em;line-height:.93;color:#fff;margin-bottom:22px;}
 .c-title .red{background:linear-gradient(135deg,var(--kred),#FF8A87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
@@ -415,6 +417,7 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
 @media(max-width:768px){
   #nav{padding:0 16px;}
   .nav-links,.nav-cta{display:none;}
+  .nav-badge{display:none;}
   .hamburger{display:flex;}
   .con{padding:0 18px;}
   .sec-pad{padding:56px 0;}
@@ -425,7 +428,7 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   .hero-pills{gap:8px;}
   .pill{font-size:12px;padding:10px 18px;}
   .prob-grid{grid-template-columns:1fr;}
-  .pc.wide{grid-column:span 1;}
+  .pc-wide{grid-column:span 1 !important;}
   .opp-lay{grid-template-columns:1fr;}
   .steps-wrap{grid-template-columns:1fr;gap:0;}
   .steps-side{display:none;}
@@ -455,8 +458,12 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
 }
 @media(max-width:400px){
   .cert-grid{grid-template-columns:1fr;}
-  .cert-overview{grid-template-columns:1fr;}
-  .cov{padding:14px;}
+  .cert-overview{grid-template-columns:repeat(3,1fr);}
+  .cov{padding:12px 8px;}
+  .cov-v{font-size:28px;}
+  .cov-l{font-size:8px;}
+  .cierre-in{padding:0 4px;}
+  .c-tag{font-size:8px;letter-spacing:.07em;}
 }
 </style>
 </head>
@@ -518,7 +525,7 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
     <p class="s-p">El inventario automotriz pierde valor cada día sin venderse. La solución no es abrir más lotes — es una red inteligente que lo distribuya mejor.</p>
   </div>
   <div class="prob-grid">
-    <div class="pc rv d1" style="grid-column:span 2;">
+    <div class="pc pc-wide rv d1">
       <div class="pc-tag">PROBLEMA CENTRAL</div>
       <span class="pc-ico">❄️</span>
       <div class="pc-h">Capital congelado en inventario</div>
@@ -1022,10 +1029,10 @@ function onScroll(){
   const p=window.scrollY/(document.documentElement.scrollHeight-innerHeight);
   spb.style.width=(p*100)+'%';
   nav.classList.toggle('scrolled',window.scrollY>20);
-  ['problema','propuesta','como','dashboard','cert','beneficios','cierre'].forEach(id=>{
-    const el=document.getElementById(id),a=document.querySelector(`.nav-links a[href="#${id}"]`);
-    if(el&&a)a.classList.toggle('on',el.getBoundingClientRect().top<=80);
-  });
+  const sIds=['problema','propuesta','como','dashboard','cert','beneficios','cierre'];
+  let activeId=null;
+  sIds.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=80)activeId=id;});
+  sIds.forEach(id=>{const a=document.querySelector(`.nav-links a[href="#${id}"]`);if(a)a.classList.toggle('on',id===activeId);});
 }
 window.addEventListener('scroll',onScroll,{passive:true});
 
