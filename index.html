@@ -1112,7 +1112,7 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
           <tr><td>Financiamiento integrado</td><td class="trad-v"><span class="comp-x">✗</span> No disponible</td><td class="wck-v"><span class="comp-check">✓</span> KUNA en 15 min</td></tr>
           <tr><td>Visibilidad de inventario</td><td class="trad-v"><span class="comp-x">✗</span> Sin datos</td><td class="wck-v"><span class="comp-check">✓</span> Dashboard tiempo real</td></tr>
           <tr><td>Certificación de calidad</td><td class="trad-v"><span class="comp-x">✗</span> No estandarizado</td><td class="wck-v"><span class="comp-check">✓</span> Estándar KAVAK</td></tr>
-          <tr><td>Asignación de unidades</td><td class="trad-v" style="color:#EF4444;">Manual / subjetiva</td><td class="wck-v"><span class="comp-check">✓</span> Algoritmo de scoring</td></div></td></tr>
+          <tr><td>Asignación de unidades</td><td class="trad-v" style="color:#EF4444;">Manual / subjetiva</td><td class="wck-v"><span class="comp-check">✓</span> Algoritmo de scoring</td></tr>
           <tr><td>Protocolo ante aging</td><td class="trad-v"><span class="comp-x">✗</span> Reactivo (tarde)</td><td class="wck-v"><span class="comp-check">✓</span> Alerta &gt;18d automática</td></tr>
           <tr><td>Escalabilidad</td><td class="trad-v" style="color:#EF4444;">Lineal y cara</td><td class="wck-v"><span class="comp-check">✓</span> Playbook replicable</td></tr>
           <tr><td>Experiencia del comprador</td><td class="trad-v">Variable</td><td class="wck-v"><span class="comp-check">✓</span> Protocolo KAVAK 4.8/5</td></tr>
@@ -1658,7 +1658,30 @@ document.querySelectorAll('.step-tab').forEach(tab=>{
   });
 });
 
-/* ── Dashboard tabs (updated for 9 modules) ── */
+/* ══════════════════════════════════════════════
+   COMMAND CENTER — Dashboard modules JS (fixed)
+   ══════════════════════════════════════════════ */
+
+/* Helper: rounded rect polyfill for older browsers */
+function roundRect(ctx,x,y,w,h,r){
+  r=Math.min(r,w/2,Math.abs(h)/2);
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+/* Helper: parse any css color to rgba string with given alpha */
+function colorAlpha(hex,a){
+  // hex like #34D399
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return 'rgba('+r+','+g+','+b+','+a+')';
+}
+
+/* ── Dashboard tabs (9 modules) ── */
 document.querySelectorAll('.dtab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('on'));
@@ -1666,221 +1689,274 @@ document.querySelectorAll('.dtab').forEach(tab=>{
     tab.classList.add('on');
     const panel=document.getElementById(tab.dataset.panel);
     if(panel){panel.classList.add('on');panel.style.display='block';}
-    // Init canvas if needed
-    if(tab.dataset.panel==='p-kpis')initSparklines();
-    if(tab.dataset.panel==='p-inventario'){initAgingChart();initBrandBars();}
-    if(tab.dataset.panel==='p-financiero'){initAreaChart();initDonut();}
-    if(tab.dataset.panel==='p-funnel')initFunnel();
-    if(tab.dataset.panel==='p-feed')startFeed();
+    const pid=tab.dataset.panel;
+    if(pid==='p-kpis'){setTimeout(initSparklines,50);}
+    if(pid==='p-inventario'){setTimeout(()=>{initAgingChart();initBrandBars();},50);}
+    if(pid==='p-financiero'){setTimeout(()=>{initAreaChart();initDonut();},50);}
+    if(pid==='p-funnel'){setTimeout(initFunnel,50);}
+    if(pid==='p-feed')startFeed();
   });
 });
 
-/* ── Sparklines ── */
-function drawSparkline(canvasId,data,color){
-  const c=document.getElementById(canvasId);if(!c)return;
-  const ctx=c.getContext('2d'),w=c.width,h=c.height;
+/* ── SPARKLINES ── */
+function drawSparkline(canvasId,data,hexColor){
+  const c=document.getElementById(canvasId);
+  if(!c)return;
+  // Size canvas to its display size
+  const rect=c.getBoundingClientRect();
+  if(rect.width>0){c.width=Math.round(rect.width);c.height=Math.round(rect.height)||40;}
+  const ctx=c.getContext('2d');
+  const w=c.width,h=c.height;
   ctx.clearRect(0,0,w,h);
   const min=Math.min(...data),max=Math.max(...data),range=max-min||1;
-  const pts=data.map((v,i)=>({x:(i/(data.length-1))*w,y:h-((v-min)/range)*(h*0.8)-h*0.1}));
-  // Fill gradient
+  const pts=data.map((v,i)=>({
+    x:(i/(data.length-1))*w,
+    y:h-((v-min)/range)*(h*0.75)-h*0.12
+  }));
+  // Smooth curve using quadratic bezier
   const grad=ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0,color.replace(')',',0.18)').replace('rgb','rgba'));
-  grad.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.beginPath();ctx.moveTo(pts[0].x,h);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  grad.addColorStop(0,colorAlpha(hexColor,0.25));
+  grad.addColorStop(1,colorAlpha(hexColor,0.02));
+  // Fill area
+  ctx.beginPath();ctx.moveTo(pts[0].x,h);ctx.lineTo(pts[0].x,pts[0].y);
+  for(let i=1;i<pts.length;i++){
+    const mx=(pts[i-1].x+pts[i].x)/2,my=(pts[i-1].y+pts[i].y)/2;
+    ctx.quadraticCurveTo(pts[i-1].x,pts[i-1].y,mx,my);
+  }
+  ctx.lineTo(pts[pts.length-1].x,pts[pts.length-1].y);
   ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();
   ctx.fillStyle=grad;ctx.fill();
   // Line
   ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
-  ctx.strokeStyle=color;ctx.lineWidth=1.8;ctx.stroke();
-  // Last dot
+  for(let i=1;i<pts.length;i++){
+    const mx=(pts[i-1].x+pts[i].x)/2,my=(pts[i-1].y+pts[i].y)/2;
+    ctx.quadraticCurveTo(pts[i-1].x,pts[i-1].y,mx,my);
+  }
+  ctx.lineTo(pts[pts.length-1].x,pts[pts.length-1].y);
+  ctx.strokeStyle=hexColor;ctx.lineWidth=2;ctx.stroke();
+  // End dot
   const last=pts[pts.length-1];
-  ctx.beginPath();ctx.arc(last.x,last.y,3,0,Math.PI*2);
-  ctx.fillStyle=color;ctx.fill();
+  ctx.beginPath();ctx.arc(last.x,last.y,3.5,0,Math.PI*2);
+  ctx.fillStyle=hexColor;ctx.fill();
+  ctx.beginPath();ctx.arc(last.x,last.y,1.5,0,Math.PI*2);
+  ctx.fillStyle='#fff';ctx.fill();
 }
 function initSparklines(){
-  const rotData=[45,42,38,35,30,27,24,21];
-  const efectData=[72,76,79,82,85,88,91,94];
-  const gmvData=[1.2,2.1,3.4,4.8,6.2,7.1,7.8,8.4];
-  const unitsData=[8,12,18,24,30,38,43,47];
-  const kunaData=[18,22,25,28,32,35,37,38];
-  const trustData=[78,82,85,87,89,91,93,94];
-  drawSparkline('sp-rot',rotData,'rgba(255,67,62,0.9)');
-  drawSparkline('sp-efect',efectData,'rgba(52,211,153,0.9)');
-  drawSparkline('sp-gmv',gmvData,'rgba(96,165,250,0.9)');
-  drawSparkline('sp-units',unitsData,'rgba(252,211,77,0.9)');
-  drawSparkline('sp-kuna',kunaData,'rgba(52,211,153,0.9)');
-  drawSparkline('sp-trust',trustData,'rgba(96,165,250,0.9)');
+  drawSparkline('sp-rot',[45,42,38,35,30,27,24,21],'#FF433E');
+  drawSparkline('sp-efect',[72,76,79,82,85,88,91,94],'#34D399');
+  drawSparkline('sp-gmv',[1.2,2.1,3.4,4.8,6.2,7.1,7.8,8.4],'#60A5FA');
+  drawSparkline('sp-units',[8,12,18,24,30,38,43,47],'#FCD34D');
+  drawSparkline('sp-kuna',[18,22,25,28,32,35,37,38],'#34D399');
+  drawSparkline('sp-trust',[78,82,85,87,89,91,93,94],'#60A5FA');
 }
-// Init sparklines on first load (p-kpis is first tab)
-initSparklines();
+// Init on page load (first tab is p-kpis)
+window.addEventListener('load',()=>setTimeout(initSparklines,100));
 
-/* ── Funnel animation ── */
-let funnelDone=false;
+/* ── FUNNEL ── */
+let funnelInited=false;
 function initFunnel(){
-  if(funnelDone)return;funnelDone=true;
+  if(funnelInited)return;funnelInited=true;
   const bars=document.querySelectorAll('.fu-bar');
-  setTimeout(()=>bars.forEach((b,i)=>{setTimeout(()=>{b.style.width=b.dataset.w+'%';},i*80);}),100);
+  bars.forEach((b,i)=>setTimeout(()=>{b.style.width=b.dataset.w+'%';},i*90));
 }
 
-/* ── Aging chart ── */
-let agingDone=false;
+/* ── AGING CHART ── */
 function initAgingChart(){
-  if(agingDone)return;agingDone=true;
   const c=document.getElementById('aging-chart');if(!c)return;
   const ctx=c.getContext('2d');
   const W=c.width,H=c.height;
   const labels=['0–7d','8–14d','15–18d','19–21d','22–28d','29–35d','>35d'];
   const vals=[18,22,12,8,5,3,2];
-  const colors=['#34D399','#34D399','#FCD34D','#FCD34D','#FF433E','#FF433E','#FF433E'];
-  const barW=(W-40)/(labels.length);const maxV=Math.max(...vals);
-  ctx.clearRect(0,0,W,H);
+  const hexColors=['#34D399','#34D399','#FCD34D','#FCD34D','#FF433E','#FF433E','#FF433E'];
+  const barW=(W-40)/labels.length;
+  const maxV=Math.max(...vals);
+  // Draw each bar animated
   labels.forEach((l,i)=>{
-    const x=20+i*barW+barW*0.1;const bw=barW*0.8;
-    const bh=((vals[i]/maxV)*(H-30));const y=H-20-bh;
-    const grad=ctx.createLinearGradient(0,y,0,H-20);
-    grad.addColorStop(0,colors[i]);grad.addColorStop(1,colors[i].replace('#','#')+'22');
-    ctx.fillStyle=grad;
-    // Animate height
-    let progress=0;
-    (function animate(){
-      progress=Math.min(progress+0.06,1);
-      ctx.clearRect(x-2,0,bw+4,H);
-      ctx.fillStyle=grad;
-      const currentH=bh*progress;
-      ctx.beginPath();
-      ctx.roundRect(x,H-20-currentH,bw,currentH,3);
+    const x=20+i*barW+barW*0.12;
+    const bw=barW*0.76;
+    const targetH=(vals[i]/maxV)*(H-36);
+    const hex=hexColors[i];
+    let prog=0;
+    (function anim(){
+      prog=Math.min(prog+0.05,1);
+      // Clear this bar's column
+      ctx.clearRect(x-1,0,bw+2,H);
+      const curH=targetH*prog;
+      const by=H-22-curH;
+      // Gradient fill
+      const g=ctx.createLinearGradient(0,by,0,H-22);
+      g.addColorStop(0,colorAlpha(hex,0.9));
+      g.addColorStop(1,colorAlpha(hex,0.2));
+      ctx.fillStyle=g;
+      roundRect(ctx,x,by,bw,curH,3);
       ctx.fill();
-      if(progress<1)requestAnimationFrame(animate);
+      // Draw labels when done
+      if(prog>=1){
+        ctx.fillStyle='rgba(255,255,255,0.28)';
+        ctx.font='8px Inter,system-ui,sans-serif';
+        ctx.textAlign='center';
+        ctx.fillText(l,x+bw/2,H-7);
+        ctx.fillStyle=hex;
+        ctx.font='bold 9px Inter,system-ui,sans-serif';
+        ctx.fillText(vals[i],x+bw/2,by-5);
+      } else {
+        requestAnimationFrame(anim);
+      }
     })();
-    // Label
-    ctx.fillStyle='rgba(255,255,255,0.25)';ctx.font='8px Inter,sans-serif';ctx.textAlign='center';
-    ctx.fillText(l,x+bw/2,H-6);
-    ctx.fillStyle=colors[i];ctx.font='bold 9px Inter,sans-serif';
-    ctx.fillText(vals[i],x+bw/2,y-4);
   });
 }
 
-/* ── Brand bars ── */
-let brandDone=false;
+/* ── BRAND BARS ── */
 function initBrandBars(){
-  if(brandDone)return;brandDone=true;
   setTimeout(()=>{
-    document.querySelectorAll('.brand-fill').forEach(b=>{
-      b.style.width=b.dataset.w+'%';
-    });
-  },100);
+    document.querySelectorAll('.brand-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});
+  },80);
 }
 
-/* ── Area chart (Financiero) ── */
-let areaDone=false;
+/* ── AREA CHART ── */
 function initAreaChart(){
-  if(areaDone)return;areaDone=true;
   const c=document.getElementById('area-chart');if(!c)return;
   const ctx=c.getContext('2d');
   const W=c.width,H=c.height;
   const data=[1.2,2.4,4.1,5.8,7.2,8.4];
-  const maxV=10;const pts=data.map((v,i)=>({x:20+(i/(data.length-1))*(W-40),y:H-10-((v/maxV)*(H-20))}));
+  const maxV=10;
+  const padL=28,padR=10,padT=14,padB=18;
+  const cW=W-padL-padR,cH=H-padT-padB;
+  const pts=data.map((v,i)=>({
+    x:padL+(i/(data.length-1))*cW,
+    y:padT+cH-((v/maxV)*cH)
+  }));
   ctx.clearRect(0,0,W,H);
-  // Grid lines
-  [0.25,0.5,0.75,1].forEach(pct=>{
-    const y=H-10-(pct*(H-20));
-    ctx.beginPath();ctx.moveTo(20,y);ctx.lineTo(W-20,y);
-    ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;ctx.stroke();
-    ctx.fillStyle='rgba(255,255,255,0.2)';ctx.font='8px Inter,sans-serif';ctx.textAlign='right';
-    ctx.fillText('$'+(maxV*pct).toFixed(1)+'M',18,y+3);
+  // Grid
+  [2.5,5,7.5,10].forEach(v=>{
+    const y=padT+cH-((v/maxV)*cH);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);
+    ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='rgba(255,255,255,0.22)';ctx.font='8px Inter,system-ui,sans-serif';ctx.textAlign='right';
+    ctx.fillText('$'+v+'M',padL-3,y+3);
   });
-  // Area fill
-  const grad=ctx.createLinearGradient(0,0,0,H);
-  grad.addColorStop(0,'rgba(52,211,153,0.22)');
-  grad.addColorStop(1,'rgba(52,211,153,0.01)');
-  ctx.beginPath();ctx.moveTo(pts[0].x,H-10);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
-  ctx.lineTo(pts[pts.length-1].x,H-10);ctx.closePath();
+  // Area
+  const grad=ctx.createLinearGradient(0,padT,0,padT+cH);
+  grad.addColorStop(0,'rgba(52,211,153,0.28)');
+  grad.addColorStop(1,'rgba(52,211,153,0.02)');
+  ctx.beginPath();ctx.moveTo(pts[0].x,padT+cH);ctx.lineTo(pts[0].x,pts[0].y);
+  for(let i=1;i<pts.length;i++){
+    const mx=(pts[i-1].x+pts[i].x)/2;
+    ctx.bezierCurveTo(mx,pts[i-1].y,mx,pts[i].y,pts[i].x,pts[i].y);
+  }
+  ctx.lineTo(pts[pts.length-1].x,padT+cH);ctx.closePath();
   ctx.fillStyle=grad;ctx.fill();
   // Line
   ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
-  pts.forEach(p=>ctx.lineTo(p.x,p.y));
-  ctx.strokeStyle='#34D399';ctx.lineWidth=2.2;ctx.stroke();
-  // Dots
-  pts.forEach(p=>{
-    ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);
+  for(let i=1;i<pts.length;i++){
+    const mx=(pts[i-1].x+pts[i].x)/2;
+    ctx.bezierCurveTo(mx,pts[i-1].y,mx,pts[i].y,pts[i].x,pts[i].y);
+  }
+  ctx.strokeStyle='#34D399';ctx.lineWidth=2.5;ctx.stroke();
+  // Dots + labels
+  pts.forEach((p,i)=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);
+    ctx.fillStyle='#0F1933';ctx.fill();
+    ctx.beginPath();ctx.arc(p.x,p.y,2.5,0,Math.PI*2);
     ctx.fillStyle='#34D399';ctx.fill();
-    ctx.fillStyle='rgba(255,255,255,0.6)';ctx.font='bold 9px Inter,sans-serif';ctx.textAlign='center';
-    ctx.fillText('$'+data[pts.indexOf(p)]+'M',p.x,p.y-8);
+    ctx.fillStyle='rgba(255,255,255,0.65)';
+    ctx.font='bold 9px Inter,system-ui,sans-serif';ctx.textAlign='center';
+    ctx.fillText('$'+data[i]+'M',p.x,p.y-9);
   });
 }
 
-/* ── Donut chart ── */
-let donutDone=false;
+/* ── DONUT CHART ── */
 function initDonut(){
-  if(donutDone)return;donutDone=true;
   const c=document.getElementById('donut-rev');if(!c)return;
   const ctx=c.getContext('2d');
-  const cx=60,cy=60,r=46,inner=30;
-  const slices=[{v:.45,c:'#FF433E'},{v:.28,c:'#60A5FA'},{v:.17,c:'#34D399'},{v:.10,c:'#FCD34D'}];
+  const cx=c.width/2,cy=c.height/2,r=Math.min(cx,cy)-4,inner=r*0.55;
+  ctx.clearRect(0,0,c.width,c.height);
+  const slices=[
+    {v:.45,color:'#FF433E'},
+    {v:.28,color:'#60A5FA'},
+    {v:.17,color:'#34D399'},
+    {v:.10,color:'#FCD34D'}
+  ];
   let angle=-Math.PI/2;
   slices.forEach(s=>{
     const end=angle+s.v*2*Math.PI;
-    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,angle,end);
-    ctx.closePath();ctx.fillStyle=s.c;ctx.fill();
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,angle,end);ctx.closePath();
+    ctx.fillStyle=s.color;ctx.fill();
+    // Gap
+    ctx.beginPath();ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r+1,angle-0.02,angle+0.02);ctx.closePath();
+    ctx.fillStyle='#152045';ctx.fill();
     angle=end;
   });
+  // Inner hole
   ctx.beginPath();ctx.arc(cx,cy,inner,0,2*Math.PI);
   ctx.fillStyle='#152045';ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,0.7)';ctx.font='bold 11px Inter,sans-serif';ctx.textAlign='center';ctx.fillText('Rev',cx,cy-2);
-  ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='9px Inter,sans-serif';ctx.fillText('mix',cx,cy+10);
+  // Center text
+  ctx.fillStyle='rgba(255,255,255,0.75)';
+  ctx.font='bold 12px Inter,system-ui,sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('Rev',cx,cy-5);
+  ctx.fillStyle='rgba(255,255,255,0.38)';
+  ctx.font='9px Inter,system-ui,sans-serif';
+  ctx.fillText('mix',cx,cy+8);
+  ctx.textBaseline='alphabetic';
 }
 
-/* ── Live feed auto-scroll ── */
-let feedStarted=false,feedTimer=null;
+/* ── LIVE FEED ── */
+let feedStarted=false;
 const feedEvents=[
-  {dot:'#34D399',action:'✅ Chevrolet Trailblazer vendida · Ag. Norte',meta:'Rotación: 13d · Pago contado',time:'hace 1 min'},
-  {dot:'#60A5FA',action:'📥 2 unidades asignadas · Ag. Centro',meta:'Sentra · Juke · Score: 78',time:'hace 4 min'},
-  {dot:'#FCD34D',action:'⚡ KUNA aprobado: Honda CR-V',meta:'$320,000 · 36 meses · Ag. Sur',time:'hace 8 min'},
-  {dot:'#34D399',action:'✅ Toyota Hilux vendida · Ag. Sur',meta:'Rotación: 9d · Nuevo récord',time:'hace 11 min'},
-  {dot:'var(--kred)',action:'🔔 Alerta: VW Jetta > 19d',meta:'Protocolo −5% precio activado · Ag. Oriente',time:'hace 16 min'},
-  {dot:'#60A5FA',action:'📊 Score actualizado · 5 agencias',meta:'Ag. Norte 97 · Ag. Sur 94 · Ag. Centro 88',time:'hace 22 min'},
+  {dot:'#34D399',action:'✅ Ford F-150 vendida · Ag. Norte',meta:'Rotación: 11d · KUNA activado',time:'ahora'},
+  {dot:'#60A5FA',action:'📥 3 unidades asignadas · Ag. Sur',meta:'RAV4, Juke, Sentra · Score: 81',time:'2m'},
+  {dot:'#FCD34D',action:'⚡ KUNA aprobado: Nissan Sentra',meta:'$182,000 · 48 meses · Ag. Centro',time:'5m'},
+  {dot:'#34D399',action:'✅ Toyota Hilux vendida · Ag. Sur',meta:'Rotación: 9d · Nuevo récord',time:'8m'},
+  {dot:'#FF433E',action:'🔔 Alerta: Chevrolet Trax > 18d',meta:'Protocolo −5% activado · Ag. Oriente',time:'12m'},
+  {dot:'#60A5FA',action:'📊 Reporte semanal → KAVAK',meta:'47 unidades · GMV: $1.4M · Prom: 16.2d',time:'1h'},
+  {dot:'#34D399',action:'✅ Chevrolet Trailblazer · Ag. Norte',meta:'Rotación: 13d · Contado',time:'2h'},
+  {dot:'#FCD34D',action:'🔄 Reasignación: 2 SUVs → Ag. Norte',meta:'Algoritmo detectó alta demanda zona norte',time:'3h'},
 ];
 let feedIdx=0;
 function startFeed(){
   if(feedStarted)return;feedStarted=true;
-  feedTimer=setInterval(()=>{
+  setInterval(()=>{
     const inner=document.getElementById('feed-inner');if(!inner)return;
     const ev=feedEvents[feedIdx%feedEvents.length];feedIdx++;
     const el=document.createElement('div');el.className='fe';
-    el.style.background='rgba(255,255,255,.05)';
-    el.innerHTML=`<span class="fe-dot" style="background:${ev.dot};"></span><div class="fe-body"><div class="fe-action">${ev.action}</div><div class="fe-meta">${ev.meta}</div></div><span class="fe-time">${ev.time}</span>`;
+    el.style.cssText='opacity:0;transform:translateY(-8px);transition:all .4s ease;';
+    el.innerHTML='<span class="fe-dot" style="background:'+ev.dot+';"></span>'
+      +'<div class="fe-body"><div class="fe-action">'+ev.action+'</div>'
+      +'<div class="fe-meta">'+ev.meta+'</div></div>'
+      +'<span class="fe-time">'+ev.time+'</span>';
     inner.insertBefore(el,inner.firstChild);
-    if(inner.children.length>12)inner.removeChild(inner.lastChild);
-  },3500);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{el.style.opacity='1';el.style.transform='translateY(0)';}));
+    if(inner.children.length>10)inner.removeChild(inner.lastChild);
+  },3200);
 }
 
-/* ── Simulador ── */
+/* ── SIMULADOR ── */
 function updateSim(){
   const ag=parseInt(document.getElementById('sim-ag').value)||5;
   const units=parseInt(document.getElementById('sim-units').value)||10;
   const days=parseInt(document.getElementById('sim-days').value)||21;
   const price=parseInt(document.getElementById('sim-price').value)||280;
   const kuna=parseInt(document.getElementById('sim-kuna').value)||38;
-  document.getElementById('sim-ag-val').textContent=ag;
-  document.getElementById('sim-units-val').textContent=units;
-  document.getElementById('sim-days-val').textContent=days+'d';
-  document.getElementById('sim-price-val').textContent='$'+price+'K';
-  document.getElementById('sim-kuna-val').textContent=kuna+'%';
+  const v=id=>document.getElementById(id);
+  if(v('sim-ag-val'))v('sim-ag-val').textContent=ag;
+  if(v('sim-units-val'))v('sim-units-val').textContent=units;
+  if(v('sim-days-val'))v('sim-days-val').textContent=days+'d';
+  if(v('sim-price-val'))v('sim-price-val').textContent='$'+price+'K';
+  if(v('sim-kuna-val'))v('sim-kuna-val').textContent=kuna+'%';
   const totalU=ag*units;
   const ventasMes=Math.round(totalU*(30/days));
-  const gmv=((ventasMes*price*1000)/1000000).toFixed(1);
-  const rev=((gmv*0.25)).toFixed(1);
+  const gmv=(ventasMes*price*1000/1e6).toFixed(1);
+  const rev=(gmv*0.25).toFixed(1);
   const kunaV=Math.round(ventasMes*(kuna/100));
   const faster=(45/days).toFixed(1);
-  document.getElementById('sim-gmv').textContent='$'+gmv+'M';
-  document.getElementById('sim-ventas').textContent=ventasMes;
-  document.getElementById('sim-rev').textContent='$'+rev+'M';
-  document.getElementById('sim-kuna-v').textContent=kunaV;
-  document.getElementById('sim-total-u').textContent=totalU;
-  document.getElementById('sim-faster').textContent=faster+'×';
+  if(v('sim-gmv'))v('sim-gmv').textContent='$'+gmv+'M';
+  if(v('sim-ventas'))v('sim-ventas').textContent=ventasMes;
+  if(v('sim-rev'))v('sim-rev').textContent='$'+rev+'M';
+  if(v('sim-kuna-v'))v('sim-kuna-v').textContent=kunaV;
+  if(v('sim-total-u'))v('sim-total-u').textContent=totalU;
+  if(v('sim-faster'))v('sim-faster').textContent=faster+'×';
 }
 ['sim-ag','sim-units','sim-days','sim-price','sim-kuna'].forEach(id=>{
   const el=document.getElementById(id);if(el)el.addEventListener('input',updateSim);
