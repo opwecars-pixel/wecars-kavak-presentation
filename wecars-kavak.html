@@ -413,6 +413,161 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
 .ft-logo span{color:var(--kred);}
 .ft-note{font-size:11px;color:rgba(255,255,255,.25);}
 
+/* ══ COMMAND CENTER MODULES ══ */
+/* Module tabs scrollable */
+.dash-tabs{overflow-x:auto;justify-content:flex-start;padding-bottom:4px;scrollbar-width:none;}
+.dash-tabs::-webkit-scrollbar{display:none;}
+.dtab{white-space:nowrap;flex-shrink:0;}
+
+/* KPI Module */
+.cmd-kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.ck{background:var(--knavy);border-radius:16px;padding:22px 20px;position:relative;overflow:hidden;transition:transform .22s;}
+.ck:hover{transform:translateY(-3px);}
+.ck::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ck-color,var(--kred));}
+.ck-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:8px;}
+.ck-value{font-size:36px;font-weight:900;letter-spacing:-.05em;line-height:1;color:#fff;margin-bottom:4px;}
+.ck-value.r{color:var(--kred);}
+.ck-value.g{color:#34D399;}
+.ck-value.b{color:#60A5FA;}
+.ck-value.a{color:#FCD34D;}
+.ck-trend{font-size:10px;font-weight:600;margin-bottom:10px;}
+.ck-trend.up{color:#34D399;}.ck-trend.down{color:var(--kred);}
+.ck-spark{display:block;}
+
+/* Map Module */
+.map-wrap{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;}
+.map-svg-box{background:var(--knavy);border-radius:18px;padding:24px;overflow:hidden;position:relative;}
+.map-svg-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--kred),var(--kblue),transparent);}
+.map-legend{display:flex;flex-direction:column;gap:10px;}
+.ml-card{background:var(--knavy);border-radius:14px;padding:18px;}
+.ml-title{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:12px;}
+.ml-city{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.ml-city:last-child{border-bottom:none;}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.ml-name{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);flex:1;}
+.ml-stat{font-size:11px;font-weight:700;}
+.map-node{cursor:pointer;transition:all .2s;}
+.map-node:hover .node-ring{r:14;}
+.city-label{font-size:10px;font-weight:700;fill:rgba(255,255,255,.6);pointer-events:none;}
+
+/* Funnel Module */
+.funnel-wrap{display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:center;}
+.funnel-chart{display:flex;flex-direction:column;gap:6px;}
+.fu-step{display:flex;align-items:center;gap:12px;}
+.fu-label{font-size:11px;font-weight:600;color:var(--tmid);width:120px;flex-shrink:0;text-align:right;}
+.fu-bar-wrap{flex:1;height:32px;border-radius:6px;background:var(--kgray3);overflow:hidden;position:relative;}
+.fu-bar{height:100%;border-radius:6px;transition:width 1.2s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:flex-end;padding-right:10px;width:0;}
+.fu-bar-val{font-size:10px;font-weight:700;color:#fff;white-space:nowrap;}
+.fu-pct{font-size:10px;font-weight:700;color:var(--tlight);width:36px;text-align:right;flex-shrink:0;}
+.fu-arrow{color:var(--tlight);font-size:10px;text-align:center;padding:1px 0;margin-left:132px;}
+.funnel-stats{display:flex;flex-direction:column;gap:10px;}
+.fst{background:var(--knavy);border-radius:12px;padding:16px;text-align:center;}
+.fst-v{font-size:28px;font-weight:900;letter-spacing:-.04em;margin-bottom:3px;}
+.fst-l{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.28);}
+
+/* Inventario Module */
+.inv-module{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.inv-section{background:var(--knavy);border-radius:16px;padding:22px;position:relative;}
+.inv-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--kred),transparent);}
+.inv-sec-title{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:16px;}
+.brand-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.brand-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);width:70px;flex-shrink:0;}
+.brand-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.brand-fill{height:100%;border-radius:3px;transition:width 1.1s ease;width:0;}
+.brand-val{font-size:10px;font-weight:700;color:rgba(255,255,255,.5);min-width:24px;text-align:right;}
+.ai-insight{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.16);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;}
+.ai-ico{font-size:16px;flex-shrink:0;margin-top:1px;}
+.ai-text{font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;}
+.ai-text strong{color:#60A5FA;font-weight:700;}
+
+/* Comparativa Module */
+.comp-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;}
+.comp-table th{padding:14px 18px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.comp-table th:first-child{background:var(--kgray);color:var(--tlight);text-align:left;}
+.comp-table th.trad{background:#1a1a2e;color:rgba(255,255,255,.4);}
+.comp-table th.wck{background:var(--knavy);color:var(--kred);}
+.comp-table td{padding:13px 18px;font-size:12px;border-top:1px solid var(--kgray3);}
+.comp-table tr:hover td{background:rgba(15,25,51,.03);}
+.comp-table td:first-child{font-weight:600;color:var(--knavy);}
+.comp-table td.trad-v{background:rgba(26,26,46,.03);color:var(--tlight);text-align:center;}
+.comp-table td.wck-v{background:rgba(15,25,51,.02);text-align:center;font-weight:700;color:var(--knavy);}
+.comp-check{color:var(--green);font-size:14px;}
+.comp-x{color:var(--kred);}
+
+/* Financiero Module */
+.fin-module{display:grid;grid-template-columns:1fr 280px;gap:20px;}
+.fin-charts{display:flex;flex-direction:column;gap:16px;}
+.fin-card{background:var(--knavy);border-radius:16px;padding:22px;position:relative;overflow:hidden;}
+.fin-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--kred),var(--kblue),transparent);}
+.fin-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.fk{text-align:center;}
+.fk-v{font-size:22px;font-weight:900;letter-spacing:-.04em;margin-bottom:2px;}
+.fk-l{font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.28);}
+.fin-side{display:flex;flex-direction:column;gap:16px;}
+.donut-wrap{text-align:center;}
+.donut-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px;}
+.donut-items{display:flex;flex-direction:column;gap:6px;margin-top:10px;text-align:left;}
+.di{display:flex;align-items:center;gap:8px;font-size:10px;color:rgba(255,255,255,.55);}
+.di-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* Trust Score Module */
+.trust-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+.trust-score-box{background:var(--knavy);border-radius:20px;padding:36px;text-align:center;position:relative;overflow:hidden;}
+.trust-score-box::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.1),transparent 65%);}
+.ts-score{font-size:88px;font-weight:900;letter-spacing:-.07em;line-height:1;color:#34D399;position:relative;z-index:1;}
+.ts-score span{font-size:32px;color:rgba(255,255,255,.35);}
+.ts-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px;position:relative;z-index:1;}
+.ts-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.22);border-radius:20px;padding:5px 14px;font-size:10px;font-weight:700;color:#34D399;margin-top:12px;position:relative;z-index:1;}
+.trust-metrics{display:flex;flex-direction:column;gap:10px;}
+.tm-card{background:var(--knavy);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:14px;}
+.tm-ico{font-size:22px;flex-shrink:0;}
+.tm-name{font-size:12px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:3px;}
+.tm-sub{font-size:10px;color:rgba(255,255,255,.3);}
+.tm-score{font-size:20px;font-weight:900;letter-spacing:-.03em;margin-left:auto;flex-shrink:0;}
+.tm-score.g{color:#34D399;}.tm-score.b{color:#60A5FA;}.tm-score.a{color:#FCD34D;}
+
+/* Activity Feed */
+.feed-wrap{display:grid;grid-template-columns:1fr 300px;gap:20px;}
+.feed-stream{background:var(--knavy);border-radius:16px;padding:22px;height:380px;overflow:hidden;position:relative;}
+.feed-stream::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--kred),var(--kblue),transparent);}
+.feed-inner{display:flex;flex-direction:column;gap:6px;transition:transform .5s ease;}
+.fe{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.03);}
+.fe-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.fe-body{flex:1;}
+.fe-action{font-size:11px;font-weight:600;color:rgba(255,255,255,.75);margin-bottom:2px;}
+.fe-meta{font-size:9px;color:rgba(255,255,255,.3);}
+.fe-time{font-size:9px;font-weight:600;color:rgba(255,255,255,.22);flex-shrink:0;white-space:nowrap;}
+.feed-stats{display:flex;flex-direction:column;gap:10px;}
+.fstat{background:var(--knavy);border-radius:14px;padding:18px;text-align:center;}
+.fstat-v{font-size:32px;font-weight:900;letter-spacing:-.05em;margin-bottom:3px;}
+.fstat-l{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.28);}
+.fstat-note{font-size:9px;color:rgba(255,255,255,.2);margin-top:2px;}
+
+/* Simulador Module */
+.sim-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.sim-controls{background:var(--kgray);border-radius:18px;padding:28px;}
+.sim-title{font-size:15px;font-weight:800;color:var(--knavy);letter-spacing:-.02em;margin-bottom:4px;}
+.sim-sub{font-size:11px;color:var(--tlight);margin-bottom:24px;}
+.sim-slider-row{margin-bottom:18px;}
+.sim-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.sim-name{font-size:12px;font-weight:600;color:var(--knavy);}
+.sim-val{font-size:13px;font-weight:800;color:var(--kred);}
+.sim-results{background:var(--knavy);border-radius:18px;padding:28px;position:relative;overflow:hidden;}
+.sim-results::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.12),transparent 65%);}
+.sim-header{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;}
+.sim-big{font-size:52px;font-weight:900;letter-spacing:-.06em;line-height:1;color:#34D399;margin-bottom:4px;position:relative;z-index:1;}
+.sim-big-label{font-size:11px;color:rgba(255,255,255,.35);margin-bottom:20px;position:relative;z-index:1;}
+.sim-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1;}
+.sm{background:rgba(255,255,255,.05);border-radius:11px;padding:14px;text-align:center;}
+.sm-v{font-size:20px;font-weight:900;letter-spacing:-.04em;margin-bottom:3px;}
+.sm-l{font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.25);}
+
+/* Responsive dashboard */
+@media(max-width:900px){
+  .map-wrap,.funnel-wrap,.fin-module,.feed-wrap,.trust-wrap,.sim-wrap,.inv-module{grid-template-columns:1fr;}
+  .cmd-kpi-grid{grid-template-columns:repeat(2,1fr);}
+}
+
 /* ══ RESPONSIVE MOBILE ══ */
 @media(max-width:768px){
   #nav{padding:0 16px;}
@@ -712,18 +867,427 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
 <!-- ═══ DASHBOARD INTERACTIVO ═══ -->
 <section id="dashboard"><div class="con sec-pad">
   <div class="rv dash-intro">
-    <div class="s-tag" style="justify-content:center;">04 — Dashboard operativo</div>
-    <h2 class="s-h" style="text-align:center;">Así se verá la red en <span class="red">tiempo real.</span></h2>
-    <p class="s-p" style="text-align:center;max-width:480px;margin:0 auto;">Dos vistas: el estado de certificación de cada agencia y la distribución inteligente del inventario.</p>
+    <div class="s-tag" style="justify-content:center;">04 — Command Center</div>
+    <h2 class="s-h" style="text-align:center;">Infraestructura <span class="red">data-driven.</span></h2>
+    <p class="s-p" style="text-align:center;max-width:520px;margin:0 auto;">9 módulos en tiempo real. Así opera — y así se mide — la red WeCars × KAVAK.</p>
   </div>
 
-  <div class="dash-tabs rv d1">
-    <button class="dtab on" data-panel="p-cert">🏪 Certificación de agencias</button>
-    <button class="dtab" data-panel="p-assign">🚗 Asignación de vehículos</button>
+  <div class="dash-tabs rv d1" style="gap:6px;">
+    <button class="dtab on" data-panel="p-kpis">📊 KPIs Clave</button>
+    <button class="dtab" data-panel="p-mapa">🗺️ Red México</button>
+    <button class="dtab" data-panel="p-funnel">🔻 Funnel</button>
+    <button class="dtab" data-panel="p-inventario">📦 Inventario</button>
+    <button class="dtab" data-panel="p-comparativa">⚡ Comparativa</button>
+    <button class="dtab" data-panel="p-financiero">💰 Financiero</button>
+    <button class="dtab" data-panel="p-trust">🛡️ Trust Score</button>
+    <button class="dtab" data-panel="p-feed">📡 Actividad</button>
+    <button class="dtab" data-panel="p-sim">🎛️ Simulador</button>
   </div>
 
-  <!-- Panel Certificación -->
-  <div class="dash-panel on" id="p-cert">
+  <!-- ══ MODULE 1: KPIs ══ -->
+  <div class="dash-panel on" id="p-kpis">
+    <div class="cmd-kpi-grid rv">
+      <div class="ck" style="--ck-color:var(--kred);">
+        <div class="ck-label">Días de rotación promedio</div>
+        <div class="ck-value r" id="kpi-rot">21</div>
+        <div class="ck-trend down">▼ −53% vs sector (45d)</div>
+        <canvas class="ck-spark" id="sp-rot" width="180" height="40"></canvas>
+      </div>
+      <div class="ck" style="--ck-color:#34D399;">
+        <div class="ck-label">Efectividad de cierre</div>
+        <div class="ck-value g" id="kpi-efect">94%</div>
+        <div class="ck-trend up">▲ +14pp vs línea base</div>
+        <canvas class="ck-spark" id="sp-efect" width="180" height="40"></canvas>
+      </div>
+      <div class="ck" style="--ck-color:#60A5FA;">
+        <div class="ck-label">GMV proyectado / mes</div>
+        <div class="ck-value b" id="kpi-gmv">$8.4M</div>
+        <div class="ck-trend up">▲ +22% MoM estimado</div>
+        <canvas class="ck-spark" id="sp-gmv" width="180" height="40"></canvas>
+      </div>
+      <div class="ck" style="--ck-color:#FCD34D;">
+        <div class="ck-label">Unidades activas en red</div>
+        <div class="ck-value a" id="kpi-units">47</div>
+        <div class="ck-trend up">▲ +12 esta semana</div>
+        <canvas class="ck-spark" id="sp-units" width="180" height="40"></canvas>
+      </div>
+      <div class="ck" style="--ck-color:#34D399;">
+        <div class="ck-label">Créditos KUNA colocados</div>
+        <div class="ck-value g" id="kpi-kuna">38%</div>
+        <div class="ck-trend up">▲ +8pp vs piloto</div>
+        <canvas class="ck-spark" id="sp-kuna" width="180" height="40"></canvas>
+      </div>
+      <div class="ck" style="--ck-color:var(--kblue);">
+        <div class="ck-label">Trust Score red</div>
+        <div class="ck-value b" id="kpi-trust">94/100</div>
+        <div class="ck-trend up">▲ Cert. activa</div>
+        <canvas class="ck-spark" id="sp-trust" width="180" height="40"></canvas>
+      </div>
+    </div>
+    <div style="background:var(--kgray);border-radius:14px;padding:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:4px;" class="rv d2">
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:900;letter-spacing:-.05em;color:var(--knavy);">5</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tlight);">Agencias piloto</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:900;letter-spacing:-.05em;color:var(--green);">2</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tlight);">Certificadas</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:900;letter-spacing:-.05em;color:var(--amber);">2</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tlight);">En proceso</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:900;letter-spacing:-.05em;color:var(--kred);">6m</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tlight);">Al resultado</div></div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 2: MAPA RED MÉXICO ══ -->
+  <div class="dash-panel" id="p-mapa">
+    <div class="map-wrap rv">
+      <div class="map-svg-box">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px;">Red de distribución automotriz · México 2026</div>
+        <svg viewBox="0 0 520 380" style="width:100%;height:auto;" id="map-svg">
+          <!-- Mexico simplified outline -->
+          <path d="M60,60 L180,30 L260,28 L310,40 L360,38 L400,55 L420,80 L415,100 L430,120 L450,160 L460,200 L455,230 L440,250 L420,265 L400,280 L380,290 L360,300 L340,310 L320,315 L300,310 L280,318 L270,330 L260,340 L250,345 L240,338 L235,325 L225,315 L215,320 L200,325 L185,320 L175,310 L165,300 L155,295 L140,285 L125,270 L115,255 L110,240 L100,220 L90,200 L80,180 L70,160 L60,140 L50,120 L48,100 L52,80 Z" fill="rgba(15,25,51,.9)" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+          <!-- Baja California peninsula -->
+          <path d="M48,100 L38,120 L32,150 L30,180 L35,210 L38,230 L44,240 L50,235 L55,220 L58,200 L60,175 L58,150 L56,130 L52,110 Z" fill="rgba(15,25,51,.7)" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <!-- Yucatan -->
+          <path d="M340,310 L360,295 L380,285 L390,278 L385,300 L370,315 L355,320 L340,318 Z" fill="rgba(15,25,51,.7)" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <!-- Animated connection lines -->
+          <line class="map-line" id="ml0" x1="165" y1="140" x2="210" y2="178" stroke="var(--kred)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+          <line class="map-line" id="ml1" x1="165" y1="140" x2="280" y2="190" stroke="rgba(59,130,246,.5)" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+          <line class="map-line" id="ml2" x1="165" y1="140" x2="320" y2="168" stroke="rgba(59,130,246,.4)" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+          <line class="map-line" id="ml3" x1="165" y1="140" x2="355" y2="210" stroke="rgba(245,158,11,.35)" stroke-width="1" stroke-dasharray="4 3" opacity="0.35"/>
+          <line class="map-line" id="ml4" x1="210" y1="178" x2="280" y2="190" stroke="rgba(16,185,129,.3)" stroke-width="1" stroke-dasharray="3 4" opacity="0.3"/>
+          <!-- City nodes -->
+          <g class="map-node" id="node-chih">
+            <circle cx="165" cy="140" r="16" fill="rgba(255,67,62,.1)" stroke="rgba(255,67,62,.3)" stroke-width="1.5"/>
+            <circle cx="165" cy="140" r="8" fill="var(--kred)" opacity="0.9"/>
+            <circle cx="165" cy="140" r="4" fill="#fff"/>
+            <text x="165" y="127" text-anchor="middle" class="city-label" font-weight="800" fill="rgba(255,255,255,.9)">CHIHUAHUA</text>
+            <text x="165" y="118" text-anchor="middle" class="city-label" fill="var(--kred)" font-size="8">★ PILOTO</text>
+          </g>
+          <g class="map-node" id="node-cdmx">
+            <circle cx="280" cy="190" r="12" fill="rgba(59,130,246,.08)" stroke="rgba(59,130,246,.2)" stroke-width="1"/>
+            <circle cx="280" cy="190" r="6" fill="#3B82F6" opacity="0.7"/>
+            <text x="280" y="208" text-anchor="middle" class="city-label">CDMX</text>
+          </g>
+          <g class="map-node" id="node-mty">
+            <circle cx="210" cy="178" r="11" fill="rgba(16,185,129,.08)" stroke="rgba(16,185,129,.2)" stroke-width="1"/>
+            <circle cx="210" cy="178" r="5" fill="#10B981" opacity="0.7"/>
+            <text x="210" y="196" text-anchor="middle" class="city-label">MONTERREY</text>
+          </g>
+          <g class="map-node" id="node-gdl">
+            <circle cx="220" cy="215" r="9" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.18)" stroke-width="1"/>
+            <circle cx="220" cy="215" r="4" fill="#F59E0B" opacity="0.6"/>
+            <text x="220" y="233" text-anchor="middle" class="city-label">GUADALAJARA</text>
+          </g>
+          <g class="map-node" id="node-jua">
+            <circle cx="320" cy="168" r="9" fill="rgba(59,130,246,.08)" stroke="rgba(59,130,246,.18)" stroke-width="1"/>
+            <circle cx="320" cy="168" r="4" fill="#60A5FA" opacity="0.6"/>
+            <text x="320" y="186" text-anchor="middle" class="city-label">CD. JUÁREZ</text>
+          </g>
+          <g class="map-node" id="node-her">
+            <circle cx="100" cy="148" r="8" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <circle cx="100" cy="148" r="3" fill="rgba(255,255,255,.3)"/>
+            <text x="100" y="164" text-anchor="middle" class="city-label" fill="rgba(255,255,255,.4)">HERMOSILLO</text>
+          </g>
+          <g class="map-node" id="node-maz">
+            <circle cx="355" cy="210" r="8" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.12)" stroke-width="1"/>
+            <circle cx="355" cy="210" r="3" fill="#F59E0B" opacity="0.5"/>
+            <text x="355" y="226" text-anchor="middle" class="city-label">TORREÓN</text>
+          </g>
+          <!-- Pulse ring on Chihuahua -->
+          <circle cx="165" cy="140" r="22" fill="none" stroke="var(--kred)" stroke-width="1" opacity="0.4">
+            <animate attributeName="r" from="10" to="28" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from="0.6" to="0" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <div style="display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.4);"><span style="width:10px;height:10px;border-radius:50%;background:var(--kred);display:inline-block;"></span>Piloto activo</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.4);"><span style="width:10px;height:10px;border-radius:50%;background:#3B82F6;display:inline-block;"></span>Expansión Fase 2</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.4);"><span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>Pipeline</div>
+        </div>
+      </div>
+      <div class="map-legend">
+        <div class="ml-card">
+          <div class="ml-title">Estado de la red</div>
+          <div class="ml-city"><span class="ml-dot" style="background:var(--kred);"></span><span class="ml-name">Chihuahua</span><span class="ml-stat" style="color:var(--kred);">★ Piloto</span></div>
+          <div class="ml-city"><span class="ml-dot" style="background:#10B981;"></span><span class="ml-name">Monterrey</span><span class="ml-stat" style="color:#34D399;">Q3 2026</span></div>
+          <div class="ml-city"><span class="ml-dot" style="background:#3B82F6;"></span><span class="ml-name">CDMX</span><span class="ml-stat" style="color:#60A5FA;">Q4 2026</span></div>
+          <div class="ml-city"><span class="ml-dot" style="background:#F59E0B;"></span><span class="ml-name">Guadalajara</span><span class="ml-stat" style="color:#FCD34D;">Q1 2027</span></div>
+          <div class="ml-city"><span class="ml-dot" style="background:rgba(255,255,255,.2);"></span><span class="ml-name">+12 ciudades</span><span class="ml-stat" style="color:rgba(255,255,255,.25);">Pipeline</span></div>
+        </div>
+        <div class="ml-card">
+          <div class="ml-title">Proyección de escala</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:rgba(255,255,255,.5);">2026 · Piloto</span><span style="font-size:13px;font-weight:800;color:var(--kred);">5 ag.</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:rgba(255,255,255,.5);">2026 · Expansión</span><span style="font-size:13px;font-weight:800;color:#60A5FA;">25 ag.</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11px;color:rgba(255,255,255,.5);">2027 · Nacional</span><span style="font-size:13px;font-weight:800;color:#34D399;">80+ ag.</span></div>
+          </div>
+        </div>
+        <div style="background:rgba(255,67,62,.06);border:1px solid rgba(255,67,62,.16);border-radius:12px;padding:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--kred);margin-bottom:6px;">Ventaja compuesta</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;">Cada ciudad nueva reduce el costo de expansión de las siguientes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 3: FUNNEL ══ -->
+  <div class="dash-panel" id="p-funnel">
+    <div class="funnel-wrap rv">
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-bottom:20px;">Flujo operativo · unidad por unidad</div>
+        <div class="funnel-chart" id="funnel-chart">
+          <div class="fu-step"><span class="fu-label">Captación</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:var(--kblue);" data-w="100" data-val="100 unid."><span class="fu-bar-val">100 unid.</span></div></div><span class="fu-pct">100%</span></div>
+          <div class="fu-arrow">↓ −8%</div>
+          <div class="fu-step"><span class="fu-label">Inspección</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:#3B82F6;" data-w="92" data-val="92 unid."><span class="fu-bar-val">92 unid.</span></div></div><span class="fu-pct">92%</span></div>
+          <div class="fu-arrow">↓ −4%</div>
+          <div class="fu-step"><span class="fu-label">Documentación</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:#60A5FA;" data-w="88" data-val="88 unid."><span class="fu-bar-val">88 unid.</span></div></div><span class="fu-pct">88%</span></div>
+          <div class="fu-arrow">↓ −2%</div>
+          <div class="fu-step"><span class="fu-label">Publicación</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:#34D399;" data-w="86" data-val="86 unid."><span class="fu-bar-val">86 unid.</span></div></div><span class="fu-pct">86%</span></div>
+          <div class="fu-arrow">↓ −22%</div>
+          <div class="fu-step"><span class="fu-label">Lead calificado</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:#FCD34D;" data-w="64" data-val="64 leads"><span class="fu-bar-val">64 leads</span></div></div><span class="fu-pct">64%</span></div>
+          <div class="fu-arrow">↓ −26%</div>
+          <div class="fu-step"><span class="fu-label">Financiamiento</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:var(--amber);" data-w="38" data-val="38 KUNA"><span class="fu-bar-val">38 KUNA</span></div></div><span class="fu-pct">38%</span></div>
+          <div class="fu-arrow">↓ Cierre</div>
+          <div class="fu-step"><span class="fu-label" style="color:var(--green);font-weight:800;">✓ Venta</span><div class="fu-bar-wrap"><div class="fu-bar" style="background:var(--green);" data-w="94" data-val="94 de 100"><span class="fu-bar-val">94 de 100</span></div></div><span class="fu-pct" style="color:var(--green);font-weight:800;">94%</span></div>
+        </div>
+      </div>
+      <div class="funnel-stats">
+        <div class="fst"><div class="fst-v" style="color:var(--kred);">94%</div><div class="fst-l" style="color:rgba(255,255,255,.28);">Efectividad de cierre</div></div>
+        <div class="fst"><div class="fst-v" style="color:#34D399;">21d</div><div class="fst-l" style="color:rgba(255,255,255,.28);">Tiempo promedio Captación → Venta</div></div>
+        <div class="fst"><div class="fst-v" style="color:#60A5FA;">38%</div><div class="fst-l" style="color:rgba(255,255,255,.28);">Penetración KUNA</div></div>
+        <div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#34D399;margin-bottom:5px;">vs Sector tradicional</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.65;">45 días → <strong style="color:#34D399;">21 días</strong>. Capital liberado 2.1× más rápido.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 4: INVENTARIO ══ -->
+  <div class="dash-panel" id="p-inventario">
+    <div class="inv-module rv">
+      <div class="inv-section">
+        <div class="inv-sec-title">Aging de inventario · días en lote</div>
+        <canvas id="aging-chart" width="420" height="160" style="width:100%;height:auto;display:block;margin-bottom:16px;"></canvas>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.5);"><span style="width:10px;height:4px;border-radius:2px;background:#34D399;display:inline-block;"></span>0–14d (óptimo)</div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.5);"><span style="width:10px;height:4px;border-radius:2px;background:#FCD34D;display:inline-block;"></span>15–21d (aceptable)</div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.5);"><span style="width:10px;height:4px;border-radius:2px;background:var(--kred);display:inline-block;"></span>&gt;21d (protocolo)</div>
+        </div>
+      </div>
+      <div>
+        <div class="inv-section" style="margin-bottom:16px;">
+          <div class="inv-sec-title">Rotación por marca</div>
+          <div id="brand-rows">
+            <div class="brand-row"><span class="brand-name">Ford</span><div class="brand-bar-wrap"><div class="brand-fill" style="background:var(--kred);" data-w="92"></div></div><span class="brand-val">92%</span></div>
+            <div class="brand-row"><span class="brand-name">Chevrolet</span><div class="brand-bar-wrap"><div class="brand-fill" style="background:#FF8A87;" data-w="85"></div></div><span class="brand-val">85%</span></div>
+            <div class="brand-row"><span class="brand-name">Nissan</span><div class="brand-bar-wrap"><div class="brand-fill" style="background:#60A5FA;" data-w="80"></div></div><span class="brand-val">80%</span></div>
+            <div class="brand-row"><span class="brand-name">Toyota</span><div class="brand-bar-wrap"><div class="brand-fill" style="background:#34D399;" data-w="78"></div></div><span class="brand-val">78%</span></div>
+            <div class="brand-row"><span class="brand-name">VW</span><div class="brand-bar-wrap"><div class="brand-fill" style="background:#FCD34D;" data-w="71"></div></div><span class="brand-val">71%</span></div>
+          </div>
+        </div>
+        <div class="inv-section">
+          <div class="inv-sec-title">Insights IA</div>
+          <div class="ai-insight"><span class="ai-ico">🧠</span><div class="ai-text"><strong>Pick-ups Ford en Ag. Norte</strong> rotan en 11d promedio — sobre-asignar Q2.</div></div>
+          <div class="ai-insight"><span class="ai-ico">⚡</span><div class="ai-text"><strong>3 unidades en &gt;18 días</strong> — protocolo de precio activado automáticamente.</div></div>
+          <div class="ai-insight"><span class="ai-ico">📈</span><div class="ai-text"><strong>Demanda SUV +18%</strong> en zona norte — rebalancear próxima asignación.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 5: COMPARATIVA ══ -->
+  <div class="dash-panel" id="p-comparativa">
+    <div class="rv" style="overflow-x:auto;">
+      <div style="margin-bottom:20px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-bottom:4px;">Modelo de distribución automotriz</div>
+        <div style="font-size:20px;font-weight:900;letter-spacing:-.03em;color:var(--knavy);">Agencia tradicional <span style="color:var(--tlight);font-weight:300;">vs</span> <span style="color:var(--kred);">WeCars × KAVAK</span></div>
+      </div>
+      <table class="comp-table" style="min-width:600px;">
+        <thead>
+          <tr>
+            <th style="width:220px;">Dimensión</th>
+            <th class="trad">🏚️ Agencia Tradicional</th>
+            <th class="wck">⚡ WeCars × KAVAK</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Rotación de inventario</td><td class="trad-v" style="color:#EF4444;">45–60 días</td><td class="wck-v"><span class="comp-check">✓</span> 21 días objetivo</td></tr>
+          <tr><td>Costo para KAVAK</td><td class="trad-v" style="color:#EF4444;">Alto (lotes + nómina)</td><td class="wck-v"><span class="comp-check">✓</span> Cero estructura fija</td></tr>
+          <tr><td>Financiamiento integrado</td><td class="trad-v"><span class="comp-x">✗</span> No disponible</td><td class="wck-v"><span class="comp-check">✓</span> KUNA en 15 min</td></tr>
+          <tr><td>Visibilidad de inventario</td><td class="trad-v"><span class="comp-x">✗</span> Sin datos</td><td class="wck-v"><span class="comp-check">✓</span> Dashboard tiempo real</td></tr>
+          <tr><td>Certificación de calidad</td><td class="trad-v"><span class="comp-x">✗</span> No estandarizado</td><td class="wck-v"><span class="comp-check">✓</span> Estándar KAVAK</td></tr>
+          <tr><td>Asignación de unidades</td><td class="trad-v" style="color:#EF4444;">Manual / subjetiva</td><td class="wck-v"><span class="comp-check">✓</span> Algoritmo de scoring</td></div></td></tr>
+          <tr><td>Protocolo ante aging</td><td class="trad-v"><span class="comp-x">✗</span> Reactivo (tarde)</td><td class="wck-v"><span class="comp-check">✓</span> Alerta &gt;18d automática</td></tr>
+          <tr><td>Escalabilidad</td><td class="trad-v" style="color:#EF4444;">Lineal y cara</td><td class="wck-v"><span class="comp-check">✓</span> Playbook replicable</td></tr>
+          <tr><td>Experiencia del comprador</td><td class="trad-v">Variable</td><td class="wck-v"><span class="comp-check">✓</span> Protocolo KAVAK 4.8/5</td></tr>
+        </tbody>
+      </table>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;">
+        <div style="background:var(--knavy);border-radius:14px;padding:18px;text-align:center;"><div style="font-size:32px;font-weight:900;letter-spacing:-.05em;color:#34D399;margin-bottom:4px;">−53%</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.28);">Tiempo de rotación</div></div>
+        <div style="background:var(--knavy);border-radius:14px;padding:18px;text-align:center;"><div style="font-size:32px;font-weight:900;letter-spacing:-.05em;color:var(--kred);margin-bottom:4px;">$0</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.28);">Costo fijo para KAVAK</div></div>
+        <div style="background:var(--knavy);border-radius:14px;padding:18px;text-align:center;"><div style="font-size:32px;font-weight:900;letter-spacing:-.05em;color:#60A5FA;margin-bottom:4px;">+80%</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.28);">Efectividad de cierre</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 6: FINANCIERO ══ -->
+  <div class="dash-panel" id="p-financiero">
+    <div class="fin-module rv">
+      <div class="fin-charts">
+        <div class="fin-card">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:10px;">GMV proyectado · crecimiento mensual</div>
+          <div class="fin-kpis">
+            <div class="fk"><div class="fk-v" style="color:#34D399;">$8.4M</div><div class="fk-l">GMV mes 6</div></div>
+            <div class="fk"><div class="fk-v" style="color:#60A5FA;">+22%</div><div class="fk-l">Crecimiento MoM</div></div>
+            <div class="fk"><div class="fk-v" style="color:var(--kred);">$2.1M</div><div class="fk-l">Revenue WeCars</div></div>
+          </div>
+          <canvas id="area-chart" width="500" height="130" style="width:100%;height:auto;display:block;"></canvas>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,.25);margin-top:6px;padding:0 2px;">
+            <span>Mes 1</span><span>Mes 2</span><span>Mes 3</span><span>Mes 4</span><span>Mes 5</span><span>Mes 6</span>
+          </div>
+        </div>
+        <div class="fin-card">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:12px;">Estructura de revenue por fuente</div>
+          <div style="display:flex;gap:16px;align-items:center;">
+            <div style="flex-shrink:0;"><canvas id="donut-rev" width="120" height="120"></canvas></div>
+            <div style="flex:1;">
+              <div class="di"><span class="di-dot" style="background:var(--kred);"></span>Comisión de venta (45%)</div>
+              <div class="di"><span class="di-dot" style="background:#60A5FA;"></span>Comisión KUNA (28%)</div>
+              <div class="di"><span class="di-dot" style="background:#34D399;"></span>Fee de certificación (17%)</div>
+              <div class="di"><span class="di-dot" style="background:#FCD34D;"></span>Servicios adicionales (10%)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fin-side">
+        <div class="fin-card">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:14px;">Proyección 6 meses</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);"><span style="font-size:12px;color:rgba(255,255,255,.45);">Unidades vendidas</span><span style="font-size:13px;font-weight:800;color:#fff;">300+</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);"><span style="font-size:12px;color:rgba(255,255,255,.45);">GMV acumulado</span><span style="font-size:13px;font-weight:800;color:#34D399;">$32M</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);"><span style="font-size:12px;color:rgba(255,255,255,.45);">Créditos KUNA</span><span style="font-size:13px;font-weight:800;color:#60A5FA;">~114</span></div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="font-size:12px;color:rgba(255,255,255,.45);">Revenue WeCars</span><span style="font-size:13px;font-weight:800;color:var(--kred);">$8.1M</span></div>
+          </div>
+        </div>
+        <div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:14px;padding:18px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#34D399;margin-bottom:8px;">Sin costo para KAVAK</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;">WeCars absorbe toda la estructura operativa. KAVAK participa del upside con cero costo fijo.</div>
+        </div>
+        <div style="background:rgba(255,67,62,.07);border:1px solid rgba(255,67,62,.15);border-radius:14px;padding:18px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--kred);margin-bottom:8px;">ROI KAVAK estimado</div>
+          <div style="font-size:36px;font-weight:900;letter-spacing:-.06em;color:var(--kred);line-height:1;margin-bottom:4px;">∞</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.35);">Inversión inicial: $0. Retorno: inventario rotado más rápido + colocación KUNA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 7: TRUST SCORE ══ -->
+  <div class="dash-panel" id="p-trust">
+    <div class="trust-wrap rv">
+      <div>
+        <div class="trust-score-box">
+          <div class="ts-label">Trust Score · Red WeCars × KAVAK</div>
+          <div class="ts-score">94<span>/100</span></div>
+          <div class="ts-badge">✓ Red Certificada · Estándar KAVAK</div>
+          <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;z-index:1;">
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:#34D399;">4.8</div><div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.25);">Exp. comprador</div></div>
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:#60A5FA;">98%</div><div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.25);">Doc. legal</div></div>
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:var(--kred);">100%</div><div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.25);">Proc. KAVAK</div></div>
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:900;color:#FCD34D;">19d</div><div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.25);">KPI rotación</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-metrics">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-bottom:4px;">Desglose por dimensión</div>
+        <div class="tm-card"><span class="tm-ico">📋</span><div><div class="tm-name">Documentación Legal</div><div class="tm-sub">RFC, licencias, contratos vigentes</div></div><span class="tm-score g">98</span></div>
+        <div class="tm-card"><span class="tm-ico">🏪</span><div><div class="tm-name">Capacidad Operativa</div><div class="tm-sub">Espacios, asesores, sistema</div></div><span class="tm-score b">96</span></div>
+        <div class="tm-card"><span class="tm-ico">⭐</span><div><div class="tm-name">Experiencia de Compra</div><div class="tm-sub">Protocolo KAVAK · NPS</div></div><span class="tm-score g">97</span></div>
+        <div class="tm-card"><span class="tm-ico">📊</span><div><div class="tm-name">KPI de Rotación</div><div class="tm-sub">≤21d prom · efectividad ≥80%</div></div><span class="tm-score a">88</span></div>
+        <div class="tm-card"><span class="tm-ico">🏦</span><div><div class="tm-name">Integración KUNA</div><div class="tm-sub">Activación y colocación</div></div><span class="tm-score b">92</span></div>
+        <div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:14px;margin-top:4px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#34D399;margin-bottom:4px;">Compliance automático</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;">Agencias que bajen de 80/100 entran en protocolo de re-certificación. Sin excepciones.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 8: LIVE ACTIVITY FEED ══ -->
+  <div class="dash-panel" id="p-feed">
+    <div class="feed-wrap rv">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);">Actividad en tiempo real · red Chihuahua</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;color:#34D399;"><span style="width:6px;height:6px;border-radius:50%;background:#34D399;animation:pulse 2s infinite;display:inline-block;"></span>EN VIVO</div>
+        </div>
+        <div class="feed-stream">
+          <div class="feed-inner" id="feed-inner">
+            <div class="fe"><span class="fe-dot" style="background:#34D399;"></span><div class="fe-body"><div class="fe-action">✅ Ford F-150 vendida · Ag. Norte</div><div class="fe-meta">Rotación: 11d · KUNA activado · Cliente satisfecho 5/5</div></div><span class="fe-time">hace 2 min</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#60A5FA;"></span><div class="fe-body"><div class="fe-action">📥 3 nuevas unidades asignadas · Ag. Sur</div><div class="fe-meta">RAV4, Juke, Sentra · Score promedio: 81</div></div><span class="fe-time">hace 7 min</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#FCD34D;"></span><div class="fe-body"><div class="fe-action">⚡ Crédito KUNA aprobado en 12 min</div><div class="fe-meta">Nissan Sentra · Ag. Centro · $182,000</div></div><span class="fe-time">hace 14 min</span></div>
+            <div class="fe"><span class="fe-dot" style="background:var(--kred);"></span><div class="fe-body"><div class="fe-action">🔔 Alerta aging: Chevrolet Trax &gt;18d</div><div class="fe-meta">Protocolo de precio activado → −5% · Ag. Oriente</div></div><span class="fe-time">hace 21 min</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#34D399;"></span><div class="fe-body"><div class="fe-action">✅ Agencia Norte re-certificada</div><div class="fe-meta">Trust Score: 97/100 · KPI rotación: 14d ✓</div></div><span class="fe-time">hace 38 min</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#60A5FA;"></span><div class="fe-body"><div class="fe-action">📊 Reporte semanal generado · KAVAK</div><div class="fe-meta">47 unidades activas · GMV semana: $1.4M · Prom: 16.2d</div></div><span class="fe-time">hace 1 hr</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#34D399;"></span><div class="fe-body"><div class="fe-action">✅ Toyota Hilux vendida · Ag. Sur</div><div class="fe-meta">Rotación: 9d · Récord de la semana</div></div><span class="fe-time">hace 2 hr</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#FCD34D;"></span><div class="fe-body"><div class="fe-action">🔄 Reasignación: 2 SUVs a Ag. Norte</div><div class="fe-meta">Algoritmo detectó demanda alta en zona norte</div></div><span class="fe-time">hace 3 hr</span></div>
+            <div class="fe"><span class="fe-dot" style="background:#60A5FA;"></span><div class="fe-body"><div class="fe-action">📥 Lote nuevo: 8 unidades desde KAVAK</div><div class="fe-meta">3 Pick-ups · 3 SUV · 2 Sedán · Pre-validados</div></div><span class="fe-time">hace 5 hr</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="feed-stats">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-bottom:8px;">Resumen del día</div>
+        <div class="fstat"><div class="fstat-v" style="color:#34D399;">7</div><div class="fstat-l">Ventas cerradas</div><div class="fstat-note">+2 vs ayer</div></div>
+        <div class="fstat"><div class="fstat-v" style="color:#60A5FA;">$2.1M</div><div class="fstat-l">GMV del día</div><div class="fstat-note">Proyección mensual: $8.4M</div></div>
+        <div class="fstat"><div class="fstat-v" style="color:#FCD34D;">3</div><div class="fstat-l">KUNA aprobados</div><div class="fstat-note">Prom aprobación: 11 min</div></div>
+        <div class="fstat"><div class="fstat-v" style="color:var(--kred);">1</div><div class="fstat-l">Alertas aging</div><div class="fstat-note">Protocolo activo</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODULE 9: SIMULADOR ══ -->
+  <div class="dash-panel" id="p-sim">
+    <div class="sim-wrap rv">
+      <div class="sim-controls">
+        <div class="sim-title">Simulador de impacto</div>
+        <div class="sim-sub">Ajusta parámetros y visualiza el potencial de la red</div>
+        <div class="sim-slider-row">
+          <div class="sim-label"><span class="sim-name">🏪 Agencias en red</span><span class="sim-val" id="sim-ag-val">5</span></div>
+          <input type="range" class="sl-input" id="sim-ag" min="1" max="50" value="5">
+        </div>
+        <div class="sim-slider-row">
+          <div class="sim-label"><span class="sim-name">🚗 Unidades / agencia</span><span class="sim-val" id="sim-units-val">10</span></div>
+          <input type="range" class="sl-input" id="sim-units" min="5" max="30" value="10">
+        </div>
+        <div class="sim-slider-row">
+          <div class="sim-label"><span class="sim-name">📅 Días de rotación</span><span class="sim-val" id="sim-days-val">21d</span></div>
+          <input type="range" class="sl-input" id="sim-days" min="14" max="45" value="21">
+        </div>
+        <div class="sim-slider-row">
+          <div class="sim-label"><span class="sim-name">💰 Precio prom. vehículo</span><span class="sim-val" id="sim-price-val">$280K</span></div>
+          <input type="range" class="sl-input" id="sim-price" min="150" max="600" value="280">
+        </div>
+        <div class="sim-slider-row">
+          <div class="sim-label"><span class="sim-name">🏦 KUNA penetración</span><span class="sim-val" id="sim-kuna-val">38%</span></div>
+          <input type="range" class="sl-input" id="sim-kuna" min="10" max="70" value="38">
+        </div>
+      </div>
+      <div class="sim-results">
+        <div class="sim-header">Proyección mensual estimada</div>
+        <div class="sim-big" id="sim-gmv">$14.0M</div>
+        <div class="sim-big-label">GMV mensual proyectado</div>
+        <div class="sim-metrics">
+          <div class="sm"><div class="sm-v" style="color:var(--kred);" id="sim-ventas">71</div><div class="sm-l">Ventas / mes</div></div>
+          <div class="sm"><div class="sm-v" style="color:#34D399;" id="sim-rev">$3.5M</div><div class="sm-l">Revenue WeCars</div></div>
+          <div class="sm"><div class="sm-v" style="color:#60A5FA;" id="sim-kuna-v">27</div><div class="sm-l">Créditos KUNA</div></div>
+          <div class="sm"><div class="sm-v" style="color:#FCD34D;" id="sim-total-u">50</div><div class="sm-l">Unidades en red</div></div>
+        </div>
+        <div style="margin-top:16px;padding:14px;background:rgba(255,255,255,.04);border-radius:11px;position:relative;z-index:1;">
+          <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.28);margin-bottom:4px;">Para KAVAK</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.65;">Inventario rotado <strong style="color:#34D399;" id="sim-faster">2.1×</strong> más rápido que el sector. Sin costo de estructura.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PANEL CERT (existing) ══ -->
+  <div class="dash-panel" id="p-cert">
     <div class="cert-overview rv">
       <div class="cov"><div class="cov-v green" data-target="2">2</div><div class="cov-l">Certificadas</div></div>
       <div class="cov"><div class="cov-v amber" data-target="2">2</div><div class="cov-l">En proceso</div></div>
@@ -1094,24 +1658,234 @@ document.querySelectorAll('.step-tab').forEach(tab=>{
   });
 });
 
-/* ── Dashboard tabs ── */
+/* ── Dashboard tabs (updated for 9 modules) ── */
 document.querySelectorAll('.dtab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('on'));
-    document.querySelectorAll('.dash-panel').forEach(p=>p.classList.remove('on'));
+    document.querySelectorAll('.dash-panel').forEach(p=>{p.classList.remove('on');p.style.display='none';});
     tab.classList.add('on');
-    document.getElementById(tab.dataset.panel).classList.add('on');
+    const panel=document.getElementById(tab.dataset.panel);
+    if(panel){panel.classList.add('on');panel.style.display='block';}
+    // Init canvas if needed
+    if(tab.dataset.panel==='p-kpis')initSparklines();
+    if(tab.dataset.panel==='p-inventario'){initAgingChart();initBrandBars();}
+    if(tab.dataset.panel==='p-financiero'){initAreaChart();initDonut();}
+    if(tab.dataset.panel==='p-funnel')initFunnel();
+    if(tab.dataset.panel==='p-feed')startFeed();
   });
 });
 
-/* ── Agency cards expand ── */
-document.querySelectorAll('.ag-card').forEach(card=>{
-  card.addEventListener('click',()=>{
-    const wasActive=card.classList.contains('active');
-    document.querySelectorAll('.ag-card').forEach(c=>c.classList.remove('active'));
-    if(!wasActive)card.classList.add('active');
+/* ── Sparklines ── */
+function drawSparkline(canvasId,data,color){
+  const c=document.getElementById(canvasId);if(!c)return;
+  const ctx=c.getContext('2d'),w=c.width,h=c.height;
+  ctx.clearRect(0,0,w,h);
+  const min=Math.min(...data),max=Math.max(...data),range=max-min||1;
+  const pts=data.map((v,i)=>({x:(i/(data.length-1))*w,y:h-((v-min)/range)*(h*0.8)-h*0.1}));
+  // Fill gradient
+  const grad=ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0,color.replace(')',',0.18)').replace('rgb','rgba'));
+  grad.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.beginPath();ctx.moveTo(pts[0].x,h);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();
+  ctx.fillStyle=grad;ctx.fill();
+  // Line
+  ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle=color;ctx.lineWidth=1.8;ctx.stroke();
+  // Last dot
+  const last=pts[pts.length-1];
+  ctx.beginPath();ctx.arc(last.x,last.y,3,0,Math.PI*2);
+  ctx.fillStyle=color;ctx.fill();
+}
+function initSparklines(){
+  const rotData=[45,42,38,35,30,27,24,21];
+  const efectData=[72,76,79,82,85,88,91,94];
+  const gmvData=[1.2,2.1,3.4,4.8,6.2,7.1,7.8,8.4];
+  const unitsData=[8,12,18,24,30,38,43,47];
+  const kunaData=[18,22,25,28,32,35,37,38];
+  const trustData=[78,82,85,87,89,91,93,94];
+  drawSparkline('sp-rot',rotData,'rgba(255,67,62,0.9)');
+  drawSparkline('sp-efect',efectData,'rgba(52,211,153,0.9)');
+  drawSparkline('sp-gmv',gmvData,'rgba(96,165,250,0.9)');
+  drawSparkline('sp-units',unitsData,'rgba(252,211,77,0.9)');
+  drawSparkline('sp-kuna',kunaData,'rgba(52,211,153,0.9)');
+  drawSparkline('sp-trust',trustData,'rgba(96,165,250,0.9)');
+}
+// Init sparklines on first load (p-kpis is first tab)
+initSparklines();
+
+/* ── Funnel animation ── */
+let funnelDone=false;
+function initFunnel(){
+  if(funnelDone)return;funnelDone=true;
+  const bars=document.querySelectorAll('.fu-bar');
+  setTimeout(()=>bars.forEach((b,i)=>{setTimeout(()=>{b.style.width=b.dataset.w+'%';},i*80);}),100);
+}
+
+/* ── Aging chart ── */
+let agingDone=false;
+function initAgingChart(){
+  if(agingDone)return;agingDone=true;
+  const c=document.getElementById('aging-chart');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  const labels=['0–7d','8–14d','15–18d','19–21d','22–28d','29–35d','>35d'];
+  const vals=[18,22,12,8,5,3,2];
+  const colors=['#34D399','#34D399','#FCD34D','#FCD34D','#FF433E','#FF433E','#FF433E'];
+  const barW=(W-40)/(labels.length);const maxV=Math.max(...vals);
+  ctx.clearRect(0,0,W,H);
+  labels.forEach((l,i)=>{
+    const x=20+i*barW+barW*0.1;const bw=barW*0.8;
+    const bh=((vals[i]/maxV)*(H-30));const y=H-20-bh;
+    const grad=ctx.createLinearGradient(0,y,0,H-20);
+    grad.addColorStop(0,colors[i]);grad.addColorStop(1,colors[i].replace('#','#')+'22');
+    ctx.fillStyle=grad;
+    // Animate height
+    let progress=0;
+    (function animate(){
+      progress=Math.min(progress+0.06,1);
+      ctx.clearRect(x-2,0,bw+4,H);
+      ctx.fillStyle=grad;
+      const currentH=bh*progress;
+      ctx.beginPath();
+      ctx.roundRect(x,H-20-currentH,bw,currentH,3);
+      ctx.fill();
+      if(progress<1)requestAnimationFrame(animate);
+    })();
+    // Label
+    ctx.fillStyle='rgba(255,255,255,0.25)';ctx.font='8px Inter,sans-serif';ctx.textAlign='center';
+    ctx.fillText(l,x+bw/2,H-6);
+    ctx.fillStyle=colors[i];ctx.font='bold 9px Inter,sans-serif';
+    ctx.fillText(vals[i],x+bw/2,y-4);
   });
+}
+
+/* ── Brand bars ── */
+let brandDone=false;
+function initBrandBars(){
+  if(brandDone)return;brandDone=true;
+  setTimeout(()=>{
+    document.querySelectorAll('.brand-fill').forEach(b=>{
+      b.style.width=b.dataset.w+'%';
+    });
+  },100);
+}
+
+/* ── Area chart (Financiero) ── */
+let areaDone=false;
+function initAreaChart(){
+  if(areaDone)return;areaDone=true;
+  const c=document.getElementById('area-chart');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  const data=[1.2,2.4,4.1,5.8,7.2,8.4];
+  const maxV=10;const pts=data.map((v,i)=>({x:20+(i/(data.length-1))*(W-40),y:H-10-((v/maxV)*(H-20))}));
+  ctx.clearRect(0,0,W,H);
+  // Grid lines
+  [0.25,0.5,0.75,1].forEach(pct=>{
+    const y=H-10-(pct*(H-20));
+    ctx.beginPath();ctx.moveTo(20,y);ctx.lineTo(W-20,y);
+    ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,0.2)';ctx.font='8px Inter,sans-serif';ctx.textAlign='right';
+    ctx.fillText('$'+(maxV*pct).toFixed(1)+'M',18,y+3);
+  });
+  // Area fill
+  const grad=ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'rgba(52,211,153,0.22)');
+  grad.addColorStop(1,'rgba(52,211,153,0.01)');
+  ctx.beginPath();ctx.moveTo(pts[0].x,H-10);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x,H-10);ctx.closePath();
+  ctx.fillStyle=grad;ctx.fill();
+  // Line
+  ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+  pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle='#34D399';ctx.lineWidth=2.2;ctx.stroke();
+  // Dots
+  pts.forEach(p=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);
+    ctx.fillStyle='#34D399';ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,0.6)';ctx.font='bold 9px Inter,sans-serif';ctx.textAlign='center';
+    ctx.fillText('$'+data[pts.indexOf(p)]+'M',p.x,p.y-8);
+  });
+}
+
+/* ── Donut chart ── */
+let donutDone=false;
+function initDonut(){
+  if(donutDone)return;donutDone=true;
+  const c=document.getElementById('donut-rev');if(!c)return;
+  const ctx=c.getContext('2d');
+  const cx=60,cy=60,r=46,inner=30;
+  const slices=[{v:.45,c:'#FF433E'},{v:.28,c:'#60A5FA'},{v:.17,c:'#34D399'},{v:.10,c:'#FCD34D'}];
+  let angle=-Math.PI/2;
+  slices.forEach(s=>{
+    const end=angle+s.v*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,angle,end);
+    ctx.closePath();ctx.fillStyle=s.c;ctx.fill();
+    angle=end;
+  });
+  ctx.beginPath();ctx.arc(cx,cy,inner,0,2*Math.PI);
+  ctx.fillStyle='#152045';ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,0.7)';ctx.font='bold 11px Inter,sans-serif';ctx.textAlign='center';ctx.fillText('Rev',cx,cy-2);
+  ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='9px Inter,sans-serif';ctx.fillText('mix',cx,cy+10);
+}
+
+/* ── Live feed auto-scroll ── */
+let feedStarted=false,feedTimer=null;
+const feedEvents=[
+  {dot:'#34D399',action:'✅ Chevrolet Trailblazer vendida · Ag. Norte',meta:'Rotación: 13d · Pago contado',time:'hace 1 min'},
+  {dot:'#60A5FA',action:'📥 2 unidades asignadas · Ag. Centro',meta:'Sentra · Juke · Score: 78',time:'hace 4 min'},
+  {dot:'#FCD34D',action:'⚡ KUNA aprobado: Honda CR-V',meta:'$320,000 · 36 meses · Ag. Sur',time:'hace 8 min'},
+  {dot:'#34D399',action:'✅ Toyota Hilux vendida · Ag. Sur',meta:'Rotación: 9d · Nuevo récord',time:'hace 11 min'},
+  {dot:'var(--kred)',action:'🔔 Alerta: VW Jetta > 19d',meta:'Protocolo −5% precio activado · Ag. Oriente',time:'hace 16 min'},
+  {dot:'#60A5FA',action:'📊 Score actualizado · 5 agencias',meta:'Ag. Norte 97 · Ag. Sur 94 · Ag. Centro 88',time:'hace 22 min'},
+];
+let feedIdx=0;
+function startFeed(){
+  if(feedStarted)return;feedStarted=true;
+  feedTimer=setInterval(()=>{
+    const inner=document.getElementById('feed-inner');if(!inner)return;
+    const ev=feedEvents[feedIdx%feedEvents.length];feedIdx++;
+    const el=document.createElement('div');el.className='fe';
+    el.style.background='rgba(255,255,255,.05)';
+    el.innerHTML=`<span class="fe-dot" style="background:${ev.dot};"></span><div class="fe-body"><div class="fe-action">${ev.action}</div><div class="fe-meta">${ev.meta}</div></div><span class="fe-time">${ev.time}</span>`;
+    inner.insertBefore(el,inner.firstChild);
+    if(inner.children.length>12)inner.removeChild(inner.lastChild);
+  },3500);
+}
+
+/* ── Simulador ── */
+function updateSim(){
+  const ag=parseInt(document.getElementById('sim-ag').value)||5;
+  const units=parseInt(document.getElementById('sim-units').value)||10;
+  const days=parseInt(document.getElementById('sim-days').value)||21;
+  const price=parseInt(document.getElementById('sim-price').value)||280;
+  const kuna=parseInt(document.getElementById('sim-kuna').value)||38;
+  document.getElementById('sim-ag-val').textContent=ag;
+  document.getElementById('sim-units-val').textContent=units;
+  document.getElementById('sim-days-val').textContent=days+'d';
+  document.getElementById('sim-price-val').textContent='$'+price+'K';
+  document.getElementById('sim-kuna-val').textContent=kuna+'%';
+  const totalU=ag*units;
+  const ventasMes=Math.round(totalU*(30/days));
+  const gmv=((ventasMes*price*1000)/1000000).toFixed(1);
+  const rev=((gmv*0.25)).toFixed(1);
+  const kunaV=Math.round(ventasMes*(kuna/100));
+  const faster=(45/days).toFixed(1);
+  document.getElementById('sim-gmv').textContent='$'+gmv+'M';
+  document.getElementById('sim-ventas').textContent=ventasMes;
+  document.getElementById('sim-rev').textContent='$'+rev+'M';
+  document.getElementById('sim-kuna-v').textContent=kunaV;
+  document.getElementById('sim-total-u').textContent=totalU;
+  document.getElementById('sim-faster').textContent=faster+'×';
+}
+['sim-ag','sim-units','sim-days','sim-price','sim-kuna'].forEach(id=>{
+  const el=document.getElementById(id);if(el)el.addEventListener('input',updateSim);
 });
+updateSim();
 
 /* ── Slider assignment board ── */
 const segData=[
