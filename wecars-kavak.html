@@ -327,27 +327,27 @@ h1.ht .ghost{color:rgba(255,255,255,.18);font-weight:300;}
 
 /* CERT SECTION */
 #cert{background:var(--kgray);padding:80px 0;}
-.timeline{position:relative;margin-bottom:48px;}
-.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--kred),var(--kblue),#34D399);transform:translateX(-50%);}
-.tl-item{display:grid;grid-template-columns:1fr 56px 1fr;gap:0;margin-bottom:28px;align-items:center;}
-.tl-left{text-align:right;padding-right:28px;}
-.tl-right{text-align:left;padding-left:28px;}
-.tl-center{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;}
-.tl-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 0 4px var(--kgray);}
-.tl-dot.red{background:var(--kred);}
-.tl-dot.blue{background:var(--kblue);}
-.tl-dot.green{background:var(--green);}
-.tl-period{font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tlight);margin-top:2px;}
-.tl-card{background:#fff;border:1px solid var(--kgray3);border-radius:14px;padding:18px 20px;}
+.timeline{position:relative;margin-bottom:48px;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:28px;top:16px;bottom:16px;width:1px;background:linear-gradient(180deg,var(--kred),var(--kblue),#34D399);opacity:.35;}
+.tl-item{display:grid;grid-template-columns:40px 1fr;gap:0;margin-bottom:16px;align-items:flex-start;}
+.tl-left{display:none;}
+.tl-right{text-align:left;padding-left:20px;padding-bottom:4px;}
+.tl-center{display:flex;align-items:center;justify-content:flex-start;flex-direction:column;gap:0;padding-top:2px;}
+.tl-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 0 3px var(--kgray),0 0 0 5px transparent;position:relative;z-index:2;}
+.tl-dot.red{background:var(--kred);box-shadow:0 0 0 3px var(--kgray),0 0 0 5px rgba(255,67,62,.2);}
+.tl-dot.blue{background:var(--kblue);box-shadow:0 0 0 3px var(--kgray),0 0 0 5px rgba(29,78,216,.2);}
+.tl-dot.green{background:var(--green);box-shadow:0 0 0 3px var(--kgray),0 0 0 5px rgba(16,185,129,.2);}
+.tl-period{display:none;}
+.tl-card{background:#fff;border:1px solid var(--kgray3);border-radius:14px;padding:18px 22px;}
 .tl-card.navy{background:var(--knavy);border-color:transparent;}
-.tl-tag{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);margin-bottom:7px;}
+.tl-tag{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kred);margin-bottom:6px;}
 .tl-card.navy .tl-tag{color:rgba(255,67,62,.7);}
 .tl-h{font-size:14px;font-weight:800;color:var(--knavy);margin-bottom:5px;letter-spacing:-.01em;}
 .tl-card.navy .tl-h{color:#fff;}
-.tl-b{font-size:12px;color:var(--tmid);line-height:1.6;}
-.tl-card.navy .tl-b{color:rgba(255,255,255,.38);}
-.tl-pills{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;}
-.tl-pill{font-size:8px;font-weight:600;padding:2px 7px;border-radius:4px;}
+.tl-b{font-size:12px;color:var(--tmid);line-height:1.65;}
+.tl-card.navy .tl-b{color:rgba(255,255,255,.42);}
+.tl-pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;}
+.tl-pill{font-size:8px;font-weight:600;padding:3px 8px;border-radius:5px;}
 .tl-pill.r{background:var(--kred-dim);color:var(--kred);border:1px solid var(--kred-border);}
 .tl-pill.b{background:rgba(59,130,246,.1);color:var(--kblue2);border:1px solid rgba(59,130,246,.2);}
 .tl-pill.g{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.2);}
@@ -595,31 +595,38 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   .bt-metrics{gap:16px;}
   .ben-grid{grid-template-columns:1fr;}
   .cert-grid{grid-template-columns:repeat(2,1fr);}
-  .timeline::before{left:16px;}
-  .tl-item{grid-template-columns:32px 1fr;gap:0;}
-  .tl-left{display:none;}
-  .tl-center{align-items:flex-start;margin-right:14px;}
-  .tl-period{display:none;}
-  .tl-right{padding-left:0;}
+  /* timeline is now left-aligned, no extra mobile overrides needed */
+  .timeline{padding-left:20px;}
+  .timeline::before{left:20px;}
+  .tl-dot{width:32px;height:32px;font-size:11px;}
+  .tl-right{padding-left:16px;}
+  .tl-card{padding:14px 16px;}
+  /* cierre strip */
   .c-strip{grid-template-columns:repeat(3,1fr);gap:8px;}
-  .cs{padding:16px 8px;}
+  .cs{padding:16px 10px;}
+  .cs-v{font-size:clamp(18px,5vw,26px);}
   .c-actions{flex-direction:column;align-items:center;}
   footer{flex-direction:column;gap:8px;text-align:center;padding:20px 16px;}
   .assign-top{grid-template-columns:1fr;}
   .ag-kpis{grid-template-columns:repeat(2,1fr);}
   .cert-overview{grid-template-columns:repeat(3,1fr);}
   .dash-tabs{gap:6px;}
-  .dtab{font-size:12px;padding:8px 16px;}
+  .dtab{font-size:12px;padding:8px 14px;}
+  /* general section breathing room */
+  #cert,#beneficios,#propuesta,#problema{padding:60px 0;}
+  .ben-top{padding:24px 20px;}
 }
 @media(max-width:400px){
   .cert-grid{grid-template-columns:1fr;}
   .cert-overview{grid-template-columns:repeat(3,1fr);}
-  .cov{padding:12px 8px;}
-  .cov-v{font-size:28px;}
+  .cov{padding:12px 6px;}
+  .cov-v{font-size:26px;}
   .cov-l{font-size:8px;}
-  .cierre-in{padding:0 6px;}
-  .c-strip{grid-template-columns:repeat(3,1fr);}
+  .c-strip{grid-template-columns:repeat(3,1fr);gap:6px;}
+  .cs{padding:12px 6px;}
+  .cs-v{font-size:clamp(16px,5vw,22px);}
   .c-tag{font-size:8px;letter-spacing:.07em;}
+  .cierre-in{padding:0;}
 }
 </style>
 </head>
@@ -1492,29 +1499,24 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   </div>
   <div class="timeline rv">
     <div class="tl-item">
-      <div class="tl-left"><div class="tl-card"><div class="tl-tag">Fase 1 · Meses 1–2</div><div class="tl-h">Selección y onboarding</div><div class="tl-b">Evaluación de 5 agencias candidatas en Chihuahua. Firma bajo estándar KAVAK.</div><div class="tl-pills"><span class="tl-pill r">5 agencias</span><span class="tl-pill b">Due diligence</span><span class="tl-pill a">Contratos</span></div></div></div>
-      <div class="tl-center"><div class="tl-dot red">1</div><div class="tl-period">M 1–2</div></div>
-      <div class="tl-right"></div>
+      <div class="tl-center"><div class="tl-dot red">1</div></div>
+      <div class="tl-right"><div class="tl-card"><div class="tl-tag">Fase 1 · Meses 1–2</div><div class="tl-h">Selección y onboarding</div><div class="tl-b">Evaluación de 5 agencias candidatas en Chihuahua. Firma bajo estándar KAVAK.</div><div class="tl-pills"><span class="tl-pill r">5 agencias</span><span class="tl-pill b">Due diligence</span><span class="tl-pill a">Contratos</span></div></div></div>
     </div>
     <div class="tl-item">
-      <div class="tl-left"></div>
-      <div class="tl-center"><div class="tl-dot red">2</div><div class="tl-period">M 2–3</div></div>
+      <div class="tl-center"><div class="tl-dot red">2</div></div>
       <div class="tl-right"><div class="tl-card"><div class="tl-tag">Fase 2 · Meses 2–3</div><div class="tl-h">Capacitación y activación</div><div class="tl-b">Entrenamiento proceso KAVAK, integración KUNA, activación del dashboard.</div><div class="tl-pills"><span class="tl-pill r">Proceso KAVAK</span><span class="tl-pill b">KUNA activo</span><span class="tl-pill g">Dashboard</span></div></div></div>
     </div>
     <div class="tl-item">
-      <div class="tl-left"><div class="tl-card navy"><div class="tl-tag">Fase 3 · Meses 3–6</div><div class="tl-h">Piloto operativo</div><div class="tl-b">Operación activa con inventario real. Meta: 21 días de rotación en ≥3 de 5 agencias.</div><div class="tl-pills"><span class="tl-pill r">50+ unidades</span><span class="tl-pill g">21d meta</span><span class="tl-pill b">Reportes semanales</span></div></div></div>
-      <div class="tl-center"><div class="tl-dot blue">3</div><div class="tl-period">M 3–6</div></div>
-      <div class="tl-right"></div>
+      <div class="tl-center"><div class="tl-dot blue">3</div></div>
+      <div class="tl-right"><div class="tl-card navy"><div class="tl-tag">Fase 3 · Meses 3–6</div><div class="tl-h">Piloto operativo</div><div class="tl-b">Operación activa con inventario real. Meta: 21 días de rotación en ≥3 de 5 agencias.</div><div class="tl-pills"><span class="tl-pill r">50+ unidades</span><span class="tl-pill g">21d meta</span><span class="tl-pill b">Reportes semanales</span></div></div></div>
     </div>
     <div class="tl-item">
-      <div class="tl-left"></div>
-      <div class="tl-center"><div class="tl-dot blue">4</div><div class="tl-period">M 6</div></div>
+      <div class="tl-center"><div class="tl-dot blue">4</div></div>
       <div class="tl-right"><div class="tl-card"><div class="tl-tag">Fase 4 · Mes 6</div><div class="tl-h">Evaluación y re-certificación</div><div class="tl-b">Revisión de KPIs: rotación, experiencia, documentación. Agencias que no cumplen son reemplazadas.</div><div class="tl-pills"><span class="tl-pill r">KPI review</span><span class="tl-pill a">Ranking</span><span class="tl-pill g">Re-cert</span></div></div></div>
     </div>
     <div class="tl-item">
-      <div class="tl-left"><div class="tl-card" style="border-color:rgba(16,185,129,.25);"><div class="tl-tag" style="color:var(--green);">Fase 5 · Mes 7+</div><div class="tl-h">Escala nacional</div><div class="tl-b">El playbook probado en Chihuahua se replica ciudad por ciudad.</div><div class="tl-pills"><span class="tl-pill g">Ciudad a ciudad</span><span class="tl-pill b">Playbook</span></div></div></div>
-      <div class="tl-center"><div class="tl-dot green">5</div><div class="tl-period">M 7+</div></div>
-      <div class="tl-right"></div>
+      <div class="tl-center"><div class="tl-dot green">5</div></div>
+      <div class="tl-right"><div class="tl-card" style="border-color:rgba(16,185,129,.22);"><div class="tl-tag" style="color:var(--green);">Fase 5 · Mes 7+</div><div class="tl-h">Escala nacional</div><div class="tl-b">El playbook probado en Chihuahua se replica ciudad por ciudad.</div><div class="tl-pills"><span class="tl-pill g">Ciudad a ciudad</span><span class="tl-pill b">Playbook</span></div></div></div>
     </div>
   </div>
   <div class="rv d2">
