@@ -575,6 +575,7 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   .nav-badge{display:none;}
   .hamburger{display:flex;}
   .con{padding:0 20px;}
+  body{overflow-x:hidden;}
   .sec-pad{padding:60px 0;}
   h1.ht{font-size:clamp(36px,10vw,56px);}
   .hero-kpis{flex-wrap:wrap;}
@@ -616,17 +617,18 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   #cert,#beneficios,#propuesta,#problema{padding:60px 0;}
   .ben-top{padding:24px 20px;}
 
-  /* ── Red Sinaloa + Mercado mobile ── */
-  #red-sinaloa .opp-stats{grid-template-columns:repeat(3,1fr);}
-  #red-sinaloa [style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr) !important;}
-  #red-sinaloa [style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;}
-  #red-sinaloa [style*="1fr 1fr"]{grid-template-columns:1fr !important;}
-  #rpanel-chihuahua,#rpanel-sinaloa{grid-template-columns:1fr !important;}
+  /* ── Red Sinaloa + Mercado + Dashboard mobile ── */
+  #rpanel-chihuahua,#rpanel-sinaloa{grid-template-columns:1fr !important;gap:16px;}
   #rpanel-chihuahua>div:first-child img{border-radius:12px;}
-  [id^="rpanel-"] > div:last-child{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  [id^="rpanel-"] > div:last-child > div:first-child{grid-column:span 2;}
-  .mtab{font-size:11px;padding:7px 12px;}
-  #rtab-chihuahua,#rtab-sinaloa{font-size:11px;padding:7px 14px;}
+  #rpanel-sinaloa>div:first-child{min-height:auto !important;}
+  [id^="rpanel-"] > div:last-child{display:flex !important;flex-direction:column;gap:10px;}
+  #rtab-chihuahua,#rtab-sinaloa{font-size:12px;padding:8px 16px;}
+  .mtab{font-size:12px;padding:8px 14px;}
+  /* Fix inline grids in red-sinaloa section */
+  #red-sinaloa .opp-stats{grid-template-columns:repeat(3,1fr);}
+  /* Fix dashboard tabs overflow */
+  .dash-tabs{overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .dash-tabs::-webkit-scrollbar{display:none;}
 }
 @media(max-width:400px){
   .cert-grid{grid-template-columns:1fr;}
@@ -639,6 +641,21 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   .cs-v{font-size:clamp(16px,5vw,22px);}
   .c-tag{font-size:8px;letter-spacing:.07em;}
   .cierre-in{padding:0;}
+  /* Extra small phones */
+  #rpanel-sinaloa>div:first-child{padding:48px 16px 16px !important;}
+  .opp-stats{grid-template-columns:repeat(3,1fr) !important;}
+}
+
+/* Sinaloa panel: siempre mobile-friendly con padding correcto */
+@media(max-width:768px){
+  #rpanel-sinaloa>div:first-child{padding:48px 16px 20px !important;}
+  #rpanel-sinaloa>div:first-child>div{margin-bottom:20px !important;}
+  #rpanel-chihuahua>div:first-child,#rpanel-sinaloa>div:first-child{min-height:auto !important;}
+  /* Dashboard en mobile: los tabs del mapa se acomodan vertical */
+  #p-mapa>div:first-child{flex-wrap:wrap;}
+  /* ag-card en mobile no se corta */
+  .ag-header{flex-wrap:wrap;gap:8px;}
+  .ag-status{margin-left:0;flex-direction:row;flex-wrap:wrap;}
 }
 </style>
 </head>
@@ -1341,20 +1358,20 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
             <div style="display:flex;align-items:center;gap:9px;"><span style="width:22px;height:22px;border-radius:50%;background:#34D399;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;">A</span><div><div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.8);">Autofiel Mazatlán</div><div style="font-size:9px;color:rgba(255,255,255,.3);">Mazatlán · 669 275 5969</div></div></div>
           </div>
         </div>
-        <div style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);border-radius:12px;padding:14px;">
+        <div style="background:var(--knavy);border-radius:12px;padding:16px;">
           <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#60A5FA;margin-bottom:6px;">Cobertura Sinaloa</div>
-          <div style="font-size:24px;font-weight:900;letter-spacing:-.05em;color:#fff;margin-bottom:2px;">5 socios</div>
-          <div style="font-size:10px;color:rgba(255,255,255,.4);">3 ciudades · Norte → Sur del estado</div>
+          <div style="font-size:24px;font-weight:900;letter-spacing:-.05em;color:#fff;margin-bottom:4px;">5 socios</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.5);">3 ciudades · Norte → Sur del estado</div>
         </div>
-        <div style="background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.15);border-radius:12px;padding:14px;">
-          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#34D399;margin-bottom:5px;">GMV estimado · Año 1</div>
-          <div style="font-size:22px;font-weight:900;letter-spacing:-.04em;color:#fff;margin-bottom:2px;">$233M MXN</div>
-          <div style="font-size:10px;color:rgba(255,255,255,.4);">65 unidades/mes · rotación 21d</div>
+        <div style="background:var(--knavy);border-radius:12px;padding:16px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#34D399;margin-bottom:6px;">GMV estimado · Año 1</div>
+          <div style="font-size:22px;font-weight:900;letter-spacing:-.04em;color:#fff;margin-bottom:4px;">$233M MXN</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.5);">65 unidades/mes · rotación 21d</div>
         </div>
-        <div style="background:rgba(255,67,62,.07);border:1px solid rgba(255,67,62,.15);border-radius:12px;padding:14px;">
-          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--kred);margin-bottom:5px;">Red total México</div>
-          <div style="font-size:22px;font-weight:900;letter-spacing:-.04em;color:#fff;margin-bottom:2px;">12 aliados</div>
-          <div style="font-size:10px;color:rgba(255,255,255,.4);">Chihuahua + Sinaloa · 4 ciudades activas</div>
+        <div style="background:var(--kred);border-radius:12px;padding:16px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px;">Red total México</div>
+          <div style="font-size:22px;font-weight:900;letter-spacing:-.04em;color:#fff;margin-bottom:4px;">12 aliados</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.7);">Chihuahua + Sinaloa · 4 ciudades activas</div>
         </div>
       </div>
     </div>
