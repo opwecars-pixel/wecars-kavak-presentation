@@ -1171,15 +1171,89 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
   <div class="rv dash-intro">
     <div class="s-tag" style="justify-content:center;">04 — Centro de Control</div>
     <h2 class="s-h" style="text-align:center;">Infraestructura <span class="red">inteligente.</span></h2>
-    <p class="s-p" style="text-align:center;max-width:560px;margin:0 auto;">9 módulos en tiempo real. Así opera la red — y así se mide cada resultado para KAVAK.</p>
+    <p class="s-p" style="text-align:center;max-width:560px;margin:0 auto;">Debajo está la comparativa que explica por qué funciona el modelo — seguido de 8 módulos operativos con datos en tiempo real.</p>
   </div>
 
-  <div class="dash-tabs rv d1" style="gap:6px;">
+  <!-- ══ COMPARATIVA FIJA (siempre visible) ══ -->
+  <div class="rv d1" style="margin-bottom:48px;">
+    <div style="overflow-x:auto;">
+      <div style="margin-bottom:20px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-bottom:4px;">Modelo de distribución automotriz</div>
+        <div style="font-size:20px;font-weight:900;letter-spacing:-.03em;color:var(--knavy);">Agencia tradicional <span style="color:var(--tlight);font-weight:300;">vs</span> <span style="color:var(--kred);">WeCars × KAVAK</span></div>
+      </div>
+      <table class="comp-table" style="min-width:600px;">
+        <thead>
+          <tr>
+            <th style="width:220px;">Dimensión</th>
+            <th class="trad">Agencia Tradicional</th>
+            <th class="wck">WeCars × KAVAK</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Velocidad de venta de inventario</td><td class="trad-v" style="color:#EF4444;">45–60 días</td><td class="wck-v"><span class="comp-check">✓</span> 21 días objetivo</td></tr>
+          <tr><td>Costo para KAVAK</td><td class="trad-v" style="color:#EF4444;">Alto (lotes + nómina)</td><td class="wck-v"><span class="comp-check">✓</span> Cero estructura fija</td></tr>
+          <tr><td>Financiamiento integrado</td><td class="trad-v"><span class="comp-x">✗</span> No disponible</td><td class="wck-v"><span class="comp-check">✓</span> KUNA: aprobación en 15 min</td></tr>
+          <tr><td>Visibilidad del inventario</td><td class="trad-v"><span class="comp-x">✗</span> Sin datos</td><td class="wck-v"><span class="comp-check">✓</span> Panel en tiempo real</td></tr>
+          <tr><td>Estándar de calidad</td><td class="trad-v"><span class="comp-x">✗</span> No estandarizado</td><td class="wck-v"><span class="comp-check">✓</span> Estándar KAVAK en cada aliado</td></tr>
+          <tr><td>Asignación de unidades</td><td class="trad-v" style="color:#EF4444;">Manual / subjetiva</td><td class="wck-v"><span class="comp-check">✓</span> Algoritmo de scoring automático</td></tr>
+          <tr><td>Alerta por auto detenido</td><td class="trad-v"><span class="comp-x">✗</span> Reactivo (tarde)</td><td class="wck-v"><span class="comp-check">✓</span> Alerta automática a los 18 días</td></tr>
+          <tr><td>Escalabilidad a nuevas ciudades</td><td class="trad-v" style="color:#EF4444;">Lineal y costosa</td><td class="wck-v"><span class="comp-check">✓</span> Playbook replicable sin costo fijo</td></tr>
+          <tr><td>Experiencia del comprador</td><td class="trad-v">Variable / inconsistente</td><td class="wck-v"><span class="comp-check">✓</span> Protocolo KAVAK 4.8/5</td></tr>
+        </tbody>
+      </table>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;">
+        <div style="background:var(--knavy);border-radius:14px;padding:18px;text-align:center;"><div style="font-size:32px;font-weight:900;letter-spacing:-.05em;color:#34D399;margin-bottom:4px;">−53%</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.28);">Menos tiempo para vender</div></div>
+        <div style="background:var(--knavy);border-radius:14px;padding:18px;text-align:center;"><div style="font-size:32px;font-weight:900;letter-spacing:-.05em;color:var(--kred);margin-bottom:4px;">$0</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.28);">Costo fijo para KAVAK</div></div>
+        <div style="background:var(--knavy);border-radius:14px;padding:18px;text-align:center;"><div style="font-size:32px;font-weight:900;letter-spacing:-.05em;color:#60A5FA;margin-bottom:4px;">+80%</div><div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.28);">Efectividad de cierre</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DIRECTORIO DE MÓDULOS ══ -->
+  <div class="rv d2" style="margin-bottom:32px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--kred);margin-bottom:20px;display:flex;align-items:center;gap:7px;"><span style="width:16px;height:2px;background:var(--kred);border-radius:1px;display:inline-block;"></span>Módulos operativos en tiempo real — selecciona uno para ver los datos</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <button class="dtab mod-card on" data-panel="p-kpis" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Métricas clave</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Rotación, ventas, autos activos y calificación de la red</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-mapa" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Red México</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Mapa de aliados en Chihuahua y Sinaloa con zonas de cobertura</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-funnel" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Embudo de ventas</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Del primer contacto hasta la venta cerrada: cuántos pasan cada etapa</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-inventario" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Inventario</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Autos asignados, tiempo en piso y modelos con mayor demanda</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-financiero" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Proyección financiera</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Valor de ventas mensual, crecimiento y distribución de ingresos</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-trust" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Índice de confianza</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Calificación de cada aliado: documentación, atención y procesos KAVAK</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-feed" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Actividad en vivo</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Registro en tiempo real: ventas cerradas, alertas y recertificaciones</div>
+      </button>
+      <button class="dtab mod-card" data-panel="p-sim" style="text-align:left;padding:16px;border-radius:12px;border:1px solid var(--kgray3);background:#fff;cursor:pointer;transition:all .22s;display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:11px;font-weight:800;color:var(--knavy);letter-spacing:-.01em;">Simulador</div>
+        <div style="font-size:10px;color:var(--tlight);line-height:1.4;font-weight:400;">Ajusta número de aliados y precio para ver el impacto en ventas y GMV</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabs ocultos (para JS compatibilidad) -->
+  <div class="dash-tabs" style="display:none;">
     <button class="dtab on" data-panel="p-kpis">Métricas clave</button>
     <button class="dtab" data-panel="p-mapa">Red México</button>
     <button class="dtab" data-panel="p-funnel">Embudo de ventas</button>
     <button class="dtab" data-panel="p-inventario">Inventario</button>
-    <button class="dtab" data-panel="p-comparativa">Comparativa</button>
     <button class="dtab" data-panel="p-financiero">Proyección financiera</button>
     <button class="dtab" data-panel="p-trust">Índice de confianza</button>
     <button class="dtab" data-panel="p-feed">Actividad en vivo</button>
@@ -1450,8 +1524,8 @@ footer{background:#000;padding:28px 48px;display:flex;align-items:center;justify
     </div>
   </div>
 
-  <!-- ══ MODULE 5: COMPARATIVA ══ -->
-  <div class="dash-panel" id="p-comparativa">
+  <!-- ══ MODULE 5: COMPARATIVA (ahora fija arriba) ══ -->
+  <div class="dash-panel" id="p-comparativa" style="display:none!important;">
     <div class="rv" style="overflow-x:auto;">
       <div style="margin-bottom:20px;">
         <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tlight);margin-bottom:4px;">Modelo de distribución automotriz</div>
